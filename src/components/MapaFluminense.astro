@@ -230,30 +230,55 @@ import { MUNICIPIOS_MAPA, MAPA_RJ_VIEWBOX, REGIOES_RJ_LISTA } from '../data/mapa
       selecionarMunicipio(activeSlug, false);
     }
 
-    // Eventos dos caminhos municipais
+    // Eventos dos caminhos municipais (Clique, Toque e Teclado)
     paths.forEach((path) => {
+      // Clique / Toque
       path.addEventListener('click', () => {
         const slug = path.getAttribute('data-slug');
-        if (slug) selecionarMunicipio(slug);
+        if (slug) {
+          selecionarMunicipio(slug);
+
+          // No mobile, rola suavemente até o card de detalhes
+          if (window.innerWidth < 1024) {
+            const card = document.getElementById('card-resultado-cidade');
+            if (card) {
+              setTimeout(() => {
+                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }, 180);
+            }
+          }
+        }
       });
 
+      // Suporte a teclado (Acessibilidade WCAG)
+      path.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const slug = path.getAttribute('data-slug');
+          if (slug) selecionarMunicipio(slug);
+        }
+      });
+
+      // Hover / Tooltip (apenas com mouse em desktop)
       path.addEventListener('mouseenter', (e) => {
-        const nome = path.getAttribute('data-nome') || '';
-        const regiao = path.getAttribute('data-regiao') || '';
+        if (window.matchMedia('(hover: hover)').matches) {
+          const nome = path.getAttribute('data-nome') || '';
+          const regiao = path.getAttribute('data-regiao') || '';
 
-        if (tooltipCidade) tooltipCidade.textContent = nome;
-        if (tooltipRegiao) tooltipRegiao.textContent = regiao;
+          if (tooltipCidade) tooltipCidade.textContent = nome;
+          if (tooltipRegiao) tooltipRegiao.textContent = regiao;
 
-        if (tooltip) {
-          tooltip.style.left = `${e.clientX}px`;
-          tooltip.style.top = `${e.clientY - 12}px`;
-          tooltip.classList.remove('opacity-0');
-          tooltip.classList.add('opacity-100');
+          if (tooltip) {
+            tooltip.style.left = `${e.clientX}px`;
+            tooltip.style.top = `${e.clientY - 12}px`;
+            tooltip.classList.remove('opacity-0');
+            tooltip.classList.add('opacity-100');
+          }
         }
       });
 
       path.addEventListener('mousemove', (e) => {
-        if (tooltip) {
+        if (tooltip && window.matchMedia('(hover: hover)').matches) {
           tooltip.style.left = `${e.clientX}px`;
           tooltip.style.top = `${e.clientY - 12}px`;
         }
@@ -265,6 +290,14 @@ import { MUNICIPIOS_MAPA, MAPA_RJ_VIEWBOX, REGIOES_RJ_LISTA } from '../data/mapa
           tooltip.classList.add('opacity-0');
         }
       });
+
+      // Limpa tooltip em toque mobile
+      path.addEventListener('touchstart', () => {
+        if (tooltip) {
+          tooltip.classList.remove('opacity-100');
+          tooltip.classList.add('opacity-0');
+        }
+      }, { passive: true });
     });
 
     // Eventos dos botões de filtro regional
