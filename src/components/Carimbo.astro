@@ -1,6 +1,6 @@
 ---
 // src/components/Carimbo.astro
-// Selo de comprovação documental com mês/ano e fonte auditada (Dark Minimalist)
+// Selo de comprovação documental com mês/ano e fonte auditada (Light Editorial)
 
 interface Props {
   mes: number;
@@ -19,19 +19,19 @@ const meses = [
 const textoData = `${meses[mes - 1]}/${ano}`;
 ---
 
-<div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/[0.08] text-[11px] font-medium text-slate-400 tracking-tight">
-  <svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+<div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-[11px] font-medium text-slate-600 tracking-tight">
+  <svg class="w-3.5 h-3.5 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
     <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
   </svg>
   <span>
-    Fonte: <strong class="text-slate-200 font-semibold">{fonte}</strong> ({textoData})
+    Fonte oficial: <strong class="text-slate-800 font-semibold">{fonte}</strong> ({textoData})
   </span>
   {linkFonte && (
     <a
       href={linkFonte}
       target="_blank"
       rel="noopener noreferrer"
-      class="text-[#F15A29] hover:text-orange-300 ml-1 inline-flex items-center transition-colors"
+      class="text-[#F15A29] hover:underline ml-1 inline-flex items-center transition-colors"
       title="Conferir comprovação oficial"
     >
       <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

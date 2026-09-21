@@ -1,68 +1,59 @@
 ---
 // src/pages/index.astro
-// Home Page Oficial de Campanha — Dr. Luizinho 1177 (Midnight Institutional Design)
+// Home Page Oficial de Campanha — Dr. Luizinho 1177 (Design Editorial Fundo Branco)
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import QuemE from '../components/QuemE.astro';
 import Carrossel from '../components/Carrossel.astro';
-import Numeros from '../components/Numeros.astro';
 import BuscaMunicipal from '../components/BuscaMunicipal.astro';
-import LinhaDeBase from '../components/LinhaDeBase.astro';
+import Numeros from '../components/Numeros.astro';
 import Barra1177 from '../components/Barra1177.astro';
 ---
 
 <Layout>
-  <!-- 1. Hero Section com Vídeo de Fundo e Scrim Dark Glass -->
+  <!-- 1. Hero Section com Vídeo Nítido em Coluna Única -->
   <Hero />
 
-  <!-- 2. Quem é Dr. Luizinho (Vem Primeiro na Narrativa: Origem -> Resolução -> Força) -->
+  <!-- 2. Quem é Dr. Luizinho (Apresentação Humana do Médico e Gestor) -->
   <QuemE />
 
-  <!-- 3. Vitrine de Entregas (Carrossel Horizontal com Efeito Peek e Cards Sombreados) -->
-  <section id="entregas" class="py-20 sm:py-28 bg-[#070A13] relative border-b border-white/[0.08] overflow-hidden">
-    <!-- Luz ambiente perimetral -->
-    <div class="absolute -top-40 left-1/3 w-[600px] h-[600px] bg-blue-700/10 rounded-full blur-[150px] pointer-events-none"></div>
-
+  <!-- 3. Vitrine de Entregas (Carrossel Horizontal com Cards Acetinados e Efeito Peek) -->
+  <section id="entregas" class="py-20 sm:py-28 bg-white relative border-b border-slate-200/80 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="max-w-3xl mb-12">
-        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-300 font-sans text-xs font-semibold uppercase tracking-wider mb-4">
-          Vitrine de Obras Estruturantes
+        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 text-[#123F8F] font-sans text-xs font-bold uppercase tracking-wider mb-4">
+          Vitrine de Entregas
         </span>
-        <h2 class="font-display text-3xl sm:text-5xl font-black italic tracking-tight text-white leading-tight mb-4">
+        <h2 class="font-display text-3xl sm:text-5xl font-black italic tracking-tight text-[#123F8F] leading-tight mb-4">
           OBRAS QUE DESATARAM <span class="text-[#F15A29]">GARGALOS HISTÓRICOS</span>
         </h2>
-        <p class="font-sans text-base sm:text-lg text-slate-300 leading-relaxed">
-          Projetos de alta complexidade que estavam abandonados ou pareciam impossíveis, desatados e entregues pelo Dr. Luizinho. Deslize para explorar os principais marcos de transformação do SUS.
+        <p class="font-sans text-base sm:text-lg text-slate-600 leading-relaxed">
+          Hospitais e centros de alta complexidade que estavam paralisados ou pareciam impossíveis, desatados e entregues por Dr. Luizinho. Deslize para explorar os principais marcos.
         </p>
       </div>
 
-      <!-- Carrossel Deslizante com Cards Sombreados e Peek -->
+      <!-- Carrossel Deslizante -->
       <Carrossel apenasDestaques={true} />
     </div>
   </section>
 
-  <!-- 4. O Trabalho em Números -->
-  <Numeros />
-
-  <!-- 5. O que ele fez pela minha cidade (Busca Inteligente dos 92 Municípios) -->
+  <!-- 4. O que ele fez pela sua cidade (Busca Inteligente dos 92 Municípios) -->
   <BuscaMunicipal />
 
-  <!-- 6. Linha de Base (Antes x Depois) -->
-  <LinhaDeBase />
+  <!-- 5. O Trabalho em Números -->
+  <Numeros />
 
-  <!-- 7. Seção de Chamada para Ação Final -->
-  <section class="py-20 sm:py-28 bg-gradient-to-b from-[#090E1A] to-[#05070E] text-white text-center relative overflow-hidden border-b border-white/[0.08]">
-    <div class="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:24px_24px]"></div>
-    
+  <!-- 6. Seção de Chamada para Ação Final -->
+  <section class="py-20 sm:py-28 bg-gradient-to-r from-[#123F8F] to-[#0D3577] text-white text-center relative overflow-hidden">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.06] border border-white/15 text-orange-300 text-xs font-semibold uppercase tracking-wider mb-6">
+      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 border border-white/20 text-orange-300 text-xs font-semibold uppercase tracking-wider mb-6">
         Mobilização 2026
       </span>
       <h2 class="font-display text-3xl sm:text-5xl lg:text-6xl font-black italic tracking-tight mb-6 leading-tight">
         A SAÚDE DO RIO <span class="text-[#F15A29]">NÃO PODE RETROCEDER.</span>
       </h2>
-      <p class="font-sans text-base sm:text-lg text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
-        Compartilhe com a sua família, amigos e vizinhos os dados auditados e as entregas reais de quem teve a coragem de desatar o nó da saúde pública fluminense. Juntos pelo Rio!
+      <p class="font-sans text-base sm:text-lg text-blue-100 max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
+        Compartilhe com a sua família, amigos e vizinhos as transformações reais de quem teve a coragem de desatar o nó da saúde pública no nosso Estado. Juntos pelo Rio!
       </p>
 
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -70,7 +61,7 @@ import Barra1177 from '../components/Barra1177.astro';
           href="https://wa.me/?text=Conhe%C3%A7a%20as%20principais%20entregas%20do%20Dr.%20Luizinho%201177%20pela%20sa%C3%BAde%20do%20Rio%3A%20https%3A%2F%2Ffelippejuan.github.io%2Fsite-1177%2F"
           target="_blank"
           rel="noopener noreferrer"
-          class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-9 py-4 rounded-2xl bg-[#F15A29] hover:bg-[#D94819] text-white font-sans text-base font-bold shadow-2xl shadow-orange-950/70 hover:shadow-orange-600/30 hover:scale-105 active:scale-95 transition-all border border-orange-400/30"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-9 py-4 rounded-2xl bg-[#F15A29] hover:bg-[#D94819] text-white font-sans text-base font-bold shadow-2xl shadow-orange-950/40 hover:scale-105 active:scale-95 transition-all"
         >
           <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
             <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/>
@@ -81,6 +72,6 @@ import Barra1177 from '../components/Barra1177.astro';
     </div>
   </section>
 
-  <!-- 8. Barra Fixa Mobile 1177 -->
+  <!-- 7. Barra Fixa Mobile 1177 -->
   <Barra1177 />
 </Layout>

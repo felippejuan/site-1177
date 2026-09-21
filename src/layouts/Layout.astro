@@ -1,4 +1,5 @@
 ---
+// src/layouts/Layout.astro
 import '../styles/global.css';
 
 interface Props {
@@ -19,7 +20,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://felippej
 ---
 
 <!doctype html>
-<html lang="pt-BR" class="dark">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -51,10 +52,10 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://felippej
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={ogImage} />
   </head>
-  <body class="min-h-screen flex flex-col bg-[#070A13] text-slate-100 antialiased selection:bg-[#F15A29] selection:text-white pb-20 md:pb-0 font-sans">
+  <body class="min-h-screen flex flex-col bg-white text-slate-900 antialiased selection:bg-[#F15A29] selection:text-white pb-20 md:pb-0 font-sans">
     
-    <!-- Barra Superior / Header Dark Frosted Glass -->
-    <header class="sticky top-0 z-40 bg-[#070A13]/90 backdrop-blur-xl border-b border-white/[0.08] transition-all">
+    <!-- Barra Superior / Header Clean Frosted Glass -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 transition-all">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         <a href={`${baseUrl}/`} class="flex items-center gap-3 group">
           <img
@@ -62,19 +63,18 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://felippej
             alt="Dr. Luizinho 1177"
             class="h-10 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105"
           />
-          <span class="px-2.5 py-0.5 rounded-md bg-[#F15A29]/15 border border-[#F15A29]/30 font-display text-sm font-black italic text-[#F15A29]">
+          <span class="px-2.5 py-0.5 rounded-md bg-[#F15A29]/10 border border-[#F15A29]/20 font-display text-sm font-black italic text-[#F15A29]">
             1177
           </span>
         </a>
 
         <!-- Menu Desktop -->
-        <nav class="hidden lg:flex items-center gap-7 font-sans text-sm font-medium text-slate-300">
-          <a href={`${baseUrl}/#quem-e`} class="hover:text-white transition-colors">Quem é</a>
-          <a href={`${baseUrl}/#entregas`} class="hover:text-white transition-colors">Entregas</a>
-          <a href={`${baseUrl}/#numeros`} class="hover:text-white transition-colors">Números</a>
-          <a href={`${baseUrl}/#minha-cidade`} class="hover:text-white transition-colors">Pela Sua Cidade</a>
-          <a href={`${baseUrl}/#linha-de-base`} class="hover:text-white transition-colors">Antes × Depois</a>
-          <a href={`${baseUrl}/sobre`} class="hover:text-white transition-colors">Trajetória</a>
+        <nav class="hidden lg:flex items-center gap-7 font-sans text-sm font-semibold text-slate-700">
+          <a href={`${baseUrl}/#quem-e`} class="hover:text-[#123F8F] transition-colors">Quem é</a>
+          <a href={`${baseUrl}/#entregas`} class="hover:text-[#123F8F] transition-colors">Entregas</a>
+          <a href={`${baseUrl}/#minha-cidade`} class="hover:text-[#123F8F] transition-colors">Pela Sua Cidade</a>
+          <a href={`${baseUrl}/#numeros`} class="hover:text-[#123F8F] transition-colors">Números</a>
+          <a href={`${baseUrl}/sobre`} class="hover:text-[#123F8F] transition-colors">Trajetória</a>
         </nav>
 
         <!-- CTA Header -->
@@ -83,7 +83,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://felippej
             href="https://wa.me/5521999991177?text=Ol%C3%A1%2C%20Dr.%20Luizinho!%20Apoio%20seu%20trabalho%20pelo%20Rio."
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 px-4.5 py-2.5 rounded-full bg-[#F15A29] hover:bg-[#D94819] text-white font-sans text-sm font-bold shadow-lg shadow-orange-950/50 hover:shadow-orange-600/30 transition-all hover:scale-105 active:scale-95 border border-orange-400/30"
+            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#F15A29] hover:bg-[#D94819] text-white font-sans text-sm font-bold shadow-md shadow-orange-500/20 hover:shadow-orange-500/30 transition-all hover:scale-105 active:scale-95"
           >
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
               <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/>
@@ -99,21 +99,21 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://felippej
       <slot />
     </main>
 
-    <!-- Rodapé Institucional e Legal Midnight -->
-    <footer class="bg-[#05070E] text-slate-400 py-16 border-t border-white/[0.08] text-sm">
+    <!-- Rodapé Institucional -->
+    <footer class="bg-slate-950 text-slate-400 py-16 border-t border-slate-800 text-sm">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           <!-- Coluna 1: Info Candidato -->
           <div class="md:col-span-2">
             <div class="flex items-center gap-3 mb-4">
-              <img src={`${baseUrl}/logo-luizinho.png`} alt="Dr. Luizinho" class="h-10 w-auto" />
+              <img src={`${baseUrl}/logo-luizinho.png`} alt="Dr. Luizinho" class="h-10 w-auto brightness-200 invert" />
               <div>
                 <p class="font-display text-xl font-bold text-white tracking-wide">DR. LUIZINHO 1177</p>
                 <p class="text-xs text-orange-400 font-semibold uppercase tracking-wider">Deputado Federal · Rio de Janeiro</p>
               </div>
             </div>
             <p class="text-slate-400 text-xs leading-relaxed max-w-md">
-              Médico com mais de duas décadas dedicadas à saúde pública. Ex-Secretário Municipal de Saúde de Nova Iguaçu, duas vezes Secretário de Estado de Saúde do Rio de Janeiro e Deputado Federal.
+              Médico com mais de duas décadas dedicadas à saúde pública fluminense. Ex-Secretário Municipal de Saúde de Nova Iguaçu, duas vezes Secretário de Estado de Saúde do Rio de Janeiro e Deputado Federal.
             </p>
           </div>
 
@@ -124,6 +124,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://felippej
               <li><a href={`${baseUrl}/#quem-e`} class="hover:text-white transition-colors">Quem é Dr. Luizinho</a></li>
               <li><a href={`${baseUrl}/#entregas`} class="hover:text-white transition-colors">Principais Entregas</a></li>
               <li><a href={`${baseUrl}/#minha-cidade`} class="hover:text-white transition-colors">Pela Sua Cidade</a></li>
+              <li><a href={`${baseUrl}/#numeros`} class="hover:text-white transition-colors">Números do Trabalho</a></li>
               <li><a href={`${baseUrl}/sobre`} class="hover:text-white transition-colors">Trajetória Completa</a></li>
             </ul>
           </div>
@@ -139,7 +140,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://felippej
           </div>
         </div>
 
-        <div class="border-t border-white/[0.06] pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500 text-center md:text-left">
+        <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500 text-center md:text-left">
           <p>
             Eleição 2026 · Dr. Luizinho Deputado Federal · CNPJ: 00.000.000/0001-00 · Coligação O Trabalho Transforma o Rio · Lei nº 9.504/97
           </p>
