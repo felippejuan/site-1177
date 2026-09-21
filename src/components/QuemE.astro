@@ -1,106 +1,110 @@
 ---
 // src/components/QuemE.astro
-// Seção Quem é Dr. Luizinho — Fundo Branco Editorial & Narrativa Humana
+// Seção Quem é Dr. Luizinho — Dossiê Editorial Dividido (Estilo Apple / Revista)
 ---
 
 <section id="quem-e" class="py-20 sm:py-28 bg-[#F8FAFC] relative border-b border-slate-200/80">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     
-    <!-- Cabeçalho da Seção -->
-    <div class="max-w-3xl mx-auto text-center mb-16">
-      <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 text-[#123F8F] font-sans text-xs font-bold uppercase tracking-wider mb-4">
-        Biografia & Trajetória
-      </span>
-      <h2 class="font-display text-3xl sm:text-5xl font-black italic tracking-tight text-[#123F8F] leading-tight mb-5">
-        A TRAJETÓRIA DE QUEM <br class="hidden sm:inline" />
-        <span class="text-[#F15A29]">VIVEU A LINHA DE FRENTE</span>
-      </h2>
-      <p class="font-sans text-base sm:text-lg text-slate-600 leading-relaxed">
-        Antes do mandato, o plantão. Antes das emendas, a vivência real nas emergências da Baixada Fluminense. A autoridade do Dr. Luizinho na saúde pública foi construída onde a dor das pessoas não aceita promessas vazias.
-      </p>
-    </div>
-
-    <!-- Grade 3 Pilares em Cards Acetinados -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-16">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
       
-      <!-- Pilar 1: A Origem Médica -->
-      <div class="p-8 rounded-3xl bg-white border border-slate-200/80 hover:border-[#F15A29]/50 transition-all duration-300 shadow-xl shadow-slate-200/60 hover:shadow-2xl flex flex-col justify-between group hover:-translate-y-1">
-        <div>
-          <div class="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 text-[#123F8F] flex items-center justify-center mb-6 font-bold text-lg group-hover:scale-105 transition-transform">
-            <svg class="w-6 h-6 stroke-current" fill="none" viewBox="0 0 24 24" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-            </svg>
+      <!-- Coluna Esquerda: Âncora Editorial de Liderança (5 colunas) -->
+      <div class="lg:col-span-5 lg:sticky lg:top-28">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 text-[#123F8F] font-sans text-xs font-bold uppercase tracking-wider mb-4">
+          Biografia & Trajetória
+        </span>
+        
+        <h2 class="font-display text-3xl sm:text-5xl font-black italic tracking-tight text-[#123F8F] leading-[0.98] mb-6">
+          A TRAJETÓRIA DE QUEM <br class="hidden sm:inline" />
+          <span class="text-[#F15A29]">VIVEU A LINHA DE FRENTE</span>.
+        </h2>
+        
+        <p class="font-sans text-base sm:text-lg text-slate-600 leading-relaxed mb-8">
+          Antes do mandato, o plantão. Antes das emendas, a vivência real nas emergências da Baixada Fluminense. A autoridade do Dr. Luizinho na saúde pública foi construída onde a dor das famílias não aceita promessas vazias.
+        </p>
+
+        <!-- Destaque de Experiência -->
+        <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-center gap-5">
+          <span class="font-display text-4xl sm:text-5xl font-black italic text-[#F15A29] leading-none">
+            20+
+          </span>
+          <div class="text-xs sm:text-sm text-slate-700 font-medium leading-snug">
+            Anos dedicados a cuidar de pessoas e desatar os maiores nós da saúde fluminense.
           </div>
-          <span class="text-[11px] font-bold text-[#F15A29] uppercase tracking-widest block mb-2">Origem na Medicina</span>
-          <h3 class="font-display text-2xl font-black italic text-[#123F8F] mb-3">
+        </div>
+      </div>
+
+      <!-- Coluna Direita: 3 Linhas de Impacto (7 colunas) -->
+      <div class="lg:col-span-7 space-y-6">
+        
+        <!-- Linha 01: Medicina -->
+        <div class="p-7 sm:p-9 rounded-3xl bg-white border border-slate-200/80 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:border-[#F15A29]/40 transition-all duration-300 group">
+          <div class="flex items-baseline gap-4 mb-3">
+            <span class="font-display text-3xl sm:text-4xl font-black italic text-[#F15A29] leading-none">
+              01
+            </span>
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">
+              Origem na Medicina
+            </span>
+          </div>
+          <h3 class="font-display text-2xl sm:text-3xl font-black italic text-[#123F8F] mb-3 leading-tight group-hover:text-[#F15A29] transition-colors">
             O Médico da Baixada
           </h3>
-          <p class="font-sans text-sm text-slate-600 leading-relaxed mb-6 font-normal">
+          <p class="font-sans text-sm sm:text-base text-slate-600 leading-relaxed mb-4">
             Graduado em Medicina e especialista em Gestão de Saúde, começou sua vida profissional no atendimento direto às famílias da Baixada Fluminense. Conhece o sofrimento de quem aguarda por um leito ou exame de urgência porque esteve ao lado da maca, ouvindo os pacientes.
           </p>
-        </div>
-        <div class="pt-4 border-t border-slate-100 text-xs font-semibold text-slate-500 flex items-center gap-1.5">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#F15A29]"></span>
-          <span>Da linha de frente para a gestão pública</span>
-        </div>
-      </div>
-
-      <!-- Pilar 2: Gestão em Crises -->
-      <div class="p-8 rounded-3xl bg-white border border-slate-200/80 hover:border-[#F15A29]/50 transition-all duration-300 shadow-xl shadow-slate-200/60 hover:shadow-2xl flex flex-col justify-between group hover:-translate-y-1">
-        <div>
-          <div class="w-12 h-12 rounded-2xl bg-orange-50 border border-orange-100 text-[#F15A29] flex items-center justify-center mb-6 font-bold text-lg group-hover:scale-105 transition-transform">
-            <svg class="w-6 h-6 stroke-current" fill="none" viewBox="0 0 24 24" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
+          <div class="text-xs font-bold text-[#123F8F] flex items-center gap-1.5">
+            <span class="text-emerald-600">✓</span>
+            <span>Da linha de frente dos hospitais para a gestão pública</span>
           </div>
-          <span class="text-[11px] font-bold text-[#F15A29] uppercase tracking-widest block mb-2">Capacidade de Execução</span>
-          <h3 class="font-display text-2xl font-black italic text-[#123F8F] mb-3">
+        </div>
+
+        <!-- Linha 02: Gestão -->
+        <div class="p-7 sm:p-9 rounded-3xl bg-white border border-slate-200/80 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:border-[#F15A29]/40 transition-all duration-300 group">
+          <div class="flex items-baseline gap-4 mb-3">
+            <span class="font-display text-3xl sm:text-4xl font-black italic text-[#F15A29] leading-none">
+              02
+            </span>
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">
+              Capacidade de Execução
+            </span>
+          </div>
+          <h3 class="font-display text-2xl sm:text-3xl font-black italic text-[#123F8F] mb-3 leading-tight group-hover:text-[#F15A29] transition-colors">
             Destravou Obras Históricas
           </h3>
-          <p class="font-sans text-sm text-slate-600 leading-relaxed mb-6 font-normal">
-            Como Secretário de Saúde de Nova Iguaçu e duas vezes Secretário de Estado de Saúde do RJ, assumiu nos momentos mais difíceis. Reabriu a Maternidade Mariana Bulhões, reestruturou o Hospital Geral da Posse e colocou fim a obras que estavam abandonadas há anos.
+          <p class="font-sans text-sm sm:text-base text-slate-600 leading-relaxed mb-4">
+            Como Secretário de Saúde de Nova Iguaçu e duas vezes Secretário de Estado de Saúde do RJ, assumiu a liderança nos momentos mais críticos. Reabriu a Maternidade Mariana Bulhões, reestruturou o Hospital Geral da Posse e colocou fim a obras que estavam abandonadas há anos.
           </p>
-        </div>
-        <div class="pt-4 border-t border-slate-100 text-xs font-semibold text-slate-500 flex items-center gap-1.5">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#F15A29]"></span>
-          <span>Resultados comprovados onde outros desistiram</span>
-        </div>
-      </div>
-
-      <!-- Pilar 3: Força Parlamentar -->
-      <div class="p-8 rounded-3xl bg-white border border-slate-200/80 hover:border-[#F15A29]/50 transition-all duration-300 shadow-xl shadow-slate-200/60 hover:shadow-2xl flex flex-col justify-between group hover:-translate-y-1">
-        <div>
-          <div class="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 text-[#123F8F] flex items-center justify-center mb-6 font-bold text-lg group-hover:scale-105 transition-transform">
-            <svg class="w-6 h-6 stroke-current" fill="none" viewBox="0 0 24 24" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
-            </svg>
+          <div class="text-xs font-bold text-[#123F8F] flex items-center gap-1.5">
+            <span class="text-emerald-600">✓</span>
+            <span>Resultados comprovados onde outros desistiram</span>
           </div>
-          <span class="text-[11px] font-bold text-[#F15A29] uppercase tracking-widest block mb-2">Atuação em Brasília</span>
-          <h3 class="font-display text-2xl font-black italic text-[#123F8F] mb-3">
+        </div>
+
+        <!-- Linha 03: Mandato -->
+        <div class="p-7 sm:p-9 rounded-3xl bg-white border border-slate-200/80 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:border-[#F15A29]/40 transition-all duration-300 group">
+          <div class="flex items-baseline gap-4 mb-3">
+            <span class="font-display text-3xl sm:text-4xl font-black italic text-[#F15A29] leading-none">
+              03
+            </span>
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">
+              Atuação em Brasília
+            </span>
+          </div>
+          <h3 class="font-display text-2xl sm:text-3xl font-black italic text-[#123F8F] mb-3 leading-tight group-hover:text-[#F15A29] transition-colors">
             Voz do Rio no Congresso
           </h3>
-          <p class="font-sans text-sm text-slate-600 leading-relaxed mb-6 font-normal">
-            Como Deputado Federal, aliou a experiência técnica da saúde à força política em Brasília. Viabilizou mais de R$ 800 milhões em recursos diretos para os hospitais e municípios do estado, garantindo ambulâncias, medicamentos e cirurgias que chegam até as pessoas.
+          <p class="font-sans text-sm sm:text-base text-slate-600 leading-relaxed mb-4">
+            Como Deputado Federal, aliou a experiência técnica da saúde à liderança legislativa em Brasília. Viabilizou mais de R$ 800 milhões em recursos diretos para os hospitais e municípios do estado, garantindo ambulâncias, medicamentos e cirurgias que chegam até as pessoas.
           </p>
+          <div class="text-xs font-bold text-[#123F8F] flex items-center gap-1.5">
+            <span class="text-emerald-600">✓</span>
+            <span>Recursos federais convertidos em saúde de verdade</span>
+          </div>
         </div>
-        <div class="pt-4 border-t border-slate-100 text-xs font-semibold text-slate-500 flex items-center gap-1.5">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#F15A29]"></span>
-          <span>Recursos federais convertidos em saúde de verdade</span>
-        </div>
+
       </div>
 
-    </div>
-
-    <!-- Frase Manifesto em Destaque Azul Royal & Laranja -->
-    <div class="rounded-3xl bg-gradient-to-r from-[#123F8F] to-[#0D3577] text-white p-8 sm:p-12 shadow-2xl relative overflow-hidden">
-      <div class="max-w-4xl mx-auto text-center relative z-10">
-        <blockquote class="font-display text-2xl sm:text-3xl lg:text-4xl font-black italic tracking-tight mb-6 leading-snug text-white">
-          "A saúde pública não se faz com discurso de gabinete. Ela exige a coragem de entrar no hospital sucateado, destravar o orçamento e colocar o paciente em primeiro lugar."
-        </blockquote>
-        <p class="font-sans text-xs font-bold text-orange-300 uppercase tracking-widest">
-          — Dr. Luizinho · Médico e Deputado Federal 1177
-        </p>
-      </div>
     </div>
 
   </div>
