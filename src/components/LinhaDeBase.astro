@@ -1,0 +1,68 @@
+---
+// src/components/LinhaDeBase.astro
+// Comparador Antes x Depois — Narrativa de transformação da saúde
+import { LINHA_DE_BASE } from '../data/trajetoria';
+---
+
+<section id="linha-de-base" class="py-16 sm:py-24 bg-white relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Cabeçalho -->
+    <div class="max-w-3xl mx-auto text-center mb-16">
+      <span class="inline-block px-3.5 py-1 rounded-full bg-blue-50 text-[#123F8F] font-sans text-xs font-bold uppercase tracking-wider mb-3">
+        Antes × Depois
+      </span>
+      <h2 class="font-display text-3xl sm:text-5xl font-black italic tracking-tight text-[#123F8F] leading-tight mb-4">
+        A SAÚDE ANTES <span class="text-[#F15A29]">× O QUE MUDOU</span>
+      </h2>
+      <p class="font-sans text-base sm:text-lg text-slate-600">
+        O contraste real entre o abandono histórico da rede pública e as transformações estruturadas pelo Dr. Luizinho.
+      </p>
+    </div>
+
+    <!-- Grade dos 4 Pares -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {LINHA_DE_BASE.map((item) => (
+        <div class="rounded-3xl border border-slate-200/80 bg-white shadow-sm overflow-hidden flex flex-col justify-between">
+          <!-- Cabeçalho do Card -->
+          <div class="bg-slate-50 p-5 border-b border-slate-100 flex items-center justify-between">
+            <h3 class="font-display text-2xl font-black italic text-[#123F8F]">
+              {item.titulo}
+            </h3>
+            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">
+              Transformação SUS
+            </span>
+          </div>
+
+          <!-- Comparação Lado a Lado / Empilhada -->
+          <div class="p-6 sm:p-7 space-y-6 flex-grow flex flex-col justify-between">
+            
+            <!-- Como Recebeu (Antes) -->
+            <div class="p-4 rounded-2xl bg-rose-50/70 border border-rose-100/80">
+              <div class="flex items-center gap-2 text-xs font-bold text-rose-700 uppercase tracking-wider mb-1.5">
+                <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+                <span>Como Estava Antes</span>
+              </div>
+              <p class="font-sans text-xs sm:text-sm text-slate-700 leading-relaxed">
+                {item.comoRecebeu}
+              </p>
+            </div>
+
+            <!-- O Que Fez (Depois) -->
+            <div class="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-100/80">
+              <div class="flex items-center gap-2 text-xs font-bold text-emerald-800 uppercase tracking-wider mb-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                <span>O Que Dr. Luizinho Entregou</span>
+              </div>
+              <p class="font-sans text-xs sm:text-sm text-slate-800 font-medium leading-relaxed">
+                {item.oQueFez}
+              </p>
+            </div>
+
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

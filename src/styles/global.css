@@ -1,0 +1,34 @@
+@import "tailwindcss";
+@import "@fontsource/barlow/400.css";
+@import "@fontsource/barlow/600.css";
+@import "@fontsource/barlow/700.css";
+@import "@fontsource/barlow-condensed/700-italic.css";
+@import "@fontsource/barlow-condensed/800-italic.css";
+@import "@fontsource/barlow-condensed/900-italic.css";
+
+@theme {
+  --color-primary: #123F8F;
+  --color-primary-dark: #0D3577;
+  --color-primary-light: #1A54BD;
+  --color-orange-1177: #F15A29;
+  --color-orange-hover: #D94819;
+  --color-bg-alt: #F8FAFC;
+  --font-sans: 'Barlow', system-ui, -apple-system, sans-serif;
+  --font-display: 'Barlow Condensed', 'Barlow', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  color: #0F172A;
+  background-color: #FFFFFF;
+}
+
+/* Scroll snap utilities */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
