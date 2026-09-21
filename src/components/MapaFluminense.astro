@@ -1,0 +1,289 @@
+---
+// src/components/MapaFluminense.astro
+// Mapa Vetorial Interativo Oficial dos 92 Municípios do Estado do Rio de Janeiro (IBGE)
+import { MUNICIPIOS_MAPA, MAPA_RJ_VIEWBOX, REGIOES_RJ_LISTA } from '../data/mapa-rj-paths';
+---
+
+<div class="mapa-fluminense-container bg-white rounded-3xl p-4 sm:p-6 border border-slate-200/90 shadow-xl shadow-slate-200/50 relative overflow-hidden">
+  
+  <!-- Topo: Filtros Rápidos por Região Fluminense (Estilo Pílulas Deslizantes) -->
+  <div class="mb-4">
+    <div class="flex items-center justify-between gap-2 mb-2">
+      <span class="text-xs font-bold uppercase tracking-wider text-[#123F8F] flex items-center gap-1.5">
+        <svg class="w-4 h-4 text-[#F15A29]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+        </svg>
+        Navegação Regional
+      </span>
+      <span class="text-[11px] font-semibold text-slate-400">
+        92 Municípios
+      </span>
+    </div>
+
+    <!-- Pílulas de Regiões -->
+    <div class="flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-hide text-xs" id="mapa-filtros-regioes">
+      {REGIOES_RJ_LISTA.map((regiao, idx) => (
+        <button
+          type="button"
+          class={`btn-filtro-regiao flex-shrink-0 px-3 py-1.5 rounded-full font-semibold transition-all border select-none cursor-pointer ${
+            idx === 0
+              ? 'bg-[#123F8F] text-white border-[#123F8F] shadow-sm'
+              : 'bg-white text-slate-600 border-slate-200 hover:border-[#123F8F] hover:text-[#123F8F]'
+          }`}
+          data-regiao={regiao}
+        >
+          {regiao}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <!-- Moldura Vetorial do Mapa SVG -->
+  <div class="relative w-full aspect-[800/480] bg-slate-50/70 rounded-2xl border border-slate-200/80 overflow-hidden flex items-center justify-center select-none p-1 sm:p-2 group">
+    
+    <svg
+      id="svg-mapa-rj"
+      viewBox={MAPA_RJ_VIEWBOX}
+      class="w-full h-full object-contain filter drop-shadow-sm"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-label="Mapa interativo dos 92 municípios do Estado do Rio de Janeiro"
+    >
+      <defs>
+        <!-- Filtro suave de realce para a cidade ativa -->
+        <filter id="mapa-glow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#F15A29" flood-opacity="0.45"/>
+        </filter>
+      </defs>
+
+      <!-- Camada dos 92 Municípios Fluminenses -->
+      <g id="camada-municipios">
+        {MUNICIPIOS_MAPA.map((m) => (
+          <path
+            id={`path-${m.slug}`}
+            data-slug={m.slug}
+            data-nome={m.nome}
+            data-regiao={m.regiao}
+            data-cx={m.centroid[0]}
+            data-cy={m.centroid[1]}
+            d={m.d}
+            class={`municipio-path transition-all duration-200 cursor-pointer outline-none ${
+              m.slug === 'nova-iguacu'
+                ? 'municipio-ativo fill-[#F15A29] stroke-white stroke-[2.2]'
+                : 'fill-slate-100 stroke-slate-300 stroke-[0.8] hover:fill-[#F15A29] hover:stroke-white hover:stroke-[1.5]'
+            }`}
+            tabindex="0"
+            role="button"
+            aria-label={`${m.nome} (${m.regiao})`}
+          />
+        ))}
+      </g>
+
+      <!-- Marcador / Pino Pulsante na Cidade Ativa -->
+      <g id="mapa-pin-grupo" class="pointer-events-none transition-all duration-500 ease-out" transform="translate(236.2, 348)">
+        <circle r="14" class="fill-[#F15A29]/25 animate-ping" />
+        <circle r="6.5" class="fill-[#F15A29] stroke-white stroke-2 shadow" />
+        <circle r="2.2" class="fill-white" />
+      </g>
+    </svg>
+
+    <!-- Marca d'água sutil de orientação no canto inferior esquerdo -->
+    <div class="absolute bottom-2 left-3 pointer-events-none text-[10px] font-semibold text-slate-400 flex items-center gap-1.5">
+      <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+      <span>100% dos municípios atendidos</span>
+    </div>
+
+  </div>
+
+  <!-- Legenda e Instrução Inferior -->
+  <div class="mt-3 flex items-center justify-between text-xs text-slate-500 px-1">
+    <div class="flex items-center gap-3">
+      <span class="flex items-center gap-1.5">
+        <span class="w-3 h-3 rounded bg-[#F15A29]"></span>
+        <span class="font-medium text-slate-700">Selecionada</span>
+      </span>
+      <span class="flex items-center gap-1.5">
+        <span class="w-3 h-3 rounded bg-blue-100 border border-blue-300"></span>
+        <span class="font-medium text-slate-600">Região Ativa</span>
+      </span>
+    </div>
+    <span class="text-slate-400 text-[11px]">Clique em qualquer cidade</span>
+  </div>
+
+</div>
+
+<!-- Tooltip Flutuante que Acompanha o Cursor -->
+<div
+  id="mapa-tooltip"
+  class="fixed pointer-events-none z-50 px-3.5 py-2.5 rounded-xl bg-slate-900/95 backdrop-blur-md text-white shadow-2xl border border-white/15 text-xs transition-opacity duration-150 opacity-0 -translate-x-1/2 -translate-y-full mb-3"
+  style="top: 0; left: 0;"
+>
+  <div id="tooltip-cidade" class="font-display font-black text-sm text-[#F15A29] leading-tight">Nova Iguaçu</div>
+  <div class="flex items-center gap-2 mt-0.5 text-[11px] text-slate-300">
+    <span id="tooltip-regiao" class="font-medium text-slate-300">Baixada Fluminense</span>
+    <span class="text-white/40">·</span>
+    <span class="text-emerald-400 font-semibold flex items-center gap-0.5">
+      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+      </svg>
+      SAMU 100%
+    </span>
+  </div>
+</div>
+
+<script>
+  function setupMapaFluminense() {
+    const svg = document.getElementById('svg-mapa-rj');
+    if (!svg) return;
+
+    const paths = svg.querySelectorAll<SVGPathElement>('.municipio-path');
+    const pinGroup = document.getElementById('mapa-pin-grupo');
+    const tooltip = document.getElementById('mapa-tooltip');
+    const tooltipCidade = document.getElementById('tooltip-cidade');
+    const tooltipRegiao = document.getElementById('tooltip-regiao');
+    const filtrosContainer = document.getElementById('mapa-filtros-regioes');
+    const filtroBtns = filtrosContainer ? filtrosContainer.querySelectorAll<HTMLButtonElement>('.btn-filtro-regiao') : [];
+
+    let activeSlug = 'nova-iguacu';
+    let currentRegiaoFiltro = 'Todas as Regiões';
+
+    function selecionarMunicipio(slug: string, dispararEvento = true) {
+      const targetPath = svg?.querySelector<SVGPathElement>(`#path-${slug}`);
+      if (!targetPath) return;
+
+      activeSlug = slug;
+
+      // Atualiza classes visuais de todos os paths
+      paths.forEach((p) => {
+        const isTarget = p.getAttribute('data-slug') === slug;
+        const regiaoPath = p.getAttribute('data-regiao') || '';
+
+        p.classList.remove(
+          'municipio-ativo',
+          'fill-[#F15A29]',
+          'stroke-white',
+          'stroke-[2.2]',
+          'fill-blue-100/90',
+          'stroke-blue-300',
+          'fill-slate-100',
+          'stroke-slate-300',
+          'stroke-[0.8]'
+        );
+
+        if (isTarget) {
+          p.classList.add('municipio-ativo', 'fill-[#F15A29]', 'stroke-white', 'stroke-[2.2]');
+          // Garante que o path ativo fique no topo do SVG
+          p.parentNode?.appendChild(p);
+        } else if (currentRegiaoFiltro !== 'Todas as Regiões' && regiaoPath === currentRegiaoFiltro) {
+          p.classList.add('fill-blue-100/90', 'stroke-blue-300', 'stroke-[0.8]');
+        } else {
+          p.classList.add('fill-slate-100', 'stroke-slate-300', 'stroke-[0.8]');
+        }
+      });
+
+      // Move o pino para o centróide
+      const cx = targetPath.getAttribute('data-cx');
+      const cy = targetPath.getAttribute('data-cy');
+      if (pinGroup && cx && cy) {
+        pinGroup.setAttribute('transform', `translate(${cx}, ${cy})`);
+        pinGroup.parentNode?.appendChild(pinGroup);
+      }
+
+      // Notifica o componente de detalhes (BuscaMunicipal)
+      if (dispararEvento) {
+        const nome = targetPath.getAttribute('data-nome') || '';
+        const regiao = targetPath.getAttribute('data-regiao') || '';
+        window.dispatchEvent(
+          new CustomEvent('mapa-cidade-selecionada', {
+            detail: { slug, nome, regiao }
+          })
+        );
+      }
+    }
+
+    function aplicarFiltroRegiao(regiao: string) {
+      currentRegiaoFiltro = regiao;
+
+      filtroBtns.forEach((btn) => {
+        const btnRegiao = btn.getAttribute('data-regiao');
+        if (btnRegiao === regiao) {
+          btn.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
+          btn.classList.add('bg-[#123F8F]', 'text-white', 'border-[#123F8F]', 'shadow-sm');
+        } else {
+          btn.classList.remove('bg-[#123F8F]', 'text-white', 'border-[#123F8F]', 'shadow-sm');
+          btn.classList.add('bg-white', 'text-slate-600', 'border-slate-200');
+        }
+      });
+
+      // Se filtrou uma região e a cidade ativa não faz parte dela, seleciona a primeira da região
+      if (regiao !== 'Todas as Regiões') {
+        const primeiroDaRegiao = Array.from(paths).find(
+          (p) => p.getAttribute('data-regiao') === regiao
+        );
+        if (primeiroDaRegiao) {
+          const targetSlug = primeiroDaRegiao.getAttribute('data-slug') || '';
+          selecionarMunicipio(targetSlug);
+          return;
+        }
+      }
+
+      // Re-renderiza sem trocar cidade
+      selecionarMunicipio(activeSlug, false);
+    }
+
+    // Eventos dos caminhos municipais
+    paths.forEach((path) => {
+      path.addEventListener('click', () => {
+        const slug = path.getAttribute('data-slug');
+        if (slug) selecionarMunicipio(slug);
+      });
+
+      path.addEventListener('mouseenter', (e) => {
+        const nome = path.getAttribute('data-nome') || '';
+        const regiao = path.getAttribute('data-regiao') || '';
+
+        if (tooltipCidade) tooltipCidade.textContent = nome;
+        if (tooltipRegiao) tooltipRegiao.textContent = regiao;
+
+        if (tooltip) {
+          tooltip.style.left = `${e.clientX}px`;
+          tooltip.style.top = `${e.clientY - 12}px`;
+          tooltip.classList.remove('opacity-0');
+          tooltip.classList.add('opacity-100');
+        }
+      });
+
+      path.addEventListener('mousemove', (e) => {
+        if (tooltip) {
+          tooltip.style.left = `${e.clientX}px`;
+          tooltip.style.top = `${e.clientY - 12}px`;
+        }
+      });
+
+      path.addEventListener('mouseleave', () => {
+        if (tooltip) {
+          tooltip.classList.remove('opacity-100');
+          tooltip.classList.add('opacity-0');
+        }
+      });
+    });
+
+    // Eventos dos botões de filtro regional
+    filtroBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const regiao = btn.getAttribute('data-regiao') || 'Todas as Regiões';
+        aplicarFiltroRegiao(regiao);
+      });
+    });
+
+    // Escuta evento externo disparado pelo campo de busca ou chips de cidades
+    window.addEventListener('selecionar-cidade-no-mapa', ((e: CustomEvent) => {
+      const slug = e.detail?.slug;
+      if (slug) {
+        selecionarMunicipio(slug, false);
+      }
+    }) as EventListener);
+  }
+
+  setupMapaFluminense();
+  document.addEventListener('astro:page-load', setupMapaFluminense);
+</script>
