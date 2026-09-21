@@ -56,23 +56,15 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://felippej
     <!-- Barra Superior / Header Dark Frosted Glass -->
     <header class="sticky top-0 z-40 bg-[#070A13]/90 backdrop-blur-xl border-b border-white/[0.08] transition-all">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        <a href={`${baseUrl}/`} class="flex items-center gap-3.5 group">
-          <div class="relative">
-            <div class="absolute -inset-1 rounded-xl bg-orange-500/20 blur-sm opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <img
-              src={`${baseUrl}/logo-luizinho.png`}
-              alt="Logo Dr. Luizinho 1177"
-              class="relative h-11 w-auto object-contain transition-transform group-hover:scale-105"
-            />
-          </div>
-          <div class="hidden sm:flex flex-col">
-            <span class="font-display text-2xl font-black italic tracking-tight text-white leading-none">
-              DR. LUIZINHO
-            </span>
-            <span class="font-sans text-[11px] font-bold text-[#F15A29] tracking-wider uppercase">
-              Deputado Federal · 1177
-            </span>
-          </div>
+        <a href={`${baseUrl}/`} class="flex items-center gap-3 group">
+          <img
+            src={`${baseUrl}/logo-luizinho.png`}
+            alt="Dr. Luizinho 1177"
+            class="h-10 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105"
+          />
+          <span class="px-2.5 py-0.5 rounded-md bg-[#F15A29]/15 border border-[#F15A29]/30 font-display text-sm font-black italic text-[#F15A29]">
+            1177
+          </span>
         </a>
 
         <!-- Menu Desktop -->
