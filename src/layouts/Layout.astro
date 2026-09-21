@@ -29,8 +29,11 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://felippej
     <!-- SEO Primário -->
     <title>{title}</title>
     <meta name="title" content={title} />
-    <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl.href} />
+    <meta
+      name="robots"
+      content={import.meta.env.PUBLIC_INDEXAVEL === 'true' ? 'index, follow' : 'noindex, nofollow'}
+    />
 
     <!-- Open Graph / WhatsApp / Facebook -->
     <meta property="og:type" content="website" />
