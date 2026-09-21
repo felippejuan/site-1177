@@ -1,13 +1,12 @@
 ---
 // src/components/GaleriaBiografia.astro
-// Galeria Editorial Rotativa de Fotos Reais de Dr. Luizinho em Execução
+// Galeria Editorial Rotativa de Fotos Reais de Dr. Luizinho em Execução (Limpa e Elegante)
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 interface FotoItem {
   id: number;
   src: string;
   alt: string;
-  tag: string;
   titulo: string;
   descricao: string;
   contexto: string;
@@ -18,16 +17,14 @@ const fotos: FotoItem[] = [
     id: 1,
     src: `${baseUrl}/biografia/1.png`,
     alt: "Crachá histórico do Ministério da Saúde de Dr. Luizinho no Hospital Geral de Nova Iguaçu (Posse)",
-    tag: "Origem Médica",
     titulo: "Crachá de Interno no Hospital da Posse",
-    descricao: "O registro do Ministério da Saúde no HGNI. A vocação começou na emergência mais movimentada da Baixada Fluminense.",
+    descricao: "Registro oficial no HGNI / Ministério da Saúde. A vocação nasceu na emergência mais movimentada da Baixada Fluminense.",
     contexto: "HGNI · Ministério da Saúde"
   },
   {
     id: 2,
     src: `${baseUrl}/biografia/2.png`,
     alt: "Dr. Luizinho realizando exame clínico direto em paciente na unidade de saúde pública",
-    tag: "Linha de Frente",
     titulo: "Atendimento Clínico Humanizado",
     descricao: "Examinando pessoalmente cada paciente. A medicina exercida com escuta sensível, cuidado e respeito às famílias.",
     contexto: "Nova Iguaçu · Atendimento SUS"
@@ -36,7 +33,6 @@ const fotos: FotoItem[] = [
     id: 3,
     src: `${baseUrl}/biografia/3.png`,
     alt: "Dr. Luizinho em consulta médica orientando paciente idosa com receituário e carimbo",
-    tag: "Cuidado Clínico",
     titulo: "Atenção e Escuta Olho no Olho",
     descricao: "Receituário na mão e carimbo na mesa: ouvindo as famílias para orientar o diagnóstico e garantir o tratamento digno.",
     contexto: "Consulta Médica · Saúde Pública"
@@ -45,8 +41,7 @@ const fotos: FotoItem[] = [
     id: 4,
     src: `${baseUrl}/biografia/4.png`,
     alt: "Dr. Luizinho abraçando cidadão na campanha de vacinação contra febre amarela",
-    tag: "Gestão Presente",
-    titulo: "Ao Lado do Povo nas Ruas",
+    titulo: "Ao Lado da População nas Ruas",
     descricao: "Presença direta nos bairros e acolhimento humano durante a grande mobilização preventiva contra a febre amarela.",
     contexto: "Campanha em Campo · Nova Iguaçu"
   },
@@ -54,7 +49,6 @@ const fotos: FotoItem[] = [
     id: 5,
     src: `${baseUrl}/biografia/5.png`,
     alt: "Dr. Luizinho aplicando vacina contra a Covid-19 em profissional de saúde com colete da OPAS",
-    tag: "Liderança em Ação",
     titulo: "Liderança Ativa na Vacinação",
     descricao: "Aplicando doses na linha de frente e coordenando os postos de vacinação para salvar vidas na pandemia de Covid-19.",
     contexto: "Imunização Covid-19 · OPAS / SUS"
@@ -64,8 +58,8 @@ const fotos: FotoItem[] = [
 
 <div id="bio-gallery" class="bg-white rounded-3xl p-3 sm:p-4 border border-slate-200/90 shadow-xl shadow-slate-200/60 mb-8 overflow-hidden relative" data-total={fotos.length}>
   
-  <!-- Moldura da Foto com Proporção Editorial -->
-  <div id="bio-image-stage" class="relative aspect-[5/4] sm:aspect-[4/3] rounded-2xl overflow-hidden bg-slate-900 group select-none cursor-pointer">
+  <!-- Moldura Limpa da Foto (Sem badges sobrepostas, sem setas e sem modal de ampliação) -->
+  <div id="bio-image-stage" class="relative aspect-[5/4] sm:aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100 select-none">
     
     {fotos.map((foto, index) => (
       <div
@@ -73,71 +67,19 @@ const fotos: FotoItem[] = [
           index === 0 ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 z-0 pointer-events-none'
         }`}
         data-index={index}
-        data-tag={foto.tag}
         data-title={foto.titulo}
         data-desc={foto.descricao}
         data-ctx={foto.contexto}
-        data-src={foto.src}
       >
         <img
           src={foto.src}
           alt={foto.alt}
           loading={index === 0 ? 'eager' : 'lazy'}
-          class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+          class="w-full h-full object-cover object-center"
         />
-        <!-- Vinheta suave inferior para realçar contraste -->
-        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none"></div>
       </div>
     ))}
 
-    <!-- Badges Flutuantes Superiores -->
-    <div class="absolute top-3 left-3 z-20 flex items-center gap-2 pointer-events-none">
-      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md shadow-sm border border-slate-200/80 text-[#123F8F] text-[11px] font-bold tracking-wide">
-        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-        <span id="bio-tag-display">{fotos[0].tag}</span>
-      </div>
-    </div>
-
-    <div class="absolute top-3 right-3 z-20 pointer-events-none">
-      <div class="inline-flex items-center px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] font-mono font-bold tracking-wider">
-        <span id="bio-curr-num" class="text-white">01</span>
-        <span class="text-white/40 mx-1">/</span>
-        <span class="text-white/80">05</span>
-      </div>
-    </div>
-
-    <!-- Botões Laterais de Navegação (Chevrons) -->
-    <button
-      id="bio-btn-prev"
-      type="button"
-      aria-label="Foto anterior"
-      class="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/85 hover:bg-white text-slate-800 shadow-md flex items-center justify-center transition-all hover:scale-110 active:scale-95 border border-slate-200/50"
-    >
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
-      </svg>
-    </button>
-
-    <button
-      id="bio-btn-next"
-      type="button"
-      aria-label="Próxima foto"
-      class="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/85 hover:bg-white text-slate-800 shadow-md flex items-center justify-center transition-all hover:scale-110 active:scale-95 border border-slate-200/50"
-    >
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
-      </svg>
-    </button>
-
-    <!-- Indicador de Clique para Expandir (Tooltip sutil) -->
-    <div class="absolute bottom-3 right-3 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-black/75 backdrop-blur-md text-white text-[10px] font-medium">
-        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-        </svg>
-        Ampliar foto
-      </span>
-    </div>
   </div>
 
   <!-- Bloco de Legenda Editorial & Indicadores -->
@@ -200,37 +142,6 @@ const fotos: FotoItem[] = [
 
 </div>
 
-<!-- Lightbox Modal Simples e Elegante para Ver Foto Ampliada -->
-<dialog id="bio-modal" class="p-0 rounded-2xl bg-black/90 text-white backdrop:bg-black/70 backdrop:backdrop-blur-sm max-w-2xl w-[92vw] overflow-hidden shadow-2xl border border-white/20 m-auto">
-  <div class="relative flex flex-col">
-    <!-- Imagem em Alta Resolução -->
-    <div class="relative bg-black flex items-center justify-center p-2 sm:p-4">
-      <img id="bio-modal-img" src="" alt="" class="max-h-[70vh] w-auto max-w-full object-contain rounded-lg" />
-      <button
-        id="bio-modal-close"
-        type="button"
-        class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center backdrop-blur transition-all"
-        aria-label="Fechar ampliação"
-      >
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
-    </div>
-    
-    <!-- Legenda da Modal -->
-    <div class="p-4 sm:p-6 bg-slate-900 border-t border-white/10">
-      <div class="flex items-center gap-2 mb-1">
-        <span id="bio-modal-tag" class="text-xs font-bold text-[#F15A29] uppercase tracking-wider"></span>
-        <span class="text-slate-500 text-xs">·</span>
-        <span id="bio-modal-ctx" class="text-xs text-slate-400"></span>
-      </div>
-      <h3 id="bio-modal-title" class="text-lg font-bold text-white mb-1"></h3>
-      <p id="bio-modal-desc" class="text-sm text-slate-300 leading-relaxed"></p>
-    </div>
-  </div>
-</dialog>
-
 <script>
   function setupGaleriaBio() {
     const container = document.getElementById('bio-gallery');
@@ -241,28 +152,15 @@ const fotos: FotoItem[] = [
     const total = slides.length;
     if (total === 0) return;
 
-    const tagDisplay = document.getElementById('bio-tag-display');
-    const currNumDisplay = document.getElementById('bio-curr-num');
     const ctxDisplay = document.getElementById('bio-ctx-display');
     const titleDisplay = document.getElementById('bio-title-display');
     const descDisplay = document.getElementById('bio-desc-display');
 
-    const btnPrev = document.getElementById('bio-btn-prev');
-    const btnNext = document.getElementById('bio-btn-next');
     const btnTogglePlay = document.getElementById('bio-btn-toggle-play');
     const iconPause = document.getElementById('bio-icon-pause');
     const iconPlay = document.getElementById('bio-icon-play');
     const playLabel = document.getElementById('bio-play-label');
-
-    // Modal elements
     const stage = document.getElementById('bio-image-stage');
-    const modal = document.getElementById('bio-modal') as HTMLDialogElement | null;
-    const modalImg = document.getElementById('bio-modal-img') as HTMLImageElement | null;
-    const modalTag = document.getElementById('bio-modal-tag');
-    const modalCtx = document.getElementById('bio-modal-ctx');
-    const modalTitle = document.getElementById('bio-modal-title');
-    const modalDesc = document.getElementById('bio-modal-desc');
-    const modalClose = document.getElementById('bio-modal-close');
 
     let currentIndex = 0;
     let isPlaying = true;
@@ -295,13 +193,10 @@ const fotos: FotoItem[] = [
 
       // Update text with soft animation
       const activeSlide = slides[currentIndex];
-      const tag = activeSlide.getAttribute('data-tag') || '';
       const title = activeSlide.getAttribute('data-title') || '';
       const desc = activeSlide.getAttribute('data-desc') || '';
       const ctx = activeSlide.getAttribute('data-ctx') || '';
 
-      if (tagDisplay) tagDisplay.textContent = tag;
-      if (currNumDisplay) currNumDisplay.textContent = String(currentIndex + 1).padStart(2, '0');
       if (ctxDisplay) ctxDisplay.textContent = ctx;
       if (titleDisplay) titleDisplay.textContent = title;
       if (descDisplay) descDisplay.textContent = desc;
@@ -344,19 +239,7 @@ const fotos: FotoItem[] = [
       }
     }
 
-    // Event listeners
-    btnNext?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      nextSlide();
-      startAutoPlay();
-    });
-
-    btnPrev?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      prevSlide();
-      startAutoPlay();
-    });
-
+    // Dots click listeners
     dots.forEach((dot) => {
       dot.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -401,52 +284,10 @@ const fotos: FotoItem[] = [
       }
     }, { passive: true });
 
-    // Lightbox modal trigger
-    stage?.addEventListener('click', (e) => {
-      // Don't open if clicked on next/prev buttons
-      const target = e.target as HTMLElement;
-      if (target.closest('#bio-btn-prev') || target.closest('#bio-btn-next')) {
-        return;
-      }
-
-      if (!modal) return;
-      const activeSlide = slides[currentIndex];
-      const src = activeSlide.getAttribute('data-src') || '';
-      const tag = activeSlide.getAttribute('data-tag') || '';
-      const title = activeSlide.getAttribute('data-title') || '';
-      const desc = activeSlide.getAttribute('data-desc') || '';
-      const ctx = activeSlide.getAttribute('data-ctx') || '';
-
-      if (modalImg) {
-        modalImg.src = src;
-        modalImg.alt = title;
-      }
-      if (modalTag) modalTag.textContent = tag;
-      if (modalCtx) modalCtx.textContent = ctx;
-      if (modalTitle) modalTitle.textContent = title;
-      if (modalDesc) modalDesc.textContent = desc;
-
-      stopAutoPlay();
-      modal.showModal();
-    });
-
-    modalClose?.addEventListener('click', () => {
-      modal?.close();
-      if (isPlaying) startAutoPlay();
-    });
-
-    modal?.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.close();
-        if (isPlaying) startAutoPlay();
-      }
-    });
-
     // Start auto rotation
     startAutoPlay();
   }
 
-  // Initialize on load and on astro page navigation
   setupGaleriaBio();
   document.addEventListener('astro:page-load', setupGaleriaBio);
 </script>
