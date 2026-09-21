@@ -1,31 +1,18 @@
 ---
 // src/components/MapaFluminense.astro
-// Mapa Vetorial Interativo Oficial dos 92 Municípios do Estado do Rio de Janeiro (IBGE)
+// Mapa Vetorial Interativo Oficial do Estado do Rio de Janeiro (IBGE) — Estilo Editorial Boutique
 import { MUNICIPIOS_MAPA, MAPA_RJ_VIEWBOX, REGIOES_RJ_LISTA } from '../data/mapa-rj-paths';
 ---
 
-<div class="mapa-fluminense-container bg-white rounded-3xl p-4 sm:p-6 border border-slate-200/90 shadow-xl shadow-slate-200/50 relative overflow-hidden">
+<div class="mapa-fluminense-root w-full select-none">
   
-  <!-- Topo: Filtros Rápidos por Região Fluminense (Estilo Pílulas Deslizantes) -->
-  <div class="mb-4">
-    <div class="flex items-center justify-between gap-2 mb-2">
-      <span class="text-xs font-bold uppercase tracking-wider text-[#123F8F] flex items-center gap-1.5">
-        <svg class="w-4 h-4 text-[#F15A29]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-        </svg>
-        Navegação Regional
-      </span>
-      <span class="text-[11px] font-semibold text-slate-400">
-        92 Municípios
-      </span>
-    </div>
-
-    <!-- Pílulas de Regiões -->
-    <div class="flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-hide text-xs" id="mapa-filtros-regioes">
+  <!-- Filtros Regionais em Pílulas Limpas (Sem barra de rolagem cinza) -->
+  <div class="mb-6">
+    <div class="flex items-center justify-center gap-1.5 flex-wrap" id="mapa-filtros-regioes">
       {REGIOES_RJ_LISTA.map((regiao, idx) => (
         <button
           type="button"
-          class={`btn-filtro-regiao flex-shrink-0 px-3 py-1.5 rounded-full font-semibold transition-all border select-none cursor-pointer ${
+          class={`btn-filtro-regiao px-3 py-1.5 rounded-full text-xs font-semibold transition-all border cursor-pointer ${
             idx === 0
               ? 'bg-[#123F8F] text-white border-[#123F8F] shadow-sm'
               : 'bg-white text-slate-600 border-slate-200 hover:border-[#123F8F] hover:text-[#123F8F]'
@@ -38,8 +25,8 @@ import { MUNICIPIOS_MAPA, MAPA_RJ_VIEWBOX, REGIOES_RJ_LISTA } from '../data/mapa
     </div>
   </div>
 
-  <!-- Moldura Vetorial do Mapa SVG -->
-  <div class="relative w-full aspect-[800/480] bg-slate-50/70 rounded-2xl border border-slate-200/80 overflow-hidden flex items-center justify-center select-none p-1 sm:p-2 group">
+  <!-- Moldura Vetorial Espaçosa do Mapa SVG -->
+  <div class="relative w-full aspect-[800/460] bg-slate-50/40 rounded-3xl border border-slate-200/80 p-2 sm:p-6 overflow-hidden flex items-center justify-center group">
     
     <svg
       id="svg-mapa-rj"
@@ -49,9 +36,8 @@ import { MUNICIPIOS_MAPA, MAPA_RJ_VIEWBOX, REGIOES_RJ_LISTA } from '../data/mapa
       aria-label="Mapa interativo dos 92 municípios do Estado do Rio de Janeiro"
     >
       <defs>
-        <!-- Filtro suave de realce para a cidade ativa -->
         <filter id="mapa-glow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#F15A29" flood-opacity="0.45"/>
+          <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#F15A29" flood-opacity="0.4"/>
         </filter>
       </defs>
 
@@ -69,7 +55,7 @@ import { MUNICIPIOS_MAPA, MAPA_RJ_VIEWBOX, REGIOES_RJ_LISTA } from '../data/mapa
             class={`municipio-path transition-all duration-200 cursor-pointer outline-none ${
               m.slug === 'nova-iguacu'
                 ? 'municipio-ativo fill-[#F15A29] stroke-white stroke-[2.2]'
-                : 'fill-slate-100 stroke-slate-300 stroke-[0.8] hover:fill-[#F15A29] hover:stroke-white hover:stroke-[1.5]'
+                : 'fill-slate-100 stroke-slate-300 stroke-[0.8] hover:fill-[#F15A29] hover:stroke-white hover:stroke-[1.6]'
             }`}
             tabindex="0"
             role="button"
@@ -86,47 +72,32 @@ import { MUNICIPIOS_MAPA, MAPA_RJ_VIEWBOX, REGIOES_RJ_LISTA } from '../data/mapa
       </g>
     </svg>
 
-    <!-- Marca d'água sutil de orientação no canto inferior esquerdo -->
-    <div class="absolute bottom-2 left-3 pointer-events-none text-[10px] font-semibold text-slate-400 flex items-center gap-1.5">
-      <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-      <span>100% dos municípios atendidos</span>
+    <!-- Selo de Orientação Flutuante no Canto Inferior -->
+    <div class="absolute bottom-3 left-4 pointer-events-none hidden sm:flex items-center gap-2 text-xs font-semibold text-slate-500 bg-white/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-200/60 shadow-xs">
+      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+      <span>92 municípios fluminenses atendidos</span>
     </div>
 
-  </div>
-
-  <!-- Legenda e Instrução Inferior -->
-  <div class="mt-3 flex items-center justify-between text-xs text-slate-500 px-1">
-    <div class="flex items-center gap-3">
-      <span class="flex items-center gap-1.5">
-        <span class="w-3 h-3 rounded bg-[#F15A29]"></span>
-        <span class="font-medium text-slate-700">Selecionada</span>
-      </span>
-      <span class="flex items-center gap-1.5">
-        <span class="w-3 h-3 rounded bg-blue-100 border border-blue-300"></span>
-        <span class="font-medium text-slate-600">Região Ativa</span>
-      </span>
+    <!-- Dica de Interação no Canto Direito -->
+    <div class="absolute bottom-3 right-4 pointer-events-none text-xs font-medium text-slate-400 bg-white/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-200/60 shadow-xs">
+      <span>Clique na cidade para ver detalhes</span>
     </div>
-    <span class="text-slate-400 text-[11px]">Clique em qualquer cidade</span>
+
   </div>
 
 </div>
 
-<!-- Tooltip Flutuante que Acompanha o Cursor -->
+<!-- Tooltip Flutuante que Acompanha o Cursor (Desktop) -->
 <div
   id="mapa-tooltip"
-  class="fixed pointer-events-none z-50 px-3.5 py-2.5 rounded-xl bg-slate-900/95 backdrop-blur-md text-white shadow-2xl border border-white/15 text-xs transition-opacity duration-150 opacity-0 -translate-x-1/2 -translate-y-full mb-3"
+  class="fixed pointer-events-none z-50 px-3.5 py-2 rounded-xl bg-slate-900/95 backdrop-blur-md text-white shadow-xl border border-white/15 text-xs transition-opacity duration-150 opacity-0 -translate-x-1/2 -translate-y-full mb-3"
   style="top: 0; left: 0;"
 >
   <div id="tooltip-cidade" class="font-display font-black text-sm text-[#F15A29] leading-tight">Nova Iguaçu</div>
   <div class="flex items-center gap-2 mt-0.5 text-[11px] text-slate-300">
     <span id="tooltip-regiao" class="font-medium text-slate-300">Baixada Fluminense</span>
     <span class="text-white/40">·</span>
-    <span class="text-emerald-400 font-semibold flex items-center gap-0.5">
-      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-      </svg>
-      SAMU 100%
-    </span>
+    <span class="text-emerald-400 font-semibold">SAMU 100%</span>
   </div>
 </div>
 
@@ -146,13 +117,13 @@ import { MUNICIPIOS_MAPA, MAPA_RJ_VIEWBOX, REGIOES_RJ_LISTA } from '../data/mapa
     let activeSlug = 'nova-iguacu';
     let currentRegiaoFiltro = 'Todas as Regiões';
 
-    function selecionarMunicipio(slug: string, dispararEvento = true) {
+    function selecionarMunicipio(slug: string, abrirPopUp = true) {
       const targetPath = svg?.querySelector<SVGPathElement>(`#path-${slug}`);
       if (!targetPath) return;
 
       activeSlug = slug;
 
-      // Atualiza classes visuais de todos os paths
+      // Atualiza classes visuais dos paths
       paths.forEach((p) => {
         const isTarget = p.getAttribute('data-slug') === slug;
         const regiaoPath = p.getAttribute('data-regiao') || '';
@@ -171,7 +142,6 @@ import { MUNICIPIOS_MAPA, MAPA_RJ_VIEWBOX, REGIOES_RJ_LISTA } from '../data/mapa
 
         if (isTarget) {
           p.classList.add('municipio-ativo', 'fill-[#F15A29]', 'stroke-white', 'stroke-[2.2]');
-          // Garante que o path ativo fique no topo do SVG
           p.parentNode?.appendChild(p);
         } else if (currentRegiaoFiltro !== 'Todas as Regiões' && regiaoPath === currentRegiaoFiltro) {
           p.classList.add('fill-blue-100/90', 'stroke-blue-300', 'stroke-[0.8]');
@@ -188,16 +158,14 @@ import { MUNICIPIOS_MAPA, MAPA_RJ_VIEWBOX, REGIOES_RJ_LISTA } from '../data/mapa
         pinGroup.parentNode?.appendChild(pinGroup);
       }
 
-      // Notifica o componente de detalhes (BuscaMunicipal)
-      if (dispararEvento) {
-        const nome = targetPath.getAttribute('data-nome') || '';
-        const regiao = targetPath.getAttribute('data-regiao') || '';
-        window.dispatchEvent(
-          new CustomEvent('mapa-cidade-selecionada', {
-            detail: { slug, nome, regiao }
-          })
-        );
-      }
+      // Notifica o sistema para abrir o Pop-up
+      const nome = targetPath.getAttribute('data-nome') || '';
+      const regiao = targetPath.getAttribute('data-regiao') || '';
+      window.dispatchEvent(
+        new CustomEvent('mapa-cidade-selecionada', {
+          detail: { slug, nome, regiao, abrirPopUp }
+        })
+      );
     }
 
     function aplicarFiltroRegiao(regiao: string) {
@@ -214,52 +182,34 @@ import { MUNICIPIOS_MAPA, MAPA_RJ_VIEWBOX, REGIOES_RJ_LISTA } from '../data/mapa
         }
       });
 
-      // Se filtrou uma região e a cidade ativa não faz parte dela, seleciona a primeira da região
       if (regiao !== 'Todas as Regiões') {
         const primeiroDaRegiao = Array.from(paths).find(
           (p) => p.getAttribute('data-regiao') === regiao
         );
         if (primeiroDaRegiao) {
           const targetSlug = primeiroDaRegiao.getAttribute('data-slug') || '';
-          selecionarMunicipio(targetSlug);
+          selecionarMunicipio(targetSlug, false);
           return;
         }
       }
 
-      // Re-renderiza sem trocar cidade
       selecionarMunicipio(activeSlug, false);
     }
 
-    // Eventos dos caminhos municipais (Clique, Toque e Teclado)
     paths.forEach((path) => {
-      // Clique / Toque
       path.addEventListener('click', () => {
         const slug = path.getAttribute('data-slug');
-        if (slug) {
-          selecionarMunicipio(slug);
-
-          // No mobile, rola suavemente até o card de detalhes
-          if (window.innerWidth < 1024) {
-            const card = document.getElementById('card-resultado-cidade');
-            if (card) {
-              setTimeout(() => {
-                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }, 180);
-            }
-          }
-        }
+        if (slug) selecionarMunicipio(slug, true);
       });
 
-      // Suporte a teclado (Acessibilidade WCAG)
       path.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           const slug = path.getAttribute('data-slug');
-          if (slug) selecionarMunicipio(slug);
+          if (slug) selecionarMunicipio(slug, true);
         }
       });
 
-      // Hover / Tooltip (apenas com mouse em desktop)
       path.addEventListener('mouseenter', (e) => {
         if (window.matchMedia('(hover: hover)').matches) {
           const nome = path.getAttribute('data-nome') || '';
@@ -291,7 +241,6 @@ import { MUNICIPIOS_MAPA, MAPA_RJ_VIEWBOX, REGIOES_RJ_LISTA } from '../data/mapa
         }
       });
 
-      // Limpa tooltip em toque mobile
       path.addEventListener('touchstart', () => {
         if (tooltip) {
           tooltip.classList.remove('opacity-100');
@@ -300,7 +249,6 @@ import { MUNICIPIOS_MAPA, MAPA_RJ_VIEWBOX, REGIOES_RJ_LISTA } from '../data/mapa
       }, { passive: true });
     });
 
-    // Eventos dos botões de filtro regional
     filtroBtns.forEach((btn) => {
       btn.addEventListener('click', () => {
         const regiao = btn.getAttribute('data-regiao') || 'Todas as Regiões';
@@ -308,11 +256,11 @@ import { MUNICIPIOS_MAPA, MAPA_RJ_VIEWBOX, REGIOES_RJ_LISTA } from '../data/mapa
       });
     });
 
-    // Escuta evento externo disparado pelo campo de busca ou chips de cidades
     window.addEventListener('selecionar-cidade-no-mapa', ((e: CustomEvent) => {
       const slug = e.detail?.slug;
+      const abrirPopUp = e.detail?.abrirPopUp ?? true;
       if (slug) {
-        selecionarMunicipio(slug, false);
+        selecionarMunicipio(slug, abrirPopUp);
       }
     }) as EventListener);
   }
