@@ -57,13 +57,14 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://felippej
     <!-- Barra Superior / Header Clean Frosted Glass -->
     <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 transition-all">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        <a href={`${baseUrl}/`} class="flex items-center gap-3 group">
+        <a href={`${baseUrl}/`} class="flex items-center gap-3.5 group">
           <img
             src={`${baseUrl}/logo-luizinho.png`}
-            alt="Dr. Luizinho 1177"
-            class="h-10 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105"
+            alt="Dr. Luizinho"
+            class="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
           />
-          <span class="px-2.5 py-0.5 rounded-md bg-[#F15A29]/10 border border-[#F15A29]/20 font-display text-sm font-black italic text-[#F15A29]">
+          <div class="h-8 w-px bg-slate-200"></div>
+          <span class="font-display text-3xl sm:text-4xl font-black italic text-[#F15A29] leading-none tracking-tight">
             1177
           </span>
         </a>
