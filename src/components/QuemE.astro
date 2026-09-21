@@ -1,6 +1,7 @@
 ---
 // src/components/QuemE.astro
-// Seção Quem é Dr. Luizinho — Dossiê Editorial Dividido (Estilo Apple / Revista)
+// Seção Quem é Dr. Luizinho — Dossiê Editorial Dividido com Galeria Rotativa de Fotos Reais
+import GaleriaBiografia from './GaleriaBiografia.astro';
 ---
 
 <section id="quem-e" class="py-20 sm:py-28 bg-[#F8FAFC] relative border-b border-slate-200/80">
@@ -8,28 +9,31 @@
     
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
       
-      <!-- Coluna Esquerda: Âncora Editorial de Liderança (5 colunas) -->
-      <div class="lg:col-span-5 lg:sticky lg:top-28">
+      <!-- Coluna Esquerda: Âncora Editorial de Liderança + Galeria Rotativa (5 colunas) -->
+      <div class="lg:col-span-5 lg:sticky lg:top-24">
         <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 text-[#123F8F] font-sans text-xs font-bold uppercase tracking-wider mb-4">
           Biografia & Trajetória
         </span>
         
-        <h2 class="font-display text-3xl sm:text-5xl font-black italic tracking-tight text-[#123F8F] leading-[0.98] mb-6">
+        <h2 class="font-display text-3xl sm:text-5xl font-black italic tracking-tight text-[#123F8F] leading-[0.98] mb-4">
           A TRAJETÓRIA DE QUEM <br class="hidden sm:inline" />
           <span class="text-[#F15A29]">VIVEU A LINHA DE FRENTE</span>.
         </h2>
         
-        <p class="font-sans text-base sm:text-lg text-slate-600 leading-relaxed mb-8">
-          Antes do mandato, o plantão. Antes das emendas, a vivência real nas emergências da Baixada Fluminense. A autoridade do Dr. Luizinho na saúde pública foi construída onde a dor das famílias não aceita promessas vazias.
+        <p class="font-sans text-sm sm:text-base text-slate-600 leading-relaxed mb-6">
+          Antes do mandato, o plantão. Antes das emendas, a vivência real nas emergências da Baixada Fluminense. Registros históricos de quem construiu autoridade cuidando de pessoas.
         </p>
 
+        <!-- Galeria Rotativa Editorial: Fotos Reais em Execução -->
+        <GaleriaBiografia />
+
         <!-- Destaque de Experiência -->
-        <div class="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-center gap-5">
+        <div class="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-center gap-4">
           <span class="font-display text-4xl sm:text-5xl font-black italic text-[#F15A29] leading-none">
             20+
           </span>
           <div class="text-xs sm:text-sm text-slate-700 font-medium leading-snug">
-            Anos dedicados a cuidar de pessoas e desatar os maiores nós da saúde fluminense.
+            Anos dedicados a cuidar de vidas e desatar os maiores gargalos da saúde pública do Rio.
           </div>
         </div>
       </div>
