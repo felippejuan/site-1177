@@ -261,49 +261,26 @@ export const MUNICIPIOS: Municipio[] = [
   },
 ];
 
-// Gerador complementar para garantir 100% dos 92 municípios cadastrados:
-const TODOS_MUNICIPIOS_NOMES = [
-  'Angra dos Reis', 'Aperibé', 'Araruama', 'Areal', 'Armação dos Búzios', 'Arraial do Cabo',
-  'Barra do Piraí', 'Barra Mansa', 'Belford Roxo', 'Bom Jardim', 'Bom Jesus do Itabapoana',
-  'Cabo Frio', 'Cachoeiras de Macacu', 'Cambuci', 'Campos dos Goytacazes', 'Cantagalo',
-  'Carapebus', 'Cardoso Moreira', 'Carmo', 'Casimiro de Abreu', 'Comendador Levy Gasparian',
-  'Conceição de Macabu', 'Cordeiro', 'Duas Barras', 'Duque de Caxias',
-  'Engenheiro Paulo de Frontin', 'Guapimirim', 'Iguaba Grande', 'Itaboraí', 'Itaguaí',
-  'Italva', 'Itaocara', 'Itaperuna', 'Itatiaia', 'Japeri', 'Laje do Muriaé', 'Macaé',
-  'Macuco', 'Magé', 'Mangaratiba', 'Maricá', 'Mendes', 'Mesquita', 'Miguel Pereira',
-  'Miracema', 'Natividade', 'Nilópolis', 'Niterói', 'Nova Friburgo', 'Nova Iguaçu',
-  'Paracambi', 'Paraíba do Sul', 'Paraty', 'Paty do Alferes', 'Petrópolis', 'Pinheiral',
-  'Piraí', 'Porciúncula', 'Porto Real', 'Quatis', 'Queimados', 'Quissamã', 'Resende',
-  'Rio Bonito', 'Rio Claro', 'Rio das Flores', 'Rio das Ostras', 'Rio de Janeiro',
-  'Santa Maria Madalena', 'Santo Antônio de Pádua', 'São Francisco de Itabapoana',
-  'São Fidelis', 'São Gonçalo', 'São João da Barra', 'São João de Meriti',
-  'São José de Ubá', 'São José do Vale do Rio Preto', 'São Pedro da Aldeia',
-  'São Sebastião do Alto', 'Sapucaia', 'Saquarema', 'Seropédica', 'Silva Jardim',
-  'Sumidouro', 'Tanguá', 'Teresópolis', 'Trajano de Moraes', 'Três Rios', 'Valença',
-  'Varre-Sai', 'Vassouras', 'Volta Redonda'
-];
-
-function gerarSlug(nome: string): string {
-  return nome
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)+/g, '');
-}
+import { MUNICIPIOS_MAPA } from './mapa-rj-paths';
 
 export function obterTodosMunicipios(): Municipio[] {
   const mapaExistentes = new Map(MUNICIPIOS.map(m => [m.nome.toLowerCase(), m]));
   
-  return TODOS_MUNICIPIOS_NOMES.map(nome => {
-    const achado = mapaExistentes.get(nome.toLowerCase());
-    if (achado) return achado;
+  return MUNICIPIOS_MAPA.map(mPath => {
+    const achado = mapaExistentes.get(mPath.nome.toLowerCase());
+    if (achado) {
+      return {
+        ...achado,
+        slug: mPath.slug,
+        regiao: mPath.regiao,
+      };
+    }
 
-    // Município padrão com cobertura SAMU 100% e acesso à rede estadual
+    // Município com cobertura universal SAMU 100% e rede estadual
     return {
-      nome,
-      slug: gerarSlug(nome),
-      regiao: 'Estado do Rio de Janeiro',
+      nome: mPath.nome,
+      slug: mPath.slug,
+      regiao: mPath.regiao,
       samu100: true,
       entregasDiretas: [
         'SAMU 100% RJ: Ambulância nova entregue com custeio anual garantido pelo Estado',
@@ -311,7 +288,8 @@ export function obterTodosMunicipios(): Municipio[] {
         'Integração na regulação inteligente de leitos do CIS',
       ],
       destaques: ['SAMU 100%', 'Rede Estadual Integrada'],
-      resumoLocal: `Todos os moradores de ${nome} contam com socorro de emergência pré-hospitalar garantido pelo programa SAMU 100% RJ e acesso a exames e cirurgias de alta complexidade na rede estadual.`,
+      resumoLocal: `Todos os moradores de ${mPath.nome} contam com socorro de emergência pré-hospitalar garantido pelo programa SAMU 100% RJ e acesso a exames e cirurgias de alta complexidade na rede estadual.`,
     };
   });
 }
+
