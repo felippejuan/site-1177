@@ -1,40 +1,40 @@
 ---
 // src/components/Numeros.astro
-// Seção O Trabalho em Números — Contadores macro em grade 2x2 (mobile) / 4x1 (desktop)
+// Seção O Trabalho em Números — Métricas de alto impacto e governança do SUS
 import { MACRO_NUMEROS } from '../data/trajetoria';
 ---
 
-<section id="numeros" class="py-16 sm:py-24 bg-slate-900 text-white relative overflow-hidden">
+<section id="numeros" class="py-20 sm:py-28 bg-[#070A13] text-white relative border-b border-white/[0.08] overflow-hidden">
   <!-- Efeito de brilho de fundo -->
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-600/15 blur-[120px] pointer-events-none"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-blue-600/10 blur-[140px] pointer-events-none"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <!-- Cabeçalho -->
     <div class="max-w-3xl mx-auto text-center mb-16">
-      <span class="inline-block px-3.5 py-1 rounded-full bg-white/10 border border-white/20 text-orange-400 font-sans text-xs font-bold uppercase tracking-wider mb-3">
-        Resultados Concretos
+      <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-300 font-sans text-xs font-semibold uppercase tracking-wider mb-4">
+        Evidências Auditadas
       </span>
       <h2 class="font-display text-3xl sm:text-5xl font-black italic tracking-tight text-white leading-tight mb-4">
-        O TRABALHO EM <span class="text-[#F15A29]">NÚMEROS</span>
+        O TRABALHO EM <span class="text-[#F15A29]">NÚMEROS REAIS</span>
       </h2>
       <p class="font-sans text-base sm:text-lg text-slate-300">
-        Métricas auditadas e comprovadas de equipamentos públicos salvando vidas todos os dias no Rio de Janeiro.
+        Métricas comprovadas em Diário Oficial de equipamentos públicos salvando vidas diariamente em todo o Estado do Rio de Janeiro.
       </p>
     </div>
 
     <!-- Grade 2x2 no Mobile / 4x1 no Desktop -->
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {MACRO_NUMEROS.map((item) => (
-        <div class="p-6 sm:p-8 rounded-2xl bg-slate-800/80 border border-slate-700/80 hover:border-orange-500/50 transition-all flex flex-col justify-between group">
+        <div class="p-8 rounded-3xl bg-[#0D1424]/90 border border-white/[0.08] hover:border-[#F15A29]/40 transition-all duration-300 flex flex-col justify-between group shadow-2xl hover:-translate-y-1">
           <div>
-            <p class="font-display text-3xl sm:text-5xl lg:text-5xl font-black italic text-[#F15A29] leading-none mb-3 group-hover:scale-105 transition-transform origin-left">
+            <p class="font-display text-4xl sm:text-5xl lg:text-5xl font-black italic text-[#F15A29] leading-none mb-4 group-hover:scale-105 transition-transform origin-left">
               {item.numero}
             </p>
-            <h3 class="font-sans text-sm sm:text-base font-bold text-white mb-2 leading-snug">
+            <h3 class="font-sans text-base font-bold text-white mb-2 leading-snug">
               {item.rotulo}
             </h3>
           </div>
-          <p class="font-sans text-xs text-slate-400 leading-relaxed pt-4 border-t border-slate-700/60">
+          <p class="font-sans text-xs text-slate-400 leading-relaxed pt-4 border-t border-white/[0.06] mt-4">
             {item.detalhe}
           </p>
         </div>
@@ -42,8 +42,9 @@ import { MACRO_NUMEROS } from '../data/trajetoria';
     </div>
 
     <!-- Rodapé de Conformidade Documental -->
-    <div class="mt-12 text-center text-xs text-slate-500 font-sans">
-      <span>* Todos os dados extraídos de relatórios anuais de gestão (RAG), RDQA e Diário Oficial do Estado do Rio de Janeiro (DOERJ).</span>
+    <div class="mt-12 text-center text-xs text-slate-500 font-sans flex items-center justify-center gap-2">
+      <span class="w-1.5 h-1.5 rounded-full bg-slate-600"></span>
+      <span>Dados extraídos de Relatórios Anuais de Gestão (RAG), RDQA e Diário Oficial do Estado do Rio de Janeiro (DOERJ).</span>
     </div>
   </div>
 </section>

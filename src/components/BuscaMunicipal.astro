@@ -1,29 +1,32 @@
 ---
 // src/components/BuscaMunicipal.astro
-// Busca inteligente territorial dos 92 municípios do RJ
+// Busca inteligente territorial dos 92 municípios do RJ (Dark Institutional Glass)
 import { obterTodosMunicipios } from '../data/municipios';
 
 const municipios = obterTodosMunicipios();
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<section id="minha-cidade" class="py-16 sm:py-24 bg-[#F8FAFC] relative">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="minha-cidade" class="py-20 sm:py-28 bg-[#090E1A] relative border-b border-white/[0.08] overflow-hidden">
+  <!-- Luz ambiente suave -->
+  <div class="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-orange-600/5 rounded-full blur-[140px] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     
     <!-- Cabeçalho -->
-    <div class="max-w-3xl mx-auto text-center mb-12">
-      <span class="inline-block px-3.5 py-1 rounded-full bg-orange-100 text-[#F15A29] font-sans text-xs font-bold uppercase tracking-wider mb-3">
+    <div class="max-w-3xl mx-auto text-center mb-14">
+      <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-300 font-sans text-xs font-semibold uppercase tracking-wider mb-4">
         Presença em Todo o Estado
       </span>
-      <h2 class="font-display text-3xl sm:text-5xl font-black italic tracking-tight text-[#123F8F] leading-tight mb-4">
-        O QUE ELE FEZ PELA <span class="text-[#F15A29]">MINHA CIDADE?</span>
+      <h2 class="font-display text-3xl sm:text-5xl font-black italic tracking-tight text-white leading-tight mb-4">
+        O QUE ELE FEZ PELA <span class="text-[#F15A29]">SUA CIDADE?</span>
       </h2>
-      <p class="font-sans text-base sm:text-lg text-slate-600 leading-relaxed">
-        Selecione o seu município entre os 92 do Rio de Janeiro para consultar as ambulâncias do SAMU, emendas pagas e obras hospitalares entregues.
+      <p class="font-sans text-base sm:text-lg text-slate-300 leading-relaxed">
+        Consulte qualquer um dos 92 municípios do Rio de Janeiro para ver ambulâncias do SAMU, emendas pagas e investimentos estruturantes.
       </p>
     </div>
 
-    <!-- Campo de Busca Interativo -->
+    <!-- Campo de Busca Interativo Dark Glass -->
     <div class="max-w-xl mx-auto mb-10">
       <div class="relative">
         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
@@ -36,7 +39,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
           id="busca-municipio-input"
           list="lista-municipios"
           placeholder="Digite o nome da sua cidade (ex: Nova Iguaçu, Volta Redonda...)"
-          class="w-full pl-12 pr-4 py-4 rounded-2xl border-2 border-slate-200 bg-white text-slate-800 text-base font-semibold shadow-sm focus:border-[#123F8F] focus:outline-none focus:ring-4 focus:ring-blue-100 transition-all placeholder:text-slate-400 placeholder:font-normal"
+          class="w-full pl-12 pr-4 py-4 rounded-2xl border border-white/15 bg-[#0D1424] text-white text-base font-semibold shadow-2xl focus:border-[#F15A29] focus:outline-none focus:ring-4 focus:ring-orange-500/20 transition-all placeholder:text-slate-500 placeholder:font-normal"
           autocomplete="off"
         />
         <datalist id="lista-municipios">
@@ -46,64 +49,64 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
         </datalist>
       </div>
 
-      <!-- Atalhos rápidos das maiores regiões -->
+      <!-- Atalhos rápidos das maiores cidades -->
       <div class="flex items-center justify-center gap-2 mt-4 flex-wrap text-xs">
-        <span class="text-slate-500 font-medium">Cidades mais buscadas:</span>
-        <button type="button" class="btn-cidade px-2.5 py-1 rounded-full bg-white border border-slate-200 hover:border-[#123F8F] hover:text-[#123F8F] text-slate-700 font-semibold cursor-pointer transition-all" data-cidade="Nova Iguaçu">Nova Iguaçu</button>
-        <button type="button" class="btn-cidade px-2.5 py-1 rounded-full bg-white border border-slate-200 hover:border-[#123F8F] hover:text-[#123F8F] text-slate-700 font-semibold cursor-pointer transition-all" data-cidade="Volta Redonda">Volta Redonda</button>
-        <button type="button" class="btn-cidade px-2.5 py-1 rounded-full bg-white border border-slate-200 hover:border-[#123F8F] hover:text-[#123F8F] text-slate-700 font-semibold cursor-pointer transition-all" data-cidade="Nilópolis">Nilópolis</button>
-        <button type="button" class="btn-cidade px-2.5 py-1 rounded-full bg-white border border-slate-200 hover:border-[#123F8F] hover:text-[#123F8F] text-slate-700 font-semibold cursor-pointer transition-all" data-cidade="Rio de Janeiro">Rio Capital</button>
-        <button type="button" class="btn-cidade px-2.5 py-1 rounded-full bg-white border border-slate-200 hover:border-[#123F8F] hover:text-[#123F8F] text-slate-700 font-semibold cursor-pointer transition-all" data-cidade="Niterói">Niterói</button>
-        <button type="button" class="btn-cidade px-2.5 py-1 rounded-full bg-white border border-slate-200 hover:border-[#123F8F] hover:text-[#123F8F] text-slate-700 font-semibold cursor-pointer transition-all" data-cidade="Quatis">Quatis</button>
+        <span class="text-slate-400 font-medium">Cidades mais buscadas:</span>
+        <button type="button" class="btn-cidade px-3 py-1 rounded-full bg-white/[0.05] border border-white/10 hover:border-[#F15A29] hover:text-white text-slate-300 font-medium cursor-pointer transition-all" data-cidade="Nova Iguaçu">Nova Iguaçu</button>
+        <button type="button" class="btn-cidade px-3 py-1 rounded-full bg-white/[0.05] border border-white/10 hover:border-[#F15A29] hover:text-white text-slate-300 font-medium cursor-pointer transition-all" data-cidade="Volta Redonda">Volta Redonda</button>
+        <button type="button" class="btn-cidade px-3 py-1 rounded-full bg-white/[0.05] border border-white/10 hover:border-[#F15A29] hover:text-white text-slate-300 font-medium cursor-pointer transition-all" data-cidade="Nilópolis">Nilópolis</button>
+        <button type="button" class="btn-cidade px-3 py-1 rounded-full bg-white/[0.05] border border-white/10 hover:border-[#F15A29] hover:text-white text-slate-300 font-medium cursor-pointer transition-all" data-cidade="Rio de Janeiro">Rio Capital</button>
+        <button type="button" class="btn-cidade px-3 py-1 rounded-full bg-white/[0.05] border border-white/10 hover:border-[#F15A29] hover:text-white text-slate-300 font-medium cursor-pointer transition-all" data-cidade="Niterói">Niterói</button>
+        <button type="button" class="btn-cidade px-3 py-1 rounded-full bg-white/[0.05] border border-white/10 hover:border-[#F15A29] hover:text-white text-slate-300 font-medium cursor-pointer transition-all" data-cidade="Quatis">Quatis</button>
       </div>
     </div>
 
     <!-- Card de Resultado Dinâmico da Cidade -->
-    <div id="card-resultado-cidade" class="max-w-3xl mx-auto bg-white rounded-3xl border border-slate-200/90 shadow-xl overflow-hidden transition-all duration-300">
+    <div id="card-resultado-cidade" class="max-w-3xl mx-auto bg-[#0D1424]/95 rounded-3xl border border-white/[0.08] shadow-2xl shadow-black/80 overflow-hidden transition-all duration-300">
       <div class="p-6 sm:p-10">
         <!-- Topo da Ficha: Nome e Região -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/[0.08]">
           <div>
-            <span id="cidade-regiao" class="inline-block px-3 py-1 rounded-full bg-blue-50 text-[#123F8F] text-xs font-bold uppercase tracking-wider mb-2">
+            <span id="cidade-regiao" class="inline-block px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs font-semibold uppercase tracking-wider mb-2">
               Baixada Fluminense
             </span>
-            <h3 id="cidade-nome" class="font-display text-3xl sm:text-4xl font-black italic text-[#123F8F]">
+            <h3 id="cidade-nome" class="font-display text-3xl sm:text-4xl font-black italic text-white">
               Nova Iguaçu
             </h3>
           </div>
 
           <!-- Selo SAMU 100% -->
-          <div class="flex items-center gap-2.5 px-4 py-2 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <div class="flex items-center gap-2.5 px-4 py-2 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs font-semibold">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
             <span>SAMU 100% Fluminense Garantido</span>
           </div>
         </div>
 
         <!-- Resumo da Cidade -->
-        <p id="cidade-resumo" class="font-sans text-sm sm:text-base text-slate-700 leading-relaxed my-6 font-medium">
+        <p id="cidade-resumo" class="font-sans text-sm sm:text-base text-slate-300 leading-relaxed my-6 font-normal">
           Nova Iguaçu é o coração da atuação do Dr. Luizinho. Como secretário municipal e estadual, transformou a cidade na maior potência hospitalar pública da história da Baixada Fluminense.
         </p>
 
         <!-- Grade de Emendas & Recursos -->
         <div id="cidade-emendas-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-          <div class="p-4 rounded-2xl bg-blue-50/70 border border-blue-100">
-            <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+          <div class="p-5 rounded-2xl bg-blue-950/40 border border-blue-500/20">
+            <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-1">
               Recursos Já Pagos (Mandato)
             </span>
-            <p id="cidade-emendas-pagas" class="font-display text-2xl font-black italic text-[#123F8F]">
+            <p id="cidade-emendas-pagas" class="font-display text-2xl sm:text-3xl font-black italic text-white leading-tight">
               R$ 20.000.000,00
             </p>
-            <span class="text-[11px] text-slate-500">Executados na saúde e melhorias</span>
+            <span class="text-[11px] text-slate-400">Executados na saúde e melhorias</span>
           </div>
 
-          <div id="box-emendas-garantidas" class="p-4 rounded-2xl bg-orange-50/70 border border-orange-100">
-            <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+          <div id="box-emendas-garantidas" class="p-5 rounded-2xl bg-orange-950/30 border border-orange-500/20">
+            <span class="text-[11px] font-bold text-orange-300 uppercase tracking-wider block mb-1">
               Recursos Garantidos / Obras
             </span>
-            <p id="cidade-emendas-garantidas" class="font-display text-2xl font-black italic text-[#F15A29]">
+            <p id="cidade-emendas-garantidas" class="font-display text-2xl sm:text-3xl font-black italic text-[#F15A29] leading-tight">
               R$ 5.400.000,00
             </p>
-            <span class="text-[11px] text-slate-500">Empenhados e em execução</span>
+            <span class="text-[11px] text-slate-400">Empenhados e em execução</span>
           </div>
         </div>
 
@@ -113,16 +116,16 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
             Entregas e Ações no Município:
           </h4>
           <ul id="cidade-entregas-lista" class="space-y-3">
-            <li class="flex items-start gap-3 text-sm text-slate-800 font-medium">
-              <span class="text-emerald-500 font-bold mt-0.5">✓</span>
+            <li class="flex items-start gap-3 text-sm text-slate-300 font-normal">
+              <span class="text-emerald-400 font-bold mt-0.5">✓</span>
               <span>Onco Baixada (Instituto Estadual de Oncologia com 100 leitos e 24 boxes de quimioterapia)</span>
             </li>
-            <li class="flex items-start gap-3 text-sm text-slate-800 font-medium">
-              <span class="text-emerald-500 font-bold mt-0.5">✓</span>
-              <span>Rio Imagem Baixada (Maior centro de imagem da América Latina com +1,6M de exames)</span>
+            <li class="flex items-start gap-3 text-sm text-slate-300 font-normal">
+              <span class="text-emerald-400 font-bold mt-0.5">✓</span>
+              <span>Rio Imagem Baixada (Maior centro de diagnóstico por imagem da Baixada Fluminense)</span>
             </li>
-            <li class="flex items-start gap-3 text-sm text-slate-800 font-medium">
-              <span class="text-emerald-500 font-bold mt-0.5">✓</span>
+            <li class="flex items-start gap-3 text-sm text-slate-300 font-normal">
+              <span class="text-emerald-400 font-bold mt-0.5">✓</span>
               <span>Reabertura da Maternidade Mariana Bulhões (69 leitos e 25 de UTI neonatal)</span>
             </li>
           </ul>
@@ -130,14 +133,14 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
       </div>
 
       <!-- Rodapé do Card -->
-      <div class="bg-slate-50 px-6 sm:px-10 py-4 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-500">
+      <div class="bg-[#070A13] px-6 sm:px-10 py-4 border-t border-white/[0.06] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-400">
         <span>Fonte: Sistema OGU, SES-RJ e Prestação Oficial de Contas 2026</span>
         <a
           id="cidade-share-wa"
           href="https://wa.me/?text=Veja%20o%20que%20o%20Dr.%20Luizinho%201177%20fez%20por%20Nova%20Igua%C3%A7u!"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-1.5 font-bold text-[#F15A29] hover:underline"
+          class="inline-flex items-center gap-1.5 font-bold text-[#F15A29] hover:text-orange-300 transition-colors"
         >
           <span>Compartilhar cidade no WhatsApp</span>
           <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
@@ -188,17 +191,17 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     listaEl.innerHTML = '';
     cidade.entregasDiretas.forEach(e => {
       const li = document.createElement('li');
-      li.className = 'flex items-start gap-3 text-sm text-slate-800 font-medium';
-      li.innerHTML = `<span class="text-emerald-500 font-bold mt-0.5">✓</span><span>${e}</span>`;
+      li.className = 'flex items-start gap-3 text-sm text-slate-300 font-normal';
+      li.innerHTML = `<span class="text-emerald-400 font-bold mt-0.5">✓</span><span>${e}</span>`;
       listaEl.appendChild(li);
     });
 
     const msg = encodeURIComponent(`Veja o que o Dr. Luizinho 1177 fez por ${cidade.nome}! Acesse: https://felippejuan.github.io/site-1177/#minha-cidade`);
     shareLink.href = `https://wa.me/?text=${msg}`;
 
-    // Animação de pulso no card
-    cardContainer.classList.add('ring-2', 'ring-[#123F8F]');
-    setTimeout(() => cardContainer.classList.remove('ring-2', 'ring-[#123F8F]'), 400);
+    // Animação de realce perimetral no card
+    cardContainer.classList.add('ring-2', 'ring-[#F15A29]');
+    setTimeout(() => cardContainer.classList.remove('ring-2', 'ring-[#F15A29]'), 400);
   }
 
   if (input) {

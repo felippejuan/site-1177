@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "@fontsource/barlow/400.css";
+@import "@fontsource/barlow/500.css";
 @import "@fontsource/barlow/600.css";
 @import "@fontsource/barlow/700.css";
 @import "@fontsource/barlow-condensed/700-italic.css";
@@ -7,12 +8,15 @@
 @import "@fontsource/barlow-condensed/900-italic.css";
 
 @theme {
+  --color-midnight: #070A13;
+  --color-surface-dark: #0D1424;
+  --color-surface-card: #131C31;
+  --color-surface-card-hover: #1A2642;
   --color-primary: #123F8F;
   --color-primary-dark: #0D3577;
   --color-primary-light: #1A54BD;
   --color-orange-1177: #F15A29;
   --color-orange-hover: #D94819;
-  --color-bg-alt: #F8FAFC;
   --font-sans: 'Barlow', system-ui, -apple-system, sans-serif;
   --font-display: 'Barlow Condensed', 'Barlow', sans-serif;
 }
@@ -20,8 +24,14 @@
 html {
   scroll-behavior: smooth;
   font-family: var(--font-sans);
-  color: #0F172A;
-  background-color: #FFFFFF;
+  color: #F8FAFC;
+  background-color: #070A13;
+  color-scheme: dark;
+}
+
+body {
+  background-color: #070A13;
+  overflow-x: hidden;
 }
 
 /* Scroll snap utilities */
@@ -31,4 +41,25 @@ html {
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Glassmorphism & Subtle Glow Utilities */
+.glass-panel {
+  background: rgba(13, 20, 36, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card {
+  background: linear-gradient(180deg, rgba(19, 28, 49, 0.85) 0%, rgba(13, 20, 36, 0.95) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+}
+
+.glass-card:hover {
+  border-color: rgba(241, 90, 41, 0.35);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85), 0 0 25px -5px rgba(241, 90, 41, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
 }
