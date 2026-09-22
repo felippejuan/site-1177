@@ -8,27 +8,25 @@ const municipios = obterTodosMunicipios();
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<section id="minha-cidade" class="py-20 sm:py-28 bg-[#F8FAFC] relative border-b border-slate-200/80">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<section id="minha-cidade" class="py-8 sm:py-12 bg-[#F8FAFC] relative border-b border-slate-200/80">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     
-    <!-- Cabeçalho Editorial -->
-    <div class="max-w-3xl mx-auto text-center mb-10">
-      <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-orange-100 text-[#F15A29] font-sans text-xs font-bold uppercase tracking-wider mb-4">
+    <!-- Cabeçalho Editorial Compacto -->
+    <div class="max-w-2xl mx-auto text-center mb-5">
+      <span class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-orange-100 text-[#F15A29] font-sans text-[11px] font-bold uppercase tracking-wider mb-2">
         Presença em Todo o Estado
       </span>
-      <h2 class="font-display text-3xl sm:text-5xl font-black italic tracking-tight text-[#123F8F] leading-tight mb-4">
+      <h2 class="font-display text-2xl sm:text-4xl font-black italic tracking-tight text-[#123F8F] leading-tight mb-1.5">
         O QUE ELE FEZ PELA <span class="text-[#F15A29]">SUA CIDADE?</span>
       </h2>
-      <p class="font-sans text-base sm:text-lg text-slate-600 leading-relaxed">
-        Explore o mapa interativo do Rio de Janeiro. Clique em qualquer um dos 92 municípios para abrir o raio-x completo das obras, ambulâncias do SAMU e emendas pagas.
+      <p class="font-sans text-xs sm:text-sm text-slate-500 mb-3">
+        Clique no município no mapa ou pesquise pelo nome para abrir o raio-x das entregas.
       </p>
-    </div>
 
-    <!-- Barra de Busca Flutuante no Topo do Mapa (Estilo Apple / Google Maps) -->
-    <div class="max-w-xl mx-auto mb-8">
-      <div class="relative bg-white rounded-2xl shadow-lg shadow-slate-200/60 border border-slate-200/90 p-2 sm:p-2.5 flex items-center gap-2">
-        <div class="pl-2.5 text-slate-400 flex items-center pointer-events-none">
-          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <!-- Barra de Busca Centralizada e Compacta -->
+      <div class="max-w-md mx-auto relative bg-white rounded-2xl shadow-md shadow-slate-200/50 border border-slate-200/90 p-1.5 sm:p-2 flex items-center gap-2">
+        <div class="pl-2 text-slate-400 flex items-center pointer-events-none">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
         </div>
@@ -36,8 +34,8 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
           type="text"
           id="busca-municipio-input"
           list="lista-municipios"
-          placeholder="Pesquisar cidade (ex: Nova Iguaçu, Volta Redonda...)"
-          class="w-full py-2 pr-3 bg-transparent text-slate-900 text-sm sm:text-base font-semibold focus:outline-none placeholder:text-slate-400 placeholder:font-normal"
+          placeholder="Digite sua cidade (ex: Nova Iguaçu, Volta Redonda...)"
+          class="w-full py-1.5 pr-3 bg-transparent text-slate-900 text-xs sm:text-sm font-semibold focus:outline-none placeholder:text-slate-400 placeholder:font-normal"
           autocomplete="off"
         />
         <datalist id="lista-municipios">
@@ -46,21 +44,10 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
           ))}
         </datalist>
       </div>
-
-      <!-- Atalhos Rápidos Discretos -->
-      <div class="flex items-center justify-center gap-1.5 mt-3 flex-wrap text-xs">
-        <span class="text-slate-400 text-[11px] font-medium mr-1">Atalhos rápidos:</span>
-        <button type="button" class="btn-cidade px-2.5 py-1 rounded-full bg-white hover:bg-orange-50 hover:text-[#F15A29] hover:border-orange-200 border border-slate-200 text-slate-700 font-semibold cursor-pointer shadow-2xs transition-all" data-cidade="Nova Iguaçu">Nova Iguaçu</button>
-        <button type="button" class="btn-cidade px-2.5 py-1 rounded-full bg-white hover:bg-orange-50 hover:text-[#F15A29] hover:border-orange-200 border border-slate-200 text-slate-700 font-semibold cursor-pointer shadow-2xs transition-all" data-cidade="Volta Redonda">Volta Redonda</button>
-        <button type="button" class="btn-cidade px-2.5 py-1 rounded-full bg-white hover:bg-orange-50 hover:text-[#F15A29] hover:border-orange-200 border border-slate-200 text-slate-700 font-semibold cursor-pointer shadow-2xs transition-all" data-cidade="Nilópolis">Nilópolis</button>
-        <button type="button" class="btn-cidade px-2.5 py-1 rounded-full bg-white hover:bg-orange-50 hover:text-[#F15A29] hover:border-orange-200 border border-slate-200 text-slate-700 font-semibold cursor-pointer shadow-2xs transition-all" data-cidade="Rio de Janeiro">Rio Capital</button>
-        <button type="button" class="btn-cidade px-2.5 py-1 rounded-full bg-white hover:bg-orange-50 hover:text-[#F15A29] hover:border-orange-200 border border-slate-200 text-slate-700 font-semibold cursor-pointer shadow-2xs transition-all" data-cidade="Petrópolis">Petrópolis</button>
-        <button type="button" class="btn-cidade px-2.5 py-1 rounded-full bg-white hover:bg-orange-50 hover:text-[#F15A29] hover:border-orange-200 border border-slate-200 text-slate-700 font-semibold cursor-pointer shadow-2xs transition-all" data-cidade="Campos dos Goytacazes">Campos</button>
-      </div>
     </div>
 
-    <!-- O Mapa Vetorial Fluminense como Centro de Destaque Espaçoso -->
-    <div class="max-w-5xl mx-auto bg-white rounded-3xl p-4 sm:p-8 border border-slate-200/90 shadow-2xl shadow-slate-200/60">
+    <!-- O Mapa Vetorial Fluminense Compacto e Direto -->
+    <div class="max-w-4xl mx-auto bg-white rounded-2xl p-2 sm:p-4 border border-slate-200/90 shadow-xl shadow-slate-200/40">
       <MapaFluminense />
     </div>
 
@@ -315,13 +302,4 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     });
   }
 
-  // Evento vindo dos botões rápidos
-  document.querySelectorAll('.btn-cidade').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const cidade = btn.getAttribute('data-cidade');
-      if (cidade) {
-        processarBusca(cidade, true);
-      }
-    });
-  });
 </script>

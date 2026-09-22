@@ -1,32 +1,13 @@
 ---
 // src/components/MapaFluminense.astro
 // Mapa Vetorial Interativo Oficial do Estado do Rio de Janeiro (IBGE) — Estilo Editorial Boutique
-import { MUNICIPIOS_MAPA, MAPA_RJ_VIEWBOX, REGIOES_RJ_LISTA } from '../data/mapa-rj-paths';
+import { MUNICIPIOS_MAPA, MAPA_RJ_VIEWBOX } from '../data/mapa-rj-paths';
 ---
 
 <div class="mapa-fluminense-root w-full select-none">
   
-  <!-- Filtros Regionais em Pílulas Limpas (Sem barra de rolagem cinza) -->
-  <div class="mb-6">
-    <div class="flex items-center justify-center gap-1.5 flex-wrap" id="mapa-filtros-regioes">
-      {REGIOES_RJ_LISTA.map((regiao, idx) => (
-        <button
-          type="button"
-          class={`btn-filtro-regiao px-3 py-1.5 rounded-full text-xs font-semibold transition-all border cursor-pointer ${
-            idx === 0
-              ? 'bg-[#123F8F] text-white border-[#123F8F] shadow-sm'
-              : 'bg-white text-slate-600 border-slate-200 hover:border-[#123F8F] hover:text-[#123F8F]'
-          }`}
-          data-regiao={regiao}
-        >
-          {regiao}
-        </button>
-      ))}
-    </div>
-  </div>
-
   <!-- Moldura Vetorial Espaçosa do Mapa SVG -->
-  <div class="relative w-full aspect-[800/460] bg-slate-50/40 rounded-3xl border border-slate-200/80 p-2 sm:p-6 overflow-hidden flex items-center justify-center group">
+  <div class="relative w-full aspect-[800/460] bg-slate-50/40 rounded-2xl border border-slate-200/80 p-2 sm:p-4 overflow-hidden flex items-center justify-center group">
     
     <svg
       id="svg-mapa-rj"
@@ -111,11 +92,8 @@ import { MUNICIPIOS_MAPA, MAPA_RJ_VIEWBOX, REGIOES_RJ_LISTA } from '../data/mapa
     const tooltip = document.getElementById('mapa-tooltip');
     const tooltipCidade = document.getElementById('tooltip-cidade');
     const tooltipRegiao = document.getElementById('tooltip-regiao');
-    const filtrosContainer = document.getElementById('mapa-filtros-regioes');
-    const filtroBtns = filtrosContainer ? filtrosContainer.querySelectorAll<HTMLButtonElement>('.btn-filtro-regiao') : [];
 
     let activeSlug = 'nova-iguacu';
-    let currentRegiaoFiltro = 'Todas as Regiões';
 
     function selecionarMunicipio(slug: string, abrirPopUp = true) {
       const targetPath = svg?.querySelector<SVGPathElement>(`#path-${slug}`);
@@ -126,15 +104,12 @@ import { MUNICIPIOS_MAPA, MAPA_RJ_VIEWBOX, REGIOES_RJ_LISTA } from '../data/mapa
       // Atualiza classes visuais dos paths
       paths.forEach((p) => {
         const isTarget = p.getAttribute('data-slug') === slug;
-        const regiaoPath = p.getAttribute('data-regiao') || '';
 
         p.classList.remove(
           'municipio-ativo',
           'fill-[#F15A29]',
           'stroke-white',
           'stroke-[2.2]',
-          'fill-blue-100/90',
-          'stroke-blue-300',
           'fill-slate-100',
           'stroke-slate-300',
           'stroke-[0.8]'
@@ -143,8 +118,6 @@ import { MUNICIPIOS_MAPA, MAPA_RJ_VIEWBOX, REGIOES_RJ_LISTA } from '../data/mapa
         if (isTarget) {
           p.classList.add('municipio-ativo', 'fill-[#F15A29]', 'stroke-white', 'stroke-[2.2]');
           p.parentNode?.appendChild(p);
-        } else if (currentRegiaoFiltro !== 'Todas as Regiões' && regiaoPath === currentRegiaoFiltro) {
-          p.classList.add('fill-blue-100/90', 'stroke-blue-300', 'stroke-[0.8]');
         } else {
           p.classList.add('fill-slate-100', 'stroke-slate-300', 'stroke-[0.8]');
         }
@@ -166,34 +139,6 @@ import { MUNICIPIOS_MAPA, MAPA_RJ_VIEWBOX, REGIOES_RJ_LISTA } from '../data/mapa
           detail: { slug, nome, regiao, abrirPopUp }
         })
       );
-    }
-
-    function aplicarFiltroRegiao(regiao: string) {
-      currentRegiaoFiltro = regiao;
-
-      filtroBtns.forEach((btn) => {
-        const btnRegiao = btn.getAttribute('data-regiao');
-        if (btnRegiao === regiao) {
-          btn.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
-          btn.classList.add('bg-[#123F8F]', 'text-white', 'border-[#123F8F]', 'shadow-sm');
-        } else {
-          btn.classList.remove('bg-[#123F8F]', 'text-white', 'border-[#123F8F]', 'shadow-sm');
-          btn.classList.add('bg-white', 'text-slate-600', 'border-slate-200');
-        }
-      });
-
-      if (regiao !== 'Todas as Regiões') {
-        const primeiroDaRegiao = Array.from(paths).find(
-          (p) => p.getAttribute('data-regiao') === regiao
-        );
-        if (primeiroDaRegiao) {
-          const targetSlug = primeiroDaRegiao.getAttribute('data-slug') || '';
-          selecionarMunicipio(targetSlug, false);
-          return;
-        }
-      }
-
-      selecionarMunicipio(activeSlug, false);
     }
 
     paths.forEach((path) => {
@@ -247,13 +192,6 @@ import { MUNICIPIOS_MAPA, MAPA_RJ_VIEWBOX, REGIOES_RJ_LISTA } from '../data/mapa
           tooltip.classList.add('opacity-0');
         }
       }, { passive: true });
-    });
-
-    filtroBtns.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const regiao = btn.getAttribute('data-regiao') || 'Todas as Regiões';
-        aplicarFiltroRegiao(regiao);
-      });
     });
 
     window.addEventListener('selecionar-cidade-no-mapa', ((e: CustomEvent) => {
