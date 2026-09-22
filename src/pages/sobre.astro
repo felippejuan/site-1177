@@ -1,97 +1,53 @@
 ---
 // src/pages/sobre.astro
-// Trajetória Completa e Linha do Tempo — Dr. Luizinho 1177 (Light Theme)
+// Catálogo Completo de Entregas Auditadas — Dr. Luizinho 1177 (Light Theme)
 import Layout from '../layouts/Layout.astro';
-import { JANELAS_HISTORICAS } from '../data/trajetoria';
 import { ENTREGAS } from '../data/entregas';
 ---
 
 <Layout
-  title="Trajetória e História — Dr. Luizinho 1177"
-  description="Conheça a cronologia de realizações de Dr. Luizinho como médico, secretário municipal de Nova Iguaçu, duas vezes Secretário de Estado e Deputado Federal."
+  title="Entregas e Realizações — Dr. Luizinho 1177"
+  description="Conheça a relação documentada de hospitais, centros de diagnóstico e programas estruturados por Dr. Luizinho no Rio de Janeiro."
 >
-  <!-- Hero da Página Sobre -->
-  <section class="bg-gradient-to-b from-[#123F8F] to-[#0D3577] text-white py-20 sm:py-28 relative overflow-hidden">
+  <!-- Hero da Página -->
+  <section class="bg-gradient-to-b from-[#123F8F] to-[#0D3577] text-white py-16 sm:py-24 relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center max-w-3xl">
       <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/15 border border-white/20 text-orange-300 text-xs font-semibold uppercase tracking-wider mb-4">
-        Dossiê de Vida Pública
+        Dossiê de Entregas
       </span>
       <h1 class="font-display text-4xl sm:text-6xl font-black italic tracking-tight mb-6">
-        A TRAJETÓRIA DO <span class="text-[#F15A29]">DR. LUIZINHO</span>
+        TODAS AS <span class="text-[#F15A29]">ENTREGAS</span>
       </h1>
       <p class="font-sans text-base sm:text-lg text-blue-100 leading-relaxed font-normal">
-        Mais de 15 anos transformando a saúde pública fluminense. Da linha de frente nos hospitais da Baixada até a liderança dos grandes orçamentos do SUS em Brasília.
+        Hospitais de alta complexidade, centros de diagnóstico, unidades de urgência e programas pioneiros que saíram do papel para transformar a saúde pública em todo o Rio de Janeiro.
       </p>
     </div>
   </section>
 
-  <!-- Linha do Tempo Cronológica das 4 Janelas -->
-  <section class="py-20 sm:py-28 bg-[#F8FAFC] relative border-b border-slate-200/80">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="space-y-12 relative before:absolute before:inset-0 before:left-8 sm:before:left-1/2 before:-translate-x-px before:w-0.5 before:bg-slate-200">
-        
-        {JANELAS_HISTORICAS.map((janela, idx) => (
-          <div class={`relative flex flex-col sm:flex-row gap-8 items-start ${idx % 2 === 1 ? 'sm:flex-row-reverse' : ''}`}>
-            
-            <!-- Marcador Circular Central -->
-            <div class="absolute left-8 sm:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#F15A29] text-white flex items-center justify-center font-display font-black text-sm shadow-md ring-4 ring-white z-10">
-              {idx + 1}
-            </div>
-
-            <!-- Conteúdo da Janela -->
-            <div class="ml-16 sm:ml-0 sm:w-1/2 p-7 rounded-3xl bg-white border border-slate-200/80 shadow-xl shadow-slate-200/60 hover:border-[#123F8F]/40 transition-all">
-              <span class="inline-block px-3 py-1 rounded-full bg-blue-50 text-[#123F8F] text-xs font-bold uppercase tracking-wider mb-3">
-                {janela.periodo} · {janela.codigo}
-              </span>
-              <h3 class="font-display text-2xl font-black italic text-[#123F8F] mb-3 leading-tight">
-                {janela.cargo}
-              </h3>
-              <p class="font-sans text-sm text-slate-600 mb-5 leading-relaxed font-normal">
-                {janela.descricao}
-              </p>
-
-              <div class="space-y-2 border-t border-slate-100 pt-4">
-                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Principais Marcos:</h4>
-                <ul class="space-y-2">
-                  {janela.conquistas.map((conquista) => (
-                    <li class="flex items-start gap-2 text-xs sm:text-sm text-slate-700">
-                      <span class="text-emerald-500 font-bold shrink-0 mt-0.5">✓</span>
-                      <span>{conquista}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-          </div>
-        ))}
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Todas as 16 Entregas Auditadas em Grade Temática -->
-  <section class="py-20 sm:py-28 bg-white">
+  <!-- Todas as Entregas Auditadas em Grade Temática -->
+  <section class="py-16 sm:py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mx-auto text-center mb-16">
-        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 text-[#123F8F] text-xs font-bold uppercase tracking-wider mb-4">
+      <div class="max-w-3xl mx-auto text-center mb-14">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 text-[#123F8F] text-xs font-bold uppercase tracking-wider mb-3">
           Catálogo Documentado
         </span>
         <h2 class="font-display text-3xl sm:text-5xl font-black italic tracking-tight text-[#123F8F]">
-          TODAS AS ENTREGAS <span class="text-[#F15A29]">AUDITADAS</span>
+          OBRAS E PROGRAMAS <span class="text-[#F15A29]">AUDITADOS</span>
         </h2>
         <p class="font-sans text-base text-slate-600 mt-3">
-          Relação de hospitais, centros de diagnóstico e programas estruturados por Dr. Luizinho no Rio de Janeiro.
+          Relação de hospitais, centros de diagnóstico e programas estruturados por Dr. Luizinho no Estado do Rio de Janeiro.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {ENTREGAS.map((entrega) => (
-          <div class="bg-white p-7 rounded-3xl border border-slate-200 shadow-lg shadow-slate-100 flex flex-col justify-between hover:border-[#F15A29]/40 transition-all">
+          <div class="bg-white p-7 rounded-3xl border border-slate-200/90 shadow-lg shadow-slate-100 flex flex-col justify-between hover:border-[#F15A29]/40 hover:shadow-xl transition-all">
             <div>
               <div class="flex items-center justify-between text-xs mb-3">
                 <span class="font-bold text-[#123F8F]">{entrega.municipioPrincipal}</span>
-                <span class="text-slate-400 font-semibold">{entrega.janela}</span>
+                <span class="text-orange-600 font-semibold bg-orange-50 px-2 py-0.5 rounded-full text-[11px] uppercase tracking-wide">
+                  {entrega.badge || entrega.categoria}
+                </span>
               </div>
               <h3 class="font-display text-2xl font-black italic text-slate-900 mb-2 leading-tight">
                 {entrega.nome}
