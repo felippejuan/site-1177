@@ -26,20 +26,6 @@ const outrosEpisodios = EPISODIOS_SERIE.slice(1);
       <p class="font-sans text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
         Histórias reais de quem teve a vida transformada pela saúde pública. Conheça as pessoas por trás de cada hospital, cirurgia e ambulância viabilizados pelo Dr. Luizinho no Estado do Rio de Janeiro.
       </p>
-
-      <div class="mt-4 flex items-center justify-center gap-3">
-        <a
-          href="https://www.youtube.com/@doutorluizinho"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-red-600 hover:text-red-700 hover:underline transition-colors"
-        >
-          <span>Acessar o canal oficial no YouTube (@doutorluizinho)</span>
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-          </svg>
-        </a>
-      </div>
     </div>
 
     <!-- ======================================================== -->
@@ -52,16 +38,14 @@ const outrosEpisodios = EPISODIOS_SERIE.slice(1);
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
         
-        <!-- Player Visual / Thumbnail com Botão de Play Pulsante -->
+        <!-- Player Visual / Thumbnail que abre diretamente o YouTube -->
         <div class="lg:col-span-7">
-          <div
-            class="video-card-trigger relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black cursor-pointer group/thumb border border-white/20"
-            data-youtube-id={episodioDestaque.youtubeId}
-            data-personagem={episodioDestaque.personagem}
-            data-cidade={episodioDestaque.cidade}
-            data-equipamento={episodioDestaque.equipamento}
-            data-sinopse={episodioDestaque.sinopse}
-            data-youtube-url={episodioDestaque.youtubeUrl}
+          <a
+            href={episodioDestaque.youtubeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="relative aspect-video rounded-2xl block overflow-hidden shadow-2xl bg-black group/thumb border border-white/20"
+            title={`Assistir história de ${episodioDestaque.personagem} no YouTube`}
           >
             <img
               src={`https://img.youtube.com/vi/${episodioDestaque.youtubeId}/hqdefault.jpg`}
@@ -72,19 +56,16 @@ const outrosEpisodios = EPISODIOS_SERIE.slice(1);
             <!-- Overlay escuro -->
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/20 group-hover/thumb:from-black/60 transition-colors"></div>
 
-            <!-- Selo do Episódio -->
+            <!-- Selo de Localização -->
             <div class="absolute top-3 left-3 flex items-center gap-2">
-              <span class="px-3 py-1 rounded-full bg-red-600 text-white text-[11px] font-black uppercase tracking-wider shadow-md">
-                Episódio {episodioDestaque.numero}
-              </span>
-              <span class="px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-white/90 text-[11px] font-semibold">
+              <span class="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white/95 text-xs font-semibold">
                 {episodioDestaque.cidade}
               </span>
             </div>
 
             <!-- Botão Play Pulsante Central -->
             <div class="absolute inset-0 flex items-center justify-center">
-              <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#F15A29] hover:bg-[#ff6f3d] text-white flex items-center justify-center shadow-xl shadow-orange-950/60 transform group-hover/thumb:scale-110 active:scale-95 transition-all">
+              <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#F15A29] group-hover/thumb:bg-[#ff6f3d] text-white flex items-center justify-center shadow-xl shadow-orange-950/60 transform group-hover/thumb:scale-110 active:scale-95 transition-all">
                 <svg class="w-7 h-7 sm:w-9 sm:h-9 fill-current ml-1" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z" />
                 </svg>
@@ -97,11 +78,11 @@ const outrosEpisodios = EPISODIOS_SERIE.slice(1);
                 <span>{episodioDestaque.iconeEquipamento}</span>
                 <span>{episodioDestaque.equipamento}</span>
               </span>
-              <span class="text-[11px] font-mono text-white/70 bg-black/50 px-2 py-0.5 rounded">
-                Clique para assistir
+              <span class="text-[11px] font-medium text-white/80 bg-black/50 px-2 py-0.5 rounded">
+                Assistir no YouTube ↗
               </span>
             </div>
-          </div>
+          </a>
         </div>
 
         <!-- Conteúdo Textual do Episódio Âncora -->
@@ -131,33 +112,17 @@ const outrosEpisodios = EPISODIOS_SERIE.slice(1);
             </p>
           </div>
 
-          <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-white/10">
-            <button
-              type="button"
-              class="video-card-trigger inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#F15A29] hover:bg-[#D94819] text-white font-sans text-xs sm:text-sm font-bold shadow-lg shadow-orange-950/40 hover:scale-105 active:scale-95 transition-all cursor-pointer"
-              data-youtube-id={episodioDestaque.youtubeId}
-              data-personagem={episodioDestaque.personagem}
-              data-cidade={episodioDestaque.cidade}
-              data-equipamento={episodioDestaque.equipamento}
-              data-sinopse={episodioDestaque.sinopse}
-              data-youtube-url={episodioDestaque.youtubeUrl}
-            >
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-              <span>Assistir Episódio #1</span>
-            </button>
-
+          <div class="pt-4 border-t border-white/10">
             <a
               href={episodioDestaque.youtubeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-sans text-xs font-semibold border border-white/15 transition-all"
+              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#F15A29] hover:bg-[#D94819] text-white font-sans text-xs sm:text-sm font-bold shadow-lg shadow-orange-950/40 hover:scale-105 active:scale-95 transition-all"
             >
-              <svg class="w-4 h-4 fill-red-500" viewBox="0 0 24 24">
-                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
               </svg>
-              <span>Abrir no YouTube</span>
+              <span>Assistir História</span>
             </a>
           </div>
 
@@ -173,14 +138,14 @@ const outrosEpisodios = EPISODIOS_SERIE.slice(1);
       <div class="flex items-center justify-between gap-4 mb-6">
         <div>
           <h3 class="font-display text-xl sm:text-2xl font-black italic text-[#123F8F]">
-            TODOS OS EPISÓDIOS
+            TODAS AS HISTÓRIAS
           </h3>
           <p class="font-sans text-xs sm:text-sm text-slate-500">
-            Clique em qualquer vídeo para assistir ao relato completo.
+            Clique para assistir ao relato completo no YouTube.
           </p>
         </div>
         <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-bold">
-          {EPISODIOS_SERIE.length} Histórias
+          {EPISODIOS_SERIE.length} Histórias Reais
         </span>
       </div>
 
@@ -188,41 +153,26 @@ const outrosEpisodios = EPISODIOS_SERIE.slice(1);
         {outrosEpisodios.map((ep) => (
           <div class="bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-[#F15A29]/40 transition-all duration-300 flex flex-col justify-between overflow-hidden group">
             
-            <!-- Thumbnail 16:9 -->
-            <div
-              class="video-card-trigger relative aspect-video bg-slate-900 overflow-hidden cursor-pointer"
-              data-youtube-id={ep.youtubeId || ''}
-              data-personagem={ep.personagem}
-              data-cidade={ep.cidade}
-              data-equipamento={ep.equipamento}
-              data-sinopse={ep.sinopse}
-              data-youtube-url={ep.youtubeUrl}
+            <!-- Thumbnail 16:9 que abre direto o YouTube -->
+            <a
+              href={ep.youtubeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="relative aspect-video bg-slate-900 block overflow-hidden"
+              title={`Assistir história de ${ep.personagem} no YouTube`}
             >
-              {ep.youtubeId ? (
-                <img
-                  src={`https://img.youtube.com/vi/${ep.youtubeId}/hqdefault.jpg`}
-                  alt={ep.titulo}
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
-              ) : (
-                <div class="w-full h-full bg-gradient-to-br from-[#123F8F] to-[#F15A29] flex items-center justify-center p-6 text-center">
-                  <div class="text-white">
-                    <span class="text-4xl block mb-2">{ep.iconeEquipamento}</span>
-                    <p class="font-display text-lg font-black italic">{ep.equipamento}</p>
-                    <span class="text-[11px] text-white/80 block mt-1">Programa Pioneiro no SUS</span>
-                  </div>
-                </div>
-              )}
+              <img
+                src={`https://img.youtube.com/vi/${ep.youtubeId}/hqdefault.jpg`}
+                alt={ep.titulo}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
 
               <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors"></div>
 
-              <!-- Badges de topo -->
-              <div class="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between gap-2">
-                <span class="px-2.5 py-0.5 rounded-full bg-red-600 text-white text-[10px] font-black uppercase tracking-wider shadow-sm">
-                  {ep.numero}
-                </span>
-                <span class="px-2.5 py-0.5 rounded-full bg-black/70 backdrop-blur-md text-white text-[10px] font-semibold">
+              <!-- Badge de Localização -->
+              <div class="absolute top-2.5 left-2.5 flex items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-black/70 backdrop-blur-md text-white text-[11px] font-semibold">
                   {ep.cidade}
                 </span>
               </div>
@@ -240,10 +190,10 @@ const outrosEpisodios = EPISODIOS_SERIE.slice(1);
               <div class="absolute bottom-2 left-2.5 right-2.5">
                 <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-sm text-white text-[10px] font-bold">
                   <span>{ep.iconeEquipamento}</span>
-                  <span class="truncate max-w-[190px]">{ep.equipamento}</span>
+                  <span class="truncate max-w-[220px]">{ep.equipamento}</span>
                 </span>
               </div>
-            </div>
+            </a>
 
             <!-- Corpo do Card -->
             <div class="p-5 flex flex-col justify-between flex-grow">
@@ -263,40 +213,25 @@ const outrosEpisodios = EPISODIOS_SERIE.slice(1);
                   {ep.personagem}
                 </h4>
 
-                <p class="font-sans text-xs text-slate-600 leading-relaxed line-clamp-3 mb-4 font-normal">
+                <p class="font-sans text-xs text-slate-600 leading-relaxed mb-4 font-normal">
                   {ep.sinopse}
                 </p>
               </div>
 
-              <!-- Ação do Card -->
-              <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
-                <button
-                  type="button"
-                  class="video-card-trigger inline-flex items-center gap-1.5 text-xs font-bold text-[#123F8F] hover:text-[#F15A29] transition-colors cursor-pointer"
-                  data-youtube-id={ep.youtubeId || ''}
-                  data-personagem={ep.personagem}
-                  data-cidade={ep.cidade}
-                  data-equipamento={ep.equipamento}
-                  data-sinopse={ep.sinopse}
-                  data-youtube-url={ep.youtubeUrl}
-                >
-                  <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                  <span>Assistir História</span>
-                </button>
-
+              <!-- Ação do Card: link direto para o YouTube -->
+              <div class="pt-3 border-t border-slate-100 flex items-center justify-start">
                 <a
                   href={ep.youtubeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="text-[11px] font-semibold text-slate-400 hover:text-red-600 transition-colors flex items-center gap-1"
-                  title="Abrir no YouTube"
+                  class="inline-flex items-center gap-2 text-xs font-bold text-[#123F8F] group-hover:text-[#F15A29] transition-colors"
                 >
-                  <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                  </svg>
-                  <span>YouTube</span>
+                  <span class="w-6 h-6 rounded-full bg-red-600 text-white flex items-center justify-center flex-shrink-0 group-hover:bg-[#F15A29] transition-colors">
+                    <svg class="w-3 h-3 fill-current ml-0.5" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </span>
+                  <span>Assistir História</span>
                 </a>
               </div>
             </div>
@@ -308,212 +243,3 @@ const outrosEpisodios = EPISODIOS_SERIE.slice(1);
 
   </div>
 </section>
-
-<!-- ======================================================== -->
-<!-- MODAL DO PLAYER DE VÍDEO IMERSIVO & RESPONSIVO -->
-<!-- ======================================================== -->
-<div
-  id="modal-video-serie"
-  class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 opacity-0 pointer-events-none transition-all duration-300"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="modal-video-personagem"
->
-  <!-- Backdrop com Vidro Escuro e Blur -->
-  <div id="modal-video-backdrop" class="absolute inset-0 bg-slate-950/80 backdrop-blur-md transition-opacity duration-300 cursor-pointer"></div>
-
-  <!-- Cartão do Modal -->
-  <div
-    id="modal-video-card"
-    class="relative w-full max-w-3xl bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-100 transform scale-95 transition-all duration-300 max-h-[92vh] flex flex-col"
-  >
-    <!-- Topo: Título da Pessoa e Botão Fechar -->
-    <div class="px-5 py-3.5 bg-slate-900 text-white flex items-center justify-between gap-3">
-      <div class="flex items-center gap-2 overflow-hidden">
-        <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse flex-shrink-0"></span>
-        <h4 id="modal-video-personagem" class="font-display text-base sm:text-lg font-black italic truncate">
-          Cuidando de Gente
-        </h4>
-      </div>
-      <button
-        id="modal-video-close"
-        type="button"
-        class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all cursor-pointer flex-shrink-0"
-        aria-label="Fechar vídeo"
-      >
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
-    </div>
-
-    <!-- Container do Vídeo 16:9 -->
-    <div id="modal-video-player-container" class="relative aspect-video bg-black w-full flex items-center justify-center">
-      <iframe
-        id="modal-video-iframe"
-        src=""
-        title="YouTube video player"
-        class="w-full h-full border-0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-      ></iframe>
-      <!-- Fallback quando o vídeo não tem ID direto -->
-      <div id="modal-video-fallback" class="hidden p-8 text-center text-white">
-        <span class="text-5xl block mb-3">🌸</span>
-        <p class="font-display text-xl font-bold mb-2">Episódio Especial — Programa Acolhe RJ</p>
-        <p class="text-sm text-slate-300 max-w-md mx-auto mb-5">
-          Conheça a história de Tayane Rodrigues e Vitória Silva e como o planejamento familiar pioneiro pelo SUS está transformando a vida de mais de 40 mil jovens no Rio de Janeiro.
-        </p>
-        <a
-          id="modal-video-fallback-btn"
-          href="https://www.youtube.com/@doutorluizinho"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-lg transition-all"
-        >
-          <span>Acompanhar no Canal @doutorluizinho</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Informações e Contexto do Episódio -->
-    <div class="p-5 sm:p-6 overflow-y-auto bg-slate-50 flex-grow">
-      <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
-        <div class="flex items-center gap-2">
-          <span id="modal-video-cidade" class="px-2.5 py-0.5 rounded-full bg-blue-100 text-[#123F8F] text-xs font-bold">
-            Cidade
-          </span>
-          <span id="modal-video-equipamento" class="px-2.5 py-0.5 rounded-full bg-orange-100 text-[#F15A29] text-xs font-bold">
-            Hospital / Unidade
-          </span>
-        </div>
-        <a
-          id="modal-video-yt-link"
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-xs font-bold text-red-600 hover:underline flex items-center gap-1"
-        >
-          <span>Abrir no app do YouTube</span>
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-          </svg>
-        </a>
-      </div>
-
-      <p id="modal-video-sinopse" class="font-sans text-xs sm:text-sm text-slate-700 leading-relaxed mb-4">
-        Sinopse do episódio.
-      </p>
-
-      <div class="pt-3 border-t border-slate-200/80 flex items-center justify-between">
-        <span class="text-xs text-slate-400 font-medium">
-          Série Cuidando de Gente · Dr. Luizinho 1177
-        </span>
-        <a
-          id="modal-video-share-wa"
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-xs"
-        >
-          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/>
-          </svg>
-          <span>Compartilhar Vídeo</span>
-        </a>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ======================================================== -->
-<!-- SCRIPT DO MODAL DE VÍDEO -->
-<!-- ======================================================== -->
-<script>
-  const modal = document.getElementById('modal-video-serie');
-  const modalCard = document.getElementById('modal-video-card');
-  const modalBackdrop = document.getElementById('modal-video-backdrop');
-  const btnClose = document.getElementById('modal-video-close');
-
-  const iframe = document.getElementById('modal-video-iframe') as HTMLIFrameElement;
-  const fallback = document.getElementById('modal-video-fallback');
-  const personagemEl = document.getElementById('modal-video-personagem');
-  const cidadeEl = document.getElementById('modal-video-cidade');
-  const equipamentoEl = document.getElementById('modal-video-equipamento');
-  const sinopseEl = document.getElementById('modal-video-sinopse');
-  const ytLink = document.getElementById('modal-video-yt-link') as HTMLAnchorElement;
-  const shareWa = document.getElementById('modal-video-share-wa') as HTMLAnchorElement;
-
-  function abrirModalVideo(trigger: HTMLElement) {
-    const youtubeId = trigger.getAttribute('data-youtube-id') || '';
-    const personagem = trigger.getAttribute('data-personagem') || '';
-    const cidade = trigger.getAttribute('data-cidade') || '';
-    const equipamento = trigger.getAttribute('data-equipamento') || '';
-    const sinopse = trigger.getAttribute('data-sinopse') || '';
-    const youtubeUrl = trigger.getAttribute('data-youtube-url') || '';
-
-    if (personagemEl) personagemEl.textContent = `Cuidando de Gente — ${personagem}`;
-    if (cidadeEl) cidadeEl.textContent = cidade;
-    if (equipamentoEl) equipamentoEl.textContent = equipamento;
-    if (sinopseEl) sinopseEl.textContent = sinopse;
-    if (ytLink) ytLink.href = youtubeUrl;
-
-    if (shareWa) {
-      const msg = encodeURIComponent(`Assista ao episódio da série Cuidando de Gente com ${personagem} (${cidade}): ${youtubeUrl}`);
-      shareWa.href = `https://wa.me/?text=${msg}`;
-    }
-
-    if (youtubeId) {
-      if (iframe) {
-        iframe.style.display = 'block';
-        iframe.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`;
-      }
-      if (fallback) fallback.style.display = 'none';
-    } else {
-      if (iframe) {
-        iframe.style.display = 'none';
-        iframe.src = '';
-      }
-      if (fallback) fallback.style.display = 'block';
-    }
-
-    if (modal && modalCard) {
-      modal.classList.remove('opacity-0', 'pointer-events-none');
-      modalCard.classList.remove('scale-95');
-      modalCard.classList.add('scale-100');
-      document.body.style.overflow = 'hidden';
-    }
-  }
-
-  function fecharModalVideo() {
-    if (modal && modalCard) {
-      modal.classList.add('opacity-0', 'pointer-events-none');
-      modalCard.classList.remove('scale-100');
-      modalCard.classList.add('scale-95');
-      document.body.style.overflow = '';
-      
-      // Limpa iframe para interromper áudio do YouTube imediatamente
-      if (iframe) {
-        iframe.src = '';
-      }
-    }
-  }
-
-  // Registra gatilhos
-  document.querySelectorAll('.video-card-trigger').forEach((el) => {
-    el.addEventListener('click', (e) => {
-      e.preventDefault();
-      abrirModalVideo(el as HTMLElement);
-    });
-  });
-
-  if (btnClose) btnClose.addEventListener('click', fecharModalVideo);
-  if (modalBackdrop) modalBackdrop.addEventListener('click', fecharModalVideo);
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal && !modal.classList.contains('opacity-0')) {
-      fecharModalVideo();
-    }
-  });
-</script>
