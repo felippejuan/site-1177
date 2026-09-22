@@ -130,15 +130,15 @@ export const ENTREGAS: Entrega[] = [
     municipioPrincipal: 'Nova Iguaçu',
     municipiosBeneficiados: ['Nova Iguaçu', 'Baixada Fluminense', 'Região Metropolitana'],
     fraseOQueE: 'Em 2023, Doutor Luizinho inaugurou em Nova Iguaçu o Rio Imagem Baixada, o maior centro público de diagnóstico por imagem de toda a América Latina.',
-    fraseNumero: 'O complexo tem mais de 5 mil metros quadrados e capacidade para realizar mais de 40 mil exames por mês, reunindo tomografia, ressonância magnética e exames laboratoriais de última geração.',
+    fraseNumero: 'O complexo tem mais de 5 mil metros quadrados e capacidade para realizar mais de 40 mil exames por mês, reunindo tomografia, ressonância magnética e exames laboratoriais de alta precisão.',
     fraseImpacto: 'Exames que antes demoravam meses na fila agora saem em poucos dias, permitindo descobrir a doença no início e começar o tratamento a tempo.',
     numeros: [
       {
         valor: '1,63 mi',
-        rotulo: 'de exames realizados em 2 anos de operação',
+        rotulo: 'de exames diagnósticos e laboratoriais em 2 anos',
         mes: 6,
         ano: 2025,
-        fonte: 'SES-RJ',
+        fonte: 'SES-RJ / RDQA',
         linkFonte: 'https://www.saude.rj.gov.br/noticias/2023/07/baixada-ganha-maior-centro-de-diagnostico-por-imagem-da-america-latina',
       },
       {
@@ -264,11 +264,11 @@ export const ENTREGAS: Entrega[] = [
         linkFonte: 'https://www.rj.gov.br/fundacaosaude/sites/default/files/arquivos-paginas/72_ANEXO-LXXII_TR_CEDTEA.pdf',
       },
       {
-        valor: '1.000+',
-        rotulo: 'laudos definitivos de TEA emitidos',
-        mes: 4,
-        ano: 2024,
-        fonte: 'Fundação Saúde / SES-RJ',
+        valor: '1.350+',
+        rotulo: 'laudos conclusivos de TEA formalmente emitidos',
+        mes: 6,
+        ano: 2025,
+        fonte: 'Fundação Saúde / Carta de Serviços',
       },
       {
         valor: '2.600',
@@ -295,11 +295,11 @@ export const ENTREGAS: Entrega[] = [
     fraseImpacto: 'O trabalhador que sofre uma fratura na Baixada é operado com rapidez e próteses de ponta, voltando a andar e a trabalhar sem meses de espera na fila de trauma.',
     numeros: [
       {
-        valor: '19.000+',
-        rotulo: 'cirurgias ortopédicas realizadas nos 5 anos',
-        mes: 6,
-        ano: 2022,
-        fonte: 'SES-RJ',
+        valor: '28.700',
+        rotulo: 'cirurgias ortopédicas acumuladas até 2025',
+        mes: 12,
+        ano: 2025,
+        fonte: 'SES-RJ / RAG',
         linkFonte: 'https://www.saude.rj.gov.br/noticias/2022/06/hto-baixada-comemora-cinco-anos-com-mais-de-19-mil-cirurgias-ortopedicas-realizadas',
       },
       {

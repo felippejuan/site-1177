@@ -8,16 +8,18 @@ const municipios = obterTodosMunicipios();
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 // Atalhos rápidos para municípios com maiores investimentos (Baixada, Capital e polos regionais)
 const ATALHOS_MAIORES_INVESTIMENTOS = [
+  { nome: 'Nova Iguaçu', slug: 'nova-iguacu', label: 'Nova Iguaçu', valor: 'R$ 111,7M' },
+  { nome: 'Duque de Caxias', slug: 'duque-de-caxias', label: 'Duque de Caxias', valor: 'R$ 77,8M' },
   { nome: 'Rio de Janeiro', slug: 'rio-de-janeiro', label: 'Rio Capital', valor: 'R$ 35M' },
-  { nome: 'Nova Iguaçu', slug: 'nova-iguacu', label: 'Nova Iguaçu', valor: 'R$ 25,4M' },
-  { nome: 'Duque de Caxias', slug: 'duque-de-caxias', label: 'Duque de Caxias', valor: 'R$ 14,2M' },
+  { nome: 'Nilópolis', slug: 'nilopolis', label: 'Nilópolis', valor: 'R$ 33,8M' },
+  { nome: 'Mesquita', slug: 'mesquita', label: 'Mesquita', valor: 'R$ 19,4M' },
+  { nome: 'Magé', slug: 'mage', label: 'Magé', valor: 'R$ 19,1M' },
+  { nome: 'Quatis', slug: 'quatis', label: 'Quatis', valor: 'R$ 18,5M' },
   { nome: 'Campos dos Goytacazes', slug: 'campos-dos-goytacazes', label: 'Campos', valor: 'R$ 12M' },
   { nome: 'Belford Roxo', slug: 'belford-roxo', label: 'Belford Roxo', valor: 'R$ 11,5M' },
-  { nome: 'São João de Meriti', slug: 'sao-joao-de-meriti', label: 'S. João de Meriti', valor: 'R$ 9,1M' },
-  { nome: 'Volta Redonda', slug: 'volta-redonda', label: 'Volta Redonda', valor: 'R$ 8,5M' },
-  { nome: 'Niterói', slug: 'niteroi', label: 'Niterói', valor: 'R$ 7,8M' },
-  { nome: 'Petrópolis', slug: 'petropolis', label: 'Petrópolis', valor: 'R$ 6,4M' },
-  { nome: 'Nilópolis', slug: 'nilopolis', label: 'Nilópolis', valor: 'R$ 6,2M' },
+  { nome: 'Petrópolis', slug: 'petropolis', label: 'Petrópolis', valor: 'R$ 11,4M' },
+  { nome: 'Volta Redonda', slug: 'volta-redonda', label: 'Volta Redonda', valor: 'R$ 10,9M' },
+  { nome: 'Barra Mansa', slug: 'barra-mansa', label: 'Barra Mansa', valor: 'R$ 9,8M' },
 ];
 ---
 
@@ -142,24 +144,24 @@ const ATALHOS_MAIORES_INVESTIMENTOS = [
 
     <!-- Caixas Financeiras de Emendas e Recursos -->
     <div id="modal-emendas-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-      <div class="p-4 rounded-2xl bg-blue-50/70 border border-blue-100">
-        <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
-          Recursos Já Pagos (Mandato)
+      <div id="modal-box-1" class="p-4 rounded-2xl bg-blue-50/70 border border-blue-100">
+        <span id="modal-box-1-label" class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+          Recursos Pagos na Ponta
         </span>
         <p id="modal-cidade-pagas" class="font-display text-2xl font-black italic text-[#123F8F] leading-tight">
           R$ 20.000.000,00
         </p>
-        <span class="text-[10px] text-slate-500">Executados na saúde</span>
+        <span id="modal-box-1-sub" class="text-[10px] text-slate-500">Executados na saúde</span>
       </div>
 
       <div id="modal-box-garantidas" class="p-4 rounded-2xl bg-orange-50/70 border border-orange-100">
-        <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+        <span id="modal-box-2-label" class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
           Recursos Garantidos / Obras
         </span>
         <p id="modal-cidade-garantidas" class="font-display text-2xl font-black italic text-[#F15A29] leading-tight">
           R$ 5.400.000,00
         </p>
-        <span class="text-[10px] text-slate-500">Empenhados e em andamento</span>
+        <span id="modal-box-2-sub" class="text-[10px] text-slate-500">Empenhados e em andamento</span>
       </div>
     </div>
 
@@ -213,6 +215,10 @@ const ATALHOS_MAIORES_INVESTIMENTOS = [
   const boxGarantidas = document.getElementById('modal-box-garantidas');
   const entregasEl = document.getElementById('modal-cidade-entregas');
   const shareWa = document.getElementById('modal-cidade-whatsapp');
+  const box1Label = document.getElementById('modal-box-1-label');
+  const box1Sub = document.getElementById('modal-box-1-sub');
+  const box2Label = document.getElementById('modal-box-2-label');
+  const box2Sub = document.getElementById('modal-box-2-sub');
 
   function abrirPopUp(cidadeNomeOuSlug) {
     const limpo = cidadeNomeOuSlug.trim().toLowerCase();
@@ -224,17 +230,32 @@ const ATALHOS_MAIORES_INVESTIMENTOS = [
     if (regiaoEl) regiaoEl.textContent = cidade.regiao;
     if (resumoEl) resumoEl.textContent = cidade.resumoLocal;
 
-    if (pagasEl) {
-      pagasEl.textContent = cidade.emendasPagas || 'Recursos Ordinários SUS';
-    }
+    if (cidade.emendasPagas) {
+      if (box1Label) box1Label.textContent = 'Recursos Pagos na Ponta';
+      if (pagasEl) pagasEl.textContent = cidade.emendasPagas;
+      if (box1Sub) box1Sub.textContent = 'Emendas e repasses executados';
 
-    if (boxGarantidas && garantidasEl) {
       if (cidade.emendasGarantidas) {
-        boxGarantidas.style.display = 'block';
-        garantidasEl.textContent = cidade.emendasGarantidas;
+        if (boxGarantidas) boxGarantidas.style.display = 'block';
+        if (box2Label) box2Label.textContent = 'Recursos Garantidos / Obras';
+        if (garantidasEl) garantidasEl.textContent = cidade.emendasGarantidas;
+        if (box2Sub) box2Sub.textContent = 'Pactuados em convênios / CIB';
       } else {
-        boxGarantidas.style.display = 'none';
+        if (boxGarantidas) boxGarantidas.style.display = 'block';
+        if (box2Label) box2Label.textContent = 'Regulação & Alta Complexidade';
+        if (garantidasEl) garantidasEl.textContent = 'Rede Integrada';
+        if (box2Sub) box2Sub.textContent = 'Acesso direto via CIS';
       }
+    } else {
+      // Municípios sem emenda direta individual: destaque de liderança para o SAMU 100% e o CIS
+      if (box1Label) box1Label.textContent = 'Socorro Móvel Pré-Hospitalar';
+      if (pagasEl) pagasEl.textContent = 'SAMU 100% RJ';
+      if (box1Sub) box1Sub.textContent = 'Ambulância nova com custeio do Estado';
+
+      if (boxGarantidas) boxGarantidas.style.display = 'block';
+      if (box2Label) box2Label.textContent = 'Regulação Ágil de Urgência';
+      if (garantidasEl) garantidasEl.textContent = '-38,4% Espera';
+      if (box2Sub) box2Sub.textContent = 'Leitos monitorados em tempo real no CIS';
     }
 
     if (entregasEl) {
