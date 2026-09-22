@@ -1,6 +1,6 @@
 ---
 // src/components/CardEntrega.astro
-// Card de Entrega — Fundo Branco Acetinado com Sombras Premium
+// Card de Entrega — Design Compacto, Elegante e Editorial
 import type { Entrega } from '../data/entregas';
 import Carimbo from './Carimbo.astro';
 
@@ -12,60 +12,61 @@ const { entrega } = Astro.props;
 const numeroPrincipal = entrega.numeros[0];
 ---
 
-<article class="flex flex-col justify-between h-full bg-white border border-slate-200/90 shadow-xl shadow-slate-200/70 hover:shadow-2xl hover:border-[#F15A29]/50 rounded-3xl p-7 transition-all duration-300 relative overflow-hidden group">
+<article class="flex flex-col justify-between h-full bg-white border border-slate-200/90 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:border-[#F15A29]/40 rounded-2xl p-5 sm:p-6 transition-all duration-300 relative overflow-hidden group">
   <!-- Tarja superior de cor institucional -->
-  <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#123F8F] via-[#1A54BD] to-[#F15A29]"></div>
+  <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#123F8F] via-[#1A54BD] to-[#F15A29]"></div>
 
   <div>
     <!-- Top Header: Município & Badge -->
-    <div class="flex items-center justify-between gap-2 mb-5 flex-wrap">
-      <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700">
+    <div class="flex items-center justify-between gap-2 mb-3.5 flex-wrap">
+      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-700">
         {entrega.municipioPrincipal}
       </span>
       {entrega.badge && (
-        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-orange-100 text-[#F15A29] uppercase tracking-wide">
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-orange-50 text-[#F15A29] border border-orange-200/50 uppercase tracking-wide">
           ★ {entrega.badge}
         </span>
       )}
     </div>
 
-    <!-- Métrica Principal em Destaque Monumental Laranja -->
-    <div class="mb-4">
-      <span class="font-display text-4xl sm:text-5xl font-black italic text-[#F15A29] leading-none tracking-tight block">
+    <!-- Métrica Principal -->
+    <div class="mb-3">
+      <span class="font-display text-3xl sm:text-4xl font-black italic text-[#F15A29] leading-none tracking-tight block">
         {numeroPrincipal.valor}
       </span>
-      <span class="font-sans text-xs text-slate-500 font-semibold uppercase tracking-wider">
+      <span class="font-sans text-[11px] text-slate-500 font-bold uppercase tracking-wider block mt-1">
         {numeroPrincipal.rotulo}
       </span>
     </div>
 
     <!-- Título da Entrega -->
-    <h3 class="font-display text-2xl sm:text-3xl font-black italic tracking-tight text-[#123F8F] leading-tight mb-2 group-hover:text-[#F15A29] transition-colors">
+    <h3 class="font-display text-lg sm:text-xl font-black italic tracking-tight text-[#123F8F] leading-tight mb-1 group-hover:text-[#F15A29] transition-colors">
       {entrega.nome}
     </h3>
-    <p class="font-sans text-xs font-semibold text-slate-500 mb-5">
+    <p class="font-sans text-xs font-medium text-slate-400 mb-3.5 line-clamp-1">
       {entrega.subtitulo}
     </p>
 
-    <!-- As 3 Frases Canônicas: Fato -> Dado -> Impacto Humano -->
-    <div class="space-y-3 font-sans text-sm text-slate-700 leading-relaxed mb-6">
-      <p class="font-medium text-slate-800 leading-snug">
+    <!-- Conteúdo Editorial -->
+    <div class="space-y-2.5 font-sans text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+      <p class="leading-relaxed">
         {entrega.fraseOQueE}
       </p>
 
-      <div class="p-3.5 rounded-xl bg-slate-50 border-l-4 border-[#F15A29] text-slate-900 font-semibold text-xs">
-        {entrega.fraseNumero}
+      <div class="flex items-start gap-2 p-2.5 rounded-xl bg-orange-50/50 border border-orange-100/70 text-slate-800 text-xs font-medium leading-snug">
+        <span class="text-[#F15A29] font-bold text-xs shrink-0 mt-0.5">✓</span>
+        <span>{entrega.fraseNumero}</span>
       </div>
     </div>
   </div>
 
-  <!-- Rodapé com Carimbo Auditado -->
-  <div class="pt-4 border-t border-slate-100 mt-auto">
+  <!-- Rodapé com Fonte Auditada (Sem Links) -->
+  <div class="pt-3 border-t border-slate-100 mt-auto">
     <Carimbo
       mes={numeroPrincipal.mes}
       ano={numeroPrincipal.ano}
       fonte={numeroPrincipal.fonte}
-      linkFonte={numeroPrincipal.linkFonte}
     />
   </div>
 </article>
+

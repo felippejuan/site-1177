@@ -55,7 +55,7 @@ const lista = apenasDestaques ? ENTREGAS.filter((e) => e.destaque) : ENTREGAS;
       style="scrollbar-width: none; -ms-overflow-style: none;"
     >
       {lista.map((entrega) => (
-        <div class="snap-start shrink-0 w-[84vw] sm:w-[370px] lg:w-[410px]">
+        <div class="snap-start shrink-0 w-[76vw] sm:w-[320px] lg:w-[350px]">
           <CardEntrega entrega={entrega} />
         </div>
       ))}
@@ -78,10 +78,10 @@ const lista = apenasDestaques ? ENTREGAS.filter((e) => e.destaque) : ENTREGAS;
 
   if (track && btnPrev && btnNext) {
     btnPrev.addEventListener('click', () => {
-      track.scrollBy({ left: -400, behavior: 'smooth' });
+      track.scrollBy({ left: -340, behavior: 'smooth' });
     });
     btnNext.addEventListener('click', () => {
-      track.scrollBy({ left: 400, behavior: 'smooth' });
+      track.scrollBy({ left: 340, behavior: 'smooth' });
     });
   }
 </script>
