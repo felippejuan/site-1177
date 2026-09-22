@@ -6,13 +6,26 @@ import { obterTodosMunicipios } from '../data/municipios';
 
 const municipios = obterTodosMunicipios();
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+// Atalhos rápidos para municípios com maiores investimentos (Baixada, Capital e polos regionais)
+const ATALHOS_MAIORES_INVESTIMENTOS = [
+  { nome: 'Rio de Janeiro', slug: 'rio-de-janeiro', label: 'Rio Capital', valor: 'R$ 35M' },
+  { nome: 'Nova Iguaçu', slug: 'nova-iguacu', label: 'Nova Iguaçu', valor: 'R$ 25,4M' },
+  { nome: 'Duque de Caxias', slug: 'duque-de-caxias', label: 'Duque de Caxias', valor: 'R$ 14,2M' },
+  { nome: 'Campos dos Goytacazes', slug: 'campos-dos-goytacazes', label: 'Campos', valor: 'R$ 12M' },
+  { nome: 'Belford Roxo', slug: 'belford-roxo', label: 'Belford Roxo', valor: 'R$ 11,5M' },
+  { nome: 'São João de Meriti', slug: 'sao-joao-de-meriti', label: 'S. João de Meriti', valor: 'R$ 9,1M' },
+  { nome: 'Volta Redonda', slug: 'volta-redonda', label: 'Volta Redonda', valor: 'R$ 8,5M' },
+  { nome: 'Niterói', slug: 'niteroi', label: 'Niterói', valor: 'R$ 7,8M' },
+  { nome: 'Petrópolis', slug: 'petropolis', label: 'Petrópolis', valor: 'R$ 6,4M' },
+  { nome: 'Nilópolis', slug: 'nilopolis', label: 'Nilópolis', valor: 'R$ 6,2M' },
+];
 ---
 
 <section id="minha-cidade" class="py-8 sm:py-12 bg-[#F8FAFC] relative border-b border-slate-200/80">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     
     <!-- Cabeçalho Editorial Compacto -->
-    <div class="max-w-2xl mx-auto text-center mb-5">
+    <div class="max-w-3xl mx-auto text-center mb-4">
       <span class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-orange-100 text-[#F15A29] font-sans text-[11px] font-bold uppercase tracking-wider mb-2">
         Presença em Todo o Estado
       </span>
@@ -20,7 +33,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
         O QUE ELE FEZ PELA <span class="text-[#F15A29]">SUA CIDADE?</span>
       </h2>
       <p class="font-sans text-xs sm:text-sm text-slate-500 mb-3">
-        Clique no município no mapa ou pesquise pelo nome para abrir o raio-x das entregas.
+        Clique no município no mapa ou use os atalhos rápidos para abrir o raio-x das entregas.
       </p>
 
       <!-- Barra de Busca Centralizada e Compacta -->
@@ -43,6 +56,28 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
             <option value={m.nome}>{m.regiao}</option>
           ))}
         </datalist>
+      </div>
+
+      <!-- Atalhos para os Principais Polos de Investimento (Baixada, Capital e Polos Regionais) -->
+      <div class="mt-3.5 flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap">
+        <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mr-1 hidden sm:inline">
+          Maiores investimentos:
+        </span>
+        {ATALHOS_MAIORES_INVESTIMENTOS.map((c) => (
+          <button
+            type="button"
+            class="btn-atalho-cidade inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white hover:bg-orange-50 border border-slate-200/90 hover:border-[#F15A29] shadow-2xs text-xs font-semibold text-slate-700 hover:text-[#F15A29] transition-all cursor-pointer group active:scale-95"
+            data-cidade={c.nome}
+            data-slug={c.slug}
+            title={`Ver investimentos em ${c.nome} (${c.valor})`}
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-[#F15A29] group-hover:scale-125 transition-transform"></span>
+            <span>{c.label}</span>
+            <span class="text-[10px] font-bold text-[#F15A29] bg-orange-50 border border-orange-200/70 group-hover:bg-[#F15A29] group-hover:text-white px-1.5 py-0.2 rounded transition-colors">
+              {c.valor}
+            </span>
+          </button>
+        ))}
       </div>
     </div>
 
@@ -302,4 +337,16 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     });
   }
 
+  // Atalhos rápidos para os polos com mais investimentos
+  document.querySelectorAll('.btn-atalho-cidade').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const slug = btn.getAttribute('data-slug');
+      const cidade = btn.getAttribute('data-cidade');
+      if (slug) {
+        if (input) input.value = cidade || '';
+        abrirPopUp(slug);
+        window.dispatchEvent(new CustomEvent('selecionar-cidade-no-mapa', { detail: { slug, abrirPopUp: false } }));
+      }
+    });
+  });
 </script>
