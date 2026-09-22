@@ -2,7 +2,6 @@
 // src/components/CardEntrega.astro
 // Card de Entrega — Design Compacto, Elegante e Editorial
 import type { Entrega } from '../data/entregas';
-import Carimbo from './Carimbo.astro';
 
 interface Props {
   entrega: Entrega;
@@ -48,7 +47,7 @@ const numeroPrincipal = entrega.numeros[0];
     </p>
 
     <!-- Conteúdo Editorial -->
-    <div class="space-y-2.5 font-sans text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+    <div class="space-y-2.5 font-sans text-xs sm:text-sm text-slate-600 leading-relaxed">
       <p class="leading-relaxed">
         {entrega.fraseOQueE}
       </p>
@@ -59,14 +58,6 @@ const numeroPrincipal = entrega.numeros[0];
       </div>
     </div>
   </div>
-
-  <!-- Rodapé com Fonte Auditada (Sem Links) -->
-  <div class="pt-3 border-t border-slate-100 mt-auto">
-    <Carimbo
-      mes={numeroPrincipal.mes}
-      ano={numeroPrincipal.ano}
-      fonte={numeroPrincipal.fonte}
-    />
-  </div>
 </article>
+
 
