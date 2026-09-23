@@ -1,6 +1,6 @@
 ---
 // src/components/CardEntrega.astro
-// Card de Entrega — Design Editorial com Nome em Destaque Principal e Números Complementares
+// Card de Entrega — Design Editorial Compacto com Mídia Integrada (Foto & Vídeo)
 import type { Entrega } from '../data/entregas';
 
 interface Props {
@@ -9,15 +9,19 @@ interface Props {
 
 const { entrega } = Astro.props;
 const numeroPrincipal = entrega.numeros[0];
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const fullImgUrl = entrega.imagem ? `${baseUrl}${entrega.imagem}` : null;
+const fullVideoUrl = entrega.videoUrl ? `${baseUrl}${entrega.videoUrl}` : null;
 ---
 
-<article class="flex flex-col justify-between h-full bg-white border border-slate-200/90 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:border-[#F15A29]/40 rounded-2xl p-5 sm:p-6 transition-all duration-300 relative overflow-hidden group">
+<article class="flex flex-col justify-between h-full bg-white border border-slate-200/90 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:border-[#F15A29]/40 rounded-2xl p-4 sm:p-5 transition-all duration-300 relative overflow-hidden group">
   <!-- Tarja superior de cor institucional -->
   <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#123F8F] via-[#1A54BD] to-[#F15A29]"></div>
 
   <div>
     <!-- Top Header: Município & Badge -->
-    <div class="flex items-center justify-between gap-2 mb-3.5 flex-wrap">
+    <div class="flex items-center justify-between gap-2 mb-2.5 flex-wrap">
       <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-700">
         {entrega.municipioPrincipal}
       </span>
@@ -38,8 +42,37 @@ const numeroPrincipal = entrega.numeros[0];
       </p>
     </div>
 
+    <!-- Foto / Mídia Compacta Integrada (quando disponível) -->
+    {fullImgUrl && (
+      <div
+        class="relative w-full h-28 rounded-xl overflow-hidden mb-3 bg-slate-900 border border-slate-200/80 shadow-xs group/thumb cursor-pointer"
+        data-open-video={fullVideoUrl || ''}
+        data-video-title={`${entrega.nome} — Dr. Luizinho`}
+      >
+        <img
+          src={fullImgUrl}
+          alt={`Registro de Dr. Luizinho em ${entrega.nome}`}
+          class="w-full h-full object-cover group-hover/thumb:scale-105 transition-transform duration-500"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+
+        {fullVideoUrl && (
+          <div class="absolute inset-0 bg-black/15 group-hover/thumb:bg-black/25 transition-colors flex items-center justify-center">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#F15A29] text-white text-xs font-bold shadow-lg group-hover/thumb:scale-105 active:scale-95 transition-all">
+              <svg class="w-3.5 h-3.5 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              <span>Assistir Visita</span>
+              {entrega.videoDuracao && (
+                <span class="opacity-80 text-[10px] font-normal border-l border-white/30 pl-1.5">{entrega.videoDuracao}</span>
+              )}
+            </span>
+          </div>
+        )}
+      </div>
+    )}
+
     <!-- Métrica Complementar (informação complementar com menor destaque abaixo do nome) -->
-    <div class="mb-4 flex items-baseline gap-2 flex-wrap">
+    <div class="mb-3.5 flex items-baseline gap-2 flex-wrap">
       <span class="font-display text-lg sm:text-xl font-black italic text-[#F15A29] leading-none">
         {numeroPrincipal.valor}
       </span>

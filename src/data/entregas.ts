@@ -31,6 +31,8 @@ export interface Entrega {
   municipioPrincipal: string;
   municipiosBeneficiados?: string[];
   imagem?: string;
+  videoUrl?: string;
+  videoDuracao?: string;
   badge?: string;
 }
 
@@ -85,6 +87,9 @@ export const ENTREGAS: Entrega[] = [
     destaque: true,
     categoria: 'oncologia',
     badge: 'Primeiro da Baixada',
+    imagem: '/videos/onco-baixada-card-thumb.jpg',
+    videoUrl: '/videos/onco-baixada.mp4',
+    videoDuracao: '1:19',
     municipioPrincipal: 'Nova Iguaçu',
     municipiosBeneficiados: ['Nova Iguaçu', 'Duque de Caxias', 'Belford Roxo', 'São João de Meriti', 'Mesquita', 'Nilópolis', 'Queimados'],
     fraseOQueE: 'Doutor Luizinho idealizou, elaborou e iniciou em 2023 o projeto do Instituto Estadual de Oncologia da Baixada, o primeiro hospital público de câncer da região, inaugurado em 2026 ao lado do Rio Imagem.',
@@ -249,6 +254,9 @@ export const ENTREGAS: Entrega[] = [
     destaque: true,
     categoria: 'especialidade',
     badge: 'Atenção ao Autismo',
+    imagem: '/videos/cedtea-card-thumb.jpg',
+    videoUrl: '/videos/cedtea.mp4',
+    videoDuracao: '1:03',
     municipioPrincipal: 'Rio de Janeiro (Gávea)',
     municipiosBeneficiados: ['Rio de Janeiro', 'Nova Iguaçu', 'Miguel Pereira', 'Todo o Estado'],
     fraseOQueE: 'Doutor Luizinho idealizou e estruturou na rede estadual o Cedtea, o primeiro centro público do Governo do Estado dedicado exclusivamente ao diagnóstico precoce do Transtorno do Espectro Autista.',
