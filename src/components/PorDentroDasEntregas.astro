@@ -1,0 +1,208 @@
+---
+// src/components/PorDentroDasEntregas.astro
+// Seção Arejada "Por Dentro das Entregas" — Vídeos Verticais em Molduras Elegantes
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+interface VideoEntrega {
+  id: string;
+  titulo: string;
+  subtitulo: string;
+  municipio: string;
+  badge: string;
+  duracao: string;
+  descricao: string;
+  destaqueInfo: string;
+  videoSrc: string;
+  posterSrc: string;
+}
+
+const videos: VideoEntrega[] = [
+  {
+    id: 'video-onco-baixada',
+    titulo: 'Onco Baixada',
+    subtitulo: 'Instituto Estadual de Oncologia da Baixada Fluminense',
+    municipio: 'Nova Iguaçu',
+    badge: '1º da Baixada',
+    duracao: '1:19',
+    descricao: 'Dr. Luizinho visita a estrutura do primeiro hospital público de câncer da Baixada, com 100 leitos e 24 boxes de quimioterapia de alta precisão.',
+    destaqueInfo: '100 leitos · 24 boxes de quimio · Capacidade p/ 300 cirurgias/mês',
+    videoSrc: `${baseUrl}/videos/onco-baixada.mp4`,
+    posterSrc: `${baseUrl}/videos/onco-baixada-poster.jpg`,
+  },
+  {
+    id: 'video-cedtea',
+    titulo: 'Cedtea Gávea',
+    subtitulo: 'Centro Estadual de Diagnóstico do Autismo (TEA)',
+    municipio: 'Rio de Janeiro (Gávea)',
+    badge: 'Atenção ao Autismo',
+    duracao: '1:03',
+    descricao: 'Apresentação do espaço pioneiro de diagnóstico precoce e acolhimento multidisciplinar para crianças e famílias atípicas de todo o Rio.',
+    destaqueInfo: 'Equipe multidisciplinar · Mais de 13 mil consultas e laudos',
+    videoSrc: `${baseUrl}/videos/cedtea.mp4`,
+    posterSrc: `${baseUrl}/videos/cedtea-poster.jpg`,
+  },
+];
+---
+
+<section id="por-dentro-das-entregas" class="scroll-mt-20 sm:scroll-mt-24 py-16 sm:py-24 bg-gradient-to-b from-slate-50 via-slate-100/50 to-white relative border-b border-slate-200/80 overflow-hidden">
+  
+  <!-- Elementos de iluminação suave de fundo para respiro visual -->
+  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-blue-100/40 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-10 right-10 w-[300px] h-[300px] bg-orange-100/30 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+    <!-- Cabeçalho com bastante respiro e leveza -->
+    <div class="max-w-3xl mx-auto text-center mb-12 sm:mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-[#F15A29] font-sans text-xs font-bold uppercase tracking-wider mb-3 shadow-xs">
+        <span class="w-2 h-2 rounded-full bg-[#F15A29] animate-pulse"></span>
+        <span>Registros Reais em Vídeo</span>
+      </div>
+
+      <h2 class="font-display text-3xl sm:text-5xl font-black italic tracking-tight text-[#123F8F] leading-tight mb-4">
+        POR DENTRO DAS <span class="text-[#F15A29]">ENTREGAS</span>
+      </h2>
+
+      <p class="font-sans text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
+        Veja o Dr. Luizinho no local, acompanhando a estrutura real, as equipes médicas e as instalações que transformaram o atendimento no Rio.
+      </p>
+    </div>
+
+    <!-- Grid de Celulares / Molduras Verticais (Aspecto 9:16) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-4xl mx-auto items-stretch">
+      {videos.map((item) => (
+        <div class="flex flex-col items-center bg-white border border-slate-200/90 rounded-3xl p-5 sm:p-7 shadow-xl shadow-slate-200/60 hover:shadow-2xl hover:border-[#123F8F]/30 transition-all duration-300">
+          
+          <!-- Moldura Tipo Smartphone / Reels -->
+          <div class="relative w-full max-w-[280px] sm:max-w-[310px] aspect-[9/16] rounded-[2rem] p-2 bg-gradient-to-b from-slate-800 via-slate-900 to-slate-950 shadow-2xl border-2 border-slate-700/60 overflow-hidden group">
+            
+            <!-- Câmera / Notch do Smartphone -->
+            <div class="absolute top-3.5 left-1/2 -translate-x-1/2 w-16 h-4 bg-slate-950 rounded-full z-30 flex items-center justify-center">
+              <div class="w-2 h-2 rounded-full bg-slate-800 border border-slate-700"></div>
+            </div>
+
+            <!-- Área do Player / Vídeo -->
+            <div
+              id={`container-${item.id}`}
+              class="relative w-full h-full rounded-[1.4rem] overflow-hidden bg-black flex items-center justify-center cursor-pointer group/screen"
+              data-video-trigger
+              data-video-id={item.id}
+            >
+              
+              <!-- Imagem de Capa em Alta Definição (Zero peso antes do clique) -->
+              <img
+                id={`poster-${item.id}`}
+                src={item.posterSrc}
+                alt={`Vídeo de ${item.titulo} com Dr. Luizinho`}
+                class="absolute inset-0 w-full h-full object-cover z-10 transition-transform duration-500 group-hover/screen:scale-105"
+                loading="lazy"
+              />
+
+              <!-- Gradiente cinematográfico sobre a imagem -->
+              <div
+                id={`scrim-${item.id}`}
+                class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40 z-15 pointer-events-none transition-opacity"
+              ></div>
+
+              <!-- Badges Superiores -->
+              <div
+                id={`badges-${item.id}`}
+                class="absolute top-7 left-3.5 right-3.5 flex items-center justify-between z-20 pointer-events-none"
+              >
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-white/90 text-slate-800 shadow-sm backdrop-blur-sm">
+                  {item.badge}
+                </span>
+                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-black/60 text-white border border-white/20 backdrop-blur-sm">
+                  ⏱ {item.duracao}
+                </span>
+              </div>
+
+              <!-- Botão de Play Centralizado em Vidro Fosco -->
+              <button
+                type="button"
+                id={`btn-play-${item.id}`}
+                aria-label={`Reproduzir vídeo de ${item.titulo}`}
+                class="relative z-20 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/25 hover:bg-[#F15A29] text-white border-2 border-white/60 shadow-2xl backdrop-blur-md flex items-center justify-center transition-all duration-300 group-hover/screen:scale-110 active:scale-95 cursor-pointer group-hover/screen:bg-[#F15A29]"
+              >
+                <svg class="w-7 h-7 sm:w-8 sm:h-8 fill-current translate-x-0.5 drop-shadow" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </button>
+
+              <!-- Elemento de Vídeo HTML5 (inicialmente oculto, carrega sob demanda) -->
+              <video
+                id={`video-${item.id}`}
+                class="hidden w-full h-full object-cover z-25 rounded-[1.4rem]"
+                controls
+                playsinline
+                preload="none"
+              >
+                <source src={item.videoSrc} type="video/mp4" />
+                Seu navegador não suporta vídeos em HTML5.
+              </video>
+            </div>
+          </div>
+
+          <!-- Informações Editoriais da Entrega Abaixo do Smartphone -->
+          <div class="mt-6 text-center w-full">
+            <span class="inline-block text-[11px] font-bold uppercase tracking-wider text-[#F15A29] mb-1">
+              📍 {item.municipio}
+            </span>
+            <h3 class="font-display text-2xl font-black italic text-[#123F8F] leading-tight mb-2">
+              {item.titulo}
+            </h3>
+            <p class="font-sans text-xs sm:text-sm text-slate-600 leading-relaxed mb-3">
+              {item.descricao}
+            </p>
+            <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-orange-50 border border-orange-100 text-[11px] font-semibold text-slate-800">
+              <span class="text-[#F15A29]">✓</span>
+              <span>{item.destaqueInfo}</span>
+            </div>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // Script para acionar a reprodução sob demanda em qualquer clique na tela do celular
+  document.addEventListener('DOMContentLoaded', () => {
+    const triggers = document.querySelectorAll<HTMLElement>('[data-video-trigger]');
+
+    triggers.forEach((box) => {
+      box.addEventListener('click', (e) => {
+        // Se clicar nos controles do próprio vídeo quando já ativo, não interceptar
+        if ((e.target as HTMLElement).tagName === 'VIDEO') return;
+
+        const videoId = box.getAttribute('data-video-id');
+        if (!videoId) return;
+
+        // Pausar outros vídeos em reprodução
+        document.querySelectorAll<HTMLVideoElement>('video[id^="video-"]').forEach((v) => {
+          if (v.id !== `video-${videoId}` && !v.paused) {
+            v.pause();
+          }
+        });
+
+        const videoEl = document.getElementById(`video-${videoId}`) as HTMLVideoElement | null;
+        const posterEl = document.getElementById(`poster-${videoId}`);
+        const scrimEl = document.getElementById(`scrim-${videoId}`);
+        const badgesEl = document.getElementById(`badges-${videoId}`);
+        const btnEl = document.getElementById(`btn-play-${videoId}`);
+
+        if (videoEl && videoEl.classList.contains('hidden')) {
+          if (btnEl) btnEl.classList.add('hidden');
+          if (posterEl) posterEl.classList.add('hidden');
+          if (scrimEl) scrimEl.classList.add('hidden');
+          if (badgesEl) badgesEl.classList.add('hidden');
+
+          videoEl.classList.remove('hidden');
+          videoEl.play();
+        }
+      });
+    });
+  });
+</script>
