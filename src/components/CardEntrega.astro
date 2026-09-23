@@ -1,6 +1,6 @@
 ---
 // src/components/CardEntrega.astro
-// Card de Entrega — Design Compacto, Elegante e Editorial
+// Card de Entrega — Design Editorial com Nome em Destaque Principal e Números Complementares
 import type { Entrega } from '../data/entregas';
 
 interface Props {
@@ -28,23 +28,25 @@ const numeroPrincipal = entrega.numeros[0];
       )}
     </div>
 
-    <!-- Métrica Principal -->
-    <div class="mb-3">
-      <span class="font-display text-3xl sm:text-4xl font-black italic text-[#F15A29] leading-none tracking-tight block">
+    <!-- Título da Entrega (em destaque principal no topo) -->
+    <div class="mb-2.5">
+      <h3 class="font-display text-2xl sm:text-3xl font-black italic tracking-tight text-[#123F8F] leading-tight mb-1 group-hover:text-[#F15A29] transition-colors">
+        {entrega.nome}
+      </h3>
+      <p class="font-sans text-xs font-medium text-slate-400 line-clamp-1">
+        {entrega.subtitulo}
+      </p>
+    </div>
+
+    <!-- Métrica Complementar (informação complementar com menor destaque abaixo do nome) -->
+    <div class="mb-4 flex items-baseline gap-2 flex-wrap">
+      <span class="font-display text-lg sm:text-xl font-black italic text-[#F15A29] leading-none">
         {numeroPrincipal.valor}
       </span>
-      <span class="font-sans text-[11px] text-slate-500 font-bold uppercase tracking-wider block mt-1">
+      <span class="font-sans text-[11px] text-slate-500 font-bold uppercase tracking-wider">
         {numeroPrincipal.rotulo}
       </span>
     </div>
-
-    <!-- Título da Entrega -->
-    <h3 class="font-display text-lg sm:text-xl font-black italic tracking-tight text-[#123F8F] leading-tight mb-1 group-hover:text-[#F15A29] transition-colors">
-      {entrega.nome}
-    </h3>
-    <p class="font-sans text-xs font-medium text-slate-400 mb-3.5 line-clamp-1">
-      {entrega.subtitulo}
-    </p>
 
     <!-- Conteúdo Editorial -->
     <div class="space-y-2.5 font-sans text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -59,5 +61,3 @@ const numeroPrincipal = entrega.numeros[0];
     </div>
   </div>
 </article>
-
-
