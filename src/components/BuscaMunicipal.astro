@@ -17,18 +17,40 @@ const ATALHOS_CIDADES = [
 ];
 ---
 
-<section id="minha-cidade" class="py-8 sm:py-12 bg-[#F8FAFC] relative border-b border-slate-200/80">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<section id="minha-cidade" class="relative bg-[#F8FAFC] overflow-hidden pb-12 sm:pb-16 border-b border-slate-200/80">
+  
+  <!-- Topo: Foto Presença nas Cidades Ocupando Toda a Largura do Topo (Sem caixas ou molduras) -->
+  <div class="relative w-full h-80 sm:h-96 md:h-[440px] lg:h-[500px] overflow-hidden">
+    <img
+      src={`${baseUrl}/oq-ele-fez-cidade.webp`}
+      alt="Dr. Luizinho cumprimentando apoiadores nos municípios do Rio de Janeiro"
+      loading="lazy"
+      decoding="async"
+      class="w-full h-full object-cover object-[center_18%] filter contrast-105"
+    />
+    <!-- Gradiente suave na base que funde diretamente com o fundo #F8FAFC da seção -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/45 via-transparent to-[#F8FAFC]"></div>
+
+    <!-- Badge no topo da foto perfeitamente alinhado -->
+    <div class="absolute top-5 sm:top-7 left-0 right-0 z-20 pointer-events-none">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/65 backdrop-blur-md border border-white/20 text-orange-400 font-sans text-xs font-bold uppercase tracking-wider shadow-lg pointer-events-auto">
+          <span class="w-2 h-2 rounded-full bg-[#F15A29] animate-pulse"></span>
+          <span>PRESENÇA EM TODO O ESTADO</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Conteúdo Central: Título Sobreposto + Barra de Busca + Atalhos + Mapa -->
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 sm:-mt-24 md:-mt-28 relative z-10">
     
-    <!-- Cabeçalho Editorial Compacto -->
-    <div class="max-w-3xl mx-auto text-center mb-4">
-      <span class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-orange-100 text-[#F15A29] font-sans text-[11px] font-bold uppercase tracking-wider mb-2">
-        Presença em Todo o Estado
-      </span>
-      <h2 class="font-display text-2xl sm:text-4xl font-black italic tracking-tight text-[#123F8F] leading-tight mb-1.5">
+    <!-- Cabeçalho Editorial Sobreposto -->
+    <div class="max-w-3xl mx-auto text-center mb-5 sm:mb-6">
+      <h2 class="font-display text-3xl sm:text-5xl font-black italic tracking-tight text-[#123F8F] leading-tight mb-2 drop-shadow-sm">
         O QUE ELE FEZ PELA <span class="text-[#F15A29]">SUA CIDADE?</span>
       </h2>
-      <p class="font-sans text-xs sm:text-sm text-slate-500 mb-3">
+      <p class="font-sans text-xs sm:text-sm md:text-base text-slate-600 mb-4 max-w-xl mx-auto font-medium">
         Clique no município no mapa ou use os atalhos rápidos para abrir o raio-x das entregas.
       </p>
 
