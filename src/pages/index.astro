@@ -44,8 +44,8 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
   <!-- 5. Série Documental no YouTube: Cuidando de Gente -->
   <SerieCuidandoDeGente />
 
-  <!-- 6. Key Visual Editorial: Mobilização pelo Rio (Fotocomposição Integrada) -->
-  <section class="relative min-h-[640px] lg:min-h-[720px] bg-gradient-to-br from-[#07193F] via-[#091F4D] to-[#0A2661] text-white overflow-hidden flex items-center">
+  <!-- 6. Key Visual Editorial: Mobilização pelo Rio (Foto Sem Fundo Integrada) -->
+  <section class="relative bg-gradient-to-br from-[#07193F] via-[#091F4D] to-[#0A2661] text-white overflow-hidden py-16 sm:py-24">
     
     <!-- Tipografia Monumental de Fundo (Marca d'água estilo Key Visual / Cartaz de Campanha) -->
     <div class="absolute -top-4 sm:top-2 left-0 right-0 select-none pointer-events-none overflow-hidden z-0" aria-hidden="true">
@@ -58,104 +58,110 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
     <div class="absolute top-1/4 -left-32 w-96 h-96 bg-blue-500/15 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-[#F15A29]/10 rounded-full blur-3xl pointer-events-none"></div>
 
-    <!-- Foto Integrada (Desktop: fusão orgânica ocupando a metade direita do canvas sem bordas/cards) -->
-    <div class="hidden lg:flex absolute right-0 top-0 bottom-0 w-full lg:w-[62%] xl:w-[58%] items-center justify-end pointer-events-none z-10 overflow-hidden">
-      <img
-        src={`${baseUrl}/mobilizacao-kv.webp`}
-        alt="Dr. Luizinho com apoiadores e lideranças em mobilização pelo Rio"
-        loading="lazy"
-        decoding="async"
-        class="h-full w-auto object-cover object-left-top max-w-none transform translate-x-8 xl:translate-x-0"
-      />
-    </div>
-
-    <!-- Conteúdo Editorial e Tipografia em Camadas (Z-20) -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 py-16 sm:py-24 w-full">
-      <div class="max-w-2xl text-left">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
         
-        <!-- Badge -->
-        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#F15A29] font-sans text-xs font-bold uppercase tracking-wider mb-5">
-          <span class="w-2 h-2 rounded-full bg-[#F15A29] animate-pulse"></span>
-          Mobilização pelo Rio
-        </span>
+        <!-- Coluna Esquerda: Textos + Pílula + Linha Horizontal de Ícones -->
+        <div class="lg:col-span-6 text-left order-1">
+          <!-- Badge -->
+          <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[#F15A29] font-sans text-xs font-bold uppercase tracking-wider mb-5">
+            <span class="w-2 h-2 rounded-full bg-[#F15A29] animate-pulse"></span>
+            Mobilização pelo Rio
+          </span>
 
-        <!-- Título de Grande Porte -->
-        <h2 class="font-display text-3xl sm:text-5xl lg:text-6xl font-black italic tracking-tight mb-6 leading-[1.05]">
-          A SAÚDE DO RIO <br class="hidden sm:inline" />
-          <span class="text-[#F15A29]">NÃO PODE RETROCEDER.</span>
-        </h2>
+          <!-- Título de Grande Porte -->
+          <h2 class="font-display text-3xl sm:text-5xl lg:text-6xl font-black italic tracking-tight mb-6 leading-[1.05]">
+            A SAÚDE DO RIO <br class="hidden sm:inline" />
+            <span class="text-[#F15A29]">NÃO PODE RETROCEDER.</span>
+          </h2>
 
-        <!-- Foto no Mobile: Fusão Suave Sem Molduras (aparece apenas em telas menores) -->
-        <div class="block lg:hidden my-6 -mx-4 overflow-hidden pointer-events-none">
+          <!-- Foto no Mobile: Exibida logo após o título em telas menores -->
+          <div class="block lg:hidden my-6 overflow-hidden">
+            <img
+              src={`${baseUrl}/somos-muitos.webp`}
+              alt="Mobilização popular com Dr. Luizinho no Rio de Janeiro"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-auto object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.6)]"
+            />
+          </div>
+
+          <!-- Pílula Editorial Flutuante -->
+          <div class="p-6 sm:p-7 rounded-[2rem] bg-gradient-to-r from-[#071c47]/90 to-[#123F8F]/80 backdrop-blur-md border border-white/20 shadow-2xl shadow-blue-950/50 mb-7 max-w-xl">
+            <p class="font-sans text-sm sm:text-base text-blue-100 leading-relaxed font-normal">
+              Compartilhe este site oficial com seus amigos, vizinhos e familiares. Conheça as entregas que transformaram a saúde do Estado e ajude a multiplicar essa história por todo o Rio!
+            </p>
+          </div>
+
+          <!-- Linha Horizontal Elegante: Apenas os Ícones das Redes Sociais -->
+          <div class="flex items-center gap-3.5">
+            <!-- WhatsApp -->
+            <a
+              href="https://api.whatsapp.com/send?text=%F0%9F%8F%A5%20*Conhe%C3%A7a%20o%20site%20oficial%20do%20Dr.%20Luizinho%201177!*%20Veja%20as%20principais%20entregas%20e%20investimentos%20pela%20sa%C3%BAde%20do%20Estado%20do%20Rio%3A%0Ahttps%3A%2F%2Ffelippejuan.github.io%2Fsite-1177%2F"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-12 h-12 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white flex items-center justify-center shadow-lg shadow-emerald-950/40 hover:scale-110 active:scale-95 transition-all"
+              title="Compartilhar no WhatsApp"
+              aria-label="Compartilhar no WhatsApp"
+            >
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/>
+              </svg>
+            </a>
+
+            <!-- Instagram -->
+            <a
+              href="https://www.instagram.com/doutorluizinho/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#fd1d1d] via-[#e1306c] to-[#833ab4] hover:opacity-95 text-white flex items-center justify-center shadow-lg shadow-purple-950/30 hover:scale-110 active:scale-95 transition-all"
+              title="Instagram @doutorluizinho"
+              aria-label="Instagram @doutorluizinho"
+            >
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+
+            <!-- Facebook -->
+            <a
+              href="https://www.facebook.com/doutorluizinho/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-12 h-12 rounded-2xl bg-[#1877F2] hover:bg-[#166fe5] text-white flex items-center justify-center shadow-lg shadow-blue-950/30 hover:scale-110 active:scale-95 transition-all"
+              title="Facebook /doutorluizinho"
+              aria-label="Facebook /doutorluizinho"
+            >
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+
+            <!-- Twitter / X -->
+            <a
+              href="https://x.com/Doutorluizinhot"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-12 h-12 rounded-2xl bg-black hover:bg-slate-900 text-white flex items-center justify-center border border-white/20 shadow-lg shadow-black/30 hover:scale-110 active:scale-95 transition-all"
+              title="X (Twitter) @Doutorluizinhot"
+              aria-label="X (Twitter) @Doutorluizinhot"
+            >
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Coluna Direita: Foto Sem Fundo Integrada (Desktop: posicionada alta na parte azul) -->
+        <div class="hidden lg:flex lg:col-span-6 items-center justify-center lg:justify-end order-2 relative">
           <img
-            src={`${baseUrl}/mobilizacao-kv.webp`}
-            alt="Dr. Luizinho com apoiadores e lideranças"
+            src={`${baseUrl}/somos-muitos.webp`}
+            alt="Dr. Luizinho com apoiadores e lideranças em mobilização pelo Rio"
             loading="lazy"
             decoding="async"
-            class="w-full h-auto object-cover"
+            class="w-full max-w-xl xl:max-w-2xl h-auto object-contain drop-shadow-[0_25px_45px_rgba(0,0,0,0.65)] transform hover:scale-[1.02] transition-transform duration-500"
           />
-        </div>
-
-        <!-- Pílula Editorial Flutuante (Inspirada no Key Visual da referência) -->
-        <div class="p-6 sm:p-7 rounded-[2rem] bg-gradient-to-r from-[#071c47]/90 to-[#123F8F]/80 backdrop-blur-md border border-white/20 shadow-2xl shadow-blue-950/50 mb-8 max-w-xl">
-          <p class="font-sans text-sm sm:text-base text-blue-100 leading-relaxed font-normal">
-            Compartilhe este site oficial com seus amigos, vizinhos e familiares. Conheça as entregas que transformaram a saúde do Estado e ajude a multiplicar essa história por todo o Rio!
-          </p>
-        </div>
-
-        <!-- Botões de Ação e Compartilhamento -->
-        <div class="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3">
-          <!-- WhatsApp -->
-          <a
-            href="https://api.whatsapp.com/send?text=%F0%9F%8F%A5%20*Conhe%C3%A7a%20o%20site%20oficial%20do%20Dr.%20Luizinho%201177!*%20Veja%20as%20principais%20entregas%20e%20investimentos%20pela%20sa%C3%BAde%20do%20Estado%20do%20Rio%3A%0Ahttps%3A%2F%2Ffelippejuan.github.io%2Fsite-1177%2F"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-sans text-sm font-bold shadow-xl shadow-emerald-950/40 hover:scale-105 active:scale-95 transition-all"
-          >
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/>
-            </svg>
-            <span>Compartilhar no WhatsApp</span>
-          </a>
-
-          <!-- Instagram -->
-          <a
-            href="https://www.instagram.com/doutorluizinho/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-2xl bg-gradient-to-r from-[#833ab4] via-[#fd1d1d] to-[#fcb045] hover:opacity-95 text-white font-sans text-sm font-bold shadow-xl shadow-purple-950/30 hover:scale-105 active:scale-95 transition-all"
-          >
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
-            <span>Instagram @doutorluizinho</span>
-          </a>
-
-          <!-- Facebook -->
-          <a
-            href="https://www.facebook.com/doutorluizinho/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-2xl bg-[#1877F2] hover:bg-[#166fe5] text-white font-sans text-sm font-bold shadow-xl shadow-blue-950/30 hover:scale-105 active:scale-95 transition-all"
-          >
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-            </svg>
-            <span>Facebook /doutorluizinho</span>
-          </a>
-
-          <!-- Twitter / X -->
-          <a
-            href="https://x.com/Doutorluizinhot"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-2xl bg-black hover:bg-slate-900 text-white font-sans text-sm font-bold border border-white/20 shadow-xl shadow-black/30 hover:scale-105 active:scale-95 transition-all"
-          >
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-            </svg>
-            <span>X @Doutorluizinhot</span>
-          </a>
         </div>
 
       </div>
