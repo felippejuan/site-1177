@@ -80,12 +80,11 @@ const fotos: FotoItem[] = [
       </div>
     ))}
 
-    <!-- Gradiente sutil no topo para conectar suavemente ao header -->
-    <div class="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/50 via-black/20 to-transparent pointer-events-none z-10"></div>
+    <!-- Gradiente sutil no topo para acabamento suave -->
+    <div class="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/25 to-transparent pointer-events-none z-10"></div>
 
-    <!-- Gradiente profundo na base que funde 100% com o fundo azul #071738 da seção -->
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#071738]/50 to-[#071738] pointer-events-none z-10"></div>
-    <div class="absolute inset-x-0 bottom-0 h-44 sm:h-56 bg-gradient-to-t from-[#071738] via-[#071738]/90 to-transparent pointer-events-none z-10"></div>
+    <!-- Gradiente na base que começa mais embaixo para revelar muito mais a foto -->
+    <div class="absolute inset-x-0 bottom-0 h-24 sm:h-32 md:h-40 bg-gradient-to-t from-[#071738] via-[#071738]/85 to-transparent pointer-events-none z-10"></div>
 
     <!-- Indicadores de Paginação Discretos no Topo Direito (Completamente afastados do centro e do título) -->
     <div class="absolute top-5 right-5 sm:top-6 sm:right-8 z-20 flex items-center gap-1.5 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15 pointer-events-auto shadow-lg">
@@ -104,7 +103,7 @@ const fotos: FotoItem[] = [
   </div>
 
   <!-- Conteúdo Central: Título TRAJETÓRIA + 3 Pilares em Grid de 3 Colunas -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-14 sm:-mt-16 md:-mt-20 relative z-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 sm:-mt-10 md:-mt-12 relative z-20">
     
     <!-- Título Monumental: Deixe só TRAJETÓRIA com Contraste Absoluto -->
     <div class="max-w-3xl mx-auto text-center mb-10 sm:mb-14">
