@@ -109,12 +109,13 @@ const fotosCidade = [
           id="busca-municipio-input"
           list="lista-municipios"
           placeholder="Digite sua cidade (ex: Nova Iguaçu, Volta Redonda...)"
-          class="w-full py-1.5 pr-3 bg-transparent text-slate-900 text-xs sm:text-sm font-semibold focus:outline-none placeholder:text-slate-400 placeholder:font-normal"
+          class="w-full py-2 pr-3 bg-transparent text-slate-900 text-base sm:text-sm font-semibold focus:outline-none placeholder:text-slate-400 placeholder:font-normal"
           autocomplete="off"
+          enterkeyhint="search"
         />
         <datalist id="lista-municipios">
           {municipios.map((m) => (
-            <option value={m.nome}>{m.regiao}</option>
+            <option value={m.nome} />
           ))}
         </datalist>
       </div>
@@ -160,13 +161,10 @@ const fotosCidade = [
   <!-- Cartão do Pop-up -->
   <div
     id="modal-card"
-    class="relative w-full max-w-xl bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-100 transform scale-95 transition-all duration-300 max-h-[90vh] overflow-y-auto"
+    class="relative w-full max-w-xl bg-white rounded-3xl p-5 sm:p-8 shadow-2xl border border-slate-100 transform scale-95 transition-all duration-300 max-h-[90vh] overflow-y-auto"
   >
-    <!-- Topo: Região e Botão Fechar -->
-    <div class="flex items-center justify-between gap-3 mb-4">
-      <span id="modal-cidade-regiao" class="px-3.5 py-1 rounded-full bg-blue-50 text-[#123F8F] text-xs font-bold uppercase tracking-wider">
-        Baixada Fluminense
-      </span>
+    <!-- Topo: Botão Fechar -->
+    <div class="flex items-center justify-end mb-1">
       <button
         id="modal-btn-close"
         type="button"
@@ -261,7 +259,6 @@ const fotosCidade = [
   const btnClose = document.getElementById('modal-btn-close');
 
   const nomeEl = document.getElementById('modal-cidade-nome');
-  const regiaoEl = document.getElementById('modal-cidade-regiao');
   const resumoEl = document.getElementById('modal-cidade-resumo');
   const pagasEl = document.getElementById('modal-cidade-pagas');
   const garantidasEl = document.getElementById('modal-cidade-garantidas');
@@ -280,7 +277,6 @@ const fotosCidade = [
 
     // Popula dados no Pop-up
     if (nomeEl) nomeEl.textContent = cidade.nome;
-    if (regiaoEl) regiaoEl.textContent = cidade.regiao;
     if (resumoEl) resumoEl.textContent = cidade.resumoLocal;
 
     if (cidade.emendasPagas) {
@@ -396,7 +392,10 @@ const fotosCidade = [
     }
 
     if (achado) {
-      if (input) input.value = achado.nome;
+      if (input) {
+        input.value = achado.nome;
+        input.blur();
+      }
       if (abrirModal) abrirPopUp(achado.slug);
       window.dispatchEvent(new CustomEvent('selecionar-cidade-no-mapa', { detail: { slug: achado.slug, abrirPopUp: false } }));
     }
@@ -406,20 +405,27 @@ const fotosCidade = [
     // Quando o usuário seleciona uma sugestão da datalist ou digita o nome completo
     input.addEventListener('input', (e) => {
       const valor = e.target.value.trim().toLowerCase();
-      // Apenas dispara automaticamente se for match exato com o nome do município (ex: clicou na datalist)
+      // Apenas dispara automaticamente se for match exato com o nome do município (ex: clicou na sugestão da datalist)
       const achadoExato = municipios.find(m => m.nome.toLowerCase() === valor);
       if (achadoExato) {
+        if (input) input.blur();
         processarBusca(valor, true);
       }
     });
 
     input.addEventListener('change', (e) => {
-      processarBusca(e.target.value, true);
+      const valor = e.target.value.trim().toLowerCase();
+      const achadoExato = municipios.find(m => m.nome.toLowerCase() === valor);
+      if (achadoExato) {
+        if (input) input.blur();
+        processarBusca(e.target.value, true);
+      }
     });
 
     input.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         e.preventDefault();
+        if (input) input.blur();
         processarBusca(input.value, true);
       }
     });
