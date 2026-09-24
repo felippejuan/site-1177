@@ -567,7 +567,7 @@ export const ENTREGAS: Entrega[] = [
     destaque: false,
     categoria: 'especialidade',
     municipioPrincipal: 'Volta Redonda',
-    fraseOQueE: 'Doutor Luizinho destinou emendas e articulou cofinanciamento do SUS com o Governo do Estado para apoiar o programa municipal Revi-VER em Volta Redonda.',
+    fraseOQueE: 'Doutor Luizinho destinou recursos diretos e articulou cofinanciamento do SUS com o Governo do Estado para apoiar o programa municipal Revi-VER em Volta Redonda.',
     fraseNumero: 'A política municipal já realizou mais de 30 mil cirurgias de catarata entre 2021 e 2025, devolvendo a visão a milhares de idosos da região.',
     fraseImpacto: 'Idosos que estavam dependentes de familiares recuperaram a visão e a liberdade de caminhar e cuidar da própria casa.',
     numeros: [

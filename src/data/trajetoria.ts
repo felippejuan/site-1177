@@ -80,10 +80,10 @@ export const JANELAS_HISTORICAS: JanelaHistorica[] = [
     cargo: 'Deputado Federal pelo Rio de Janeiro',
     descricao: 'Eleito pela população fluminense para defender o SUS em Brasília. Foi presidente da Comissão de Seguridade Social e Família e relator de projetos históricos de financiamento da saúde.',
     conquistas: [
-      'Mais de 51 municípios fluminenses beneficiados com recursos federais de emendas já pagas',
+      'Mais de 51 municípios fluminenses beneficiados com recursos federais diretos já pagos na ponta',
       'Mais de 100 projetos de lei e PECs de fortalecimento do SUS e proteção das carreiras da saúde',
       'Articulação e destinação de recursos para os mutirões de visão do programa Revi-VER em Volta Redonda (+30 mil cirurgias)',
-      'Liderança na bancada federal para garantir investimentos e custeio aos hospitais do interior e da Baixada',
+      'Liderança na bancada federal para garantir investimentos e custeio aos hospitais do interior e de todo o Estado',
     ],
   },
   {
