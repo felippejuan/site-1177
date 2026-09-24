@@ -76,10 +76,10 @@ const TONS_AZUL = [
       aria-label="Mapa interativo dos 92 municípios do Estado do Rio de Janeiro"
     >
       <defs>
-        <!-- Sombra editorial suave para o relevo do estado do RJ sobre fundo claro -->
+        <!-- Sombra e relevo com brilho suave para o estado do RJ sobre fundo azul -->
         <filter id="rj-landmass-shadow" x="-5%" y="-5%" width="115%" height="115%">
-          <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0F172A" flood-opacity="0.14" />
-          <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0284C7" flood-opacity="0.22" />
+          <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#0284C7" flood-opacity="0.32" />
+          <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.6" />
         </filter>
 
         <!-- Brilho para o município selecionado -->
@@ -155,13 +155,7 @@ const TONS_AZUL = [
     </svg>
 
 
-    <!-- Dica de Interação no Canto Direito -->
-    <div class="absolute bottom-1 sm:bottom-2 right-2 sm:right-4 pointer-events-none text-[11px] font-medium text-slate-600 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-200/90 shadow-sm flex items-center gap-1.5">
-      <svg class="w-3.5 h-3.5 text-[#F15A29]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5" />
-      </svg>
-      <span>Clique no mapa ou nos atalhos acima</span>
-    </div>
+
 
   </div>
 
