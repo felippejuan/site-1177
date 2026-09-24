@@ -15,29 +15,82 @@ const ATALHOS_CIDADES = [
   { nome: 'Volta Redonda', slug: 'volta-redonda', label: 'Volta Redonda' },
   { nome: 'Campos dos Goytacazes', slug: 'campos-dos-goytacazes', label: 'Campos' },
 ];
+
+const fotosCidade = [
+  {
+    id: 1,
+    src: `${baseUrl}/suacidade/1.webp`,
+    alt: "Dr. Luizinho em visitas e entregas de saúde nos municípios do Estado do Rio de Janeiro",
+  },
+  {
+    id: 2,
+    src: `${baseUrl}/suacidade/2.webp`,
+    alt: "Dr. Luizinho dialogando com a população e lideranças municipais fluminenses",
+  },
+  {
+    id: 3,
+    src: `${baseUrl}/suacidade/3.webp`,
+    alt: "Dr. Luizinho acompanhando obras e ações de saúde nas cidades do Rio de Janeiro",
+  },
+  {
+    id: 4,
+    src: `${baseUrl}/suacidade/4.webp`,
+    alt: "Dr. Luizinho ao lado do povo fluminense nas cidades do interior e Baixada",
+  }
+];
 ---
 
 <section id="minha-cidade" class="relative bg-[#071738] text-white overflow-hidden pb-16 sm:pb-24 border-b border-slate-900">
   
-  <!-- Topo: Foto Lendo Revista Ocupando Toda a Largura do Topo (Sem caixas ou molduras) -->
-  <div class="relative w-full h-80 sm:h-96 md:h-[460px] lg:h-[520px] overflow-hidden">
-    <img
-      src={`${baseUrl}/lendo-revista.webp`}
-      alt="Cidadão lendo as entregas da saúde pública do Rio de Janeiro"
-      loading="lazy"
-      decoding="async"
-      class="w-full h-full object-cover object-[center_35%] filter contrast-105"
-    />
-    <!-- Gradiente suave na base que funde diretamente com o fundo azul #071738 da seção -->
-    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-[#071738]"></div>
+  <!-- Topo: Slideshow de Fotos nas Cidades Fluminenses (Ocupando Toda a Largura de Ponta a Ponta e Teto Superior) -->
+  <div id="suacidade-slideshow" class="relative w-full h-80 sm:h-96 md:h-[460px] lg:h-[520px] overflow-hidden select-none bg-[#071738]">
+    
+    {fotosCidade.map((foto, index) => (
+      <div
+        class={`suacidade-slide absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+          index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+        }`}
+        data-index={index}
+      >
+        <!-- Foto de Ponta a Ponta, do Teto Superior à Base, sem bordas ou molduras -->
+        <img
+          src={foto.src}
+          alt={foto.alt}
+          loading={index === 0 ? 'eager' : 'lazy'}
+          decoding="async"
+          class="w-full h-full object-cover object-[center_25%] sm:object-[center_30%] filter contrast-105"
+        />
+      </div>
+    ))}
+
+    <!-- Gradiente sutil no topo para acabamento suave -->
+    <div class="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/25 to-transparent pointer-events-none z-10"></div>
+
+    <!-- Gradiente na base que começa mais embaixo para revelar muito mais a foto -->
+    <div class="absolute inset-x-0 bottom-0 h-24 sm:h-32 md:h-40 bg-gradient-to-t from-[#071738] via-[#071738]/85 to-transparent pointer-events-none z-10"></div>
+
+    <!-- Indicadores de Paginação Discretos no Topo Direito (Completamente afastados do centro e do título) -->
+    <div class="absolute top-5 right-5 sm:top-6 sm:right-8 z-20 flex items-center gap-1.5 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15 pointer-events-auto shadow-lg">
+      {fotosCidade.map((_, index) => (
+        <button
+          type="button"
+          class={`suacidade-dot h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+            index === 0 ? 'w-5 bg-[#F15A29]' : 'w-1.5 bg-white/40 hover:bg-white/70'
+          }`}
+          data-index={index}
+          aria-label={`Foto ${index + 1}`}
+        />
+      ))}
+    </div>
+
   </div>
 
   <!-- Conteúdo Central: Título Sobreposto + Barra de Busca + Atalhos + Mapa -->
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 sm:-mt-24 md:-mt-28 relative z-10">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 sm:-mt-10 md:-mt-12 relative z-20">
     
     <!-- Cabeçalho Editorial Sobreposto -->
     <div class="max-w-3xl mx-auto text-center mb-6">
-      <h2 class="font-display text-3xl sm:text-5xl md:text-6xl font-black italic tracking-tight text-white leading-tight mb-2.5 drop-shadow-md">
+      <h2 class="font-display text-3xl sm:text-5xl md:text-6xl font-black italic tracking-tight text-white leading-tight mb-2.5 drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
         O QUE ELE FEZ PELA <span class="text-[#F15A29]">SUA CIDADE?</span>
       </h2>
       <p class="font-sans text-xs sm:text-sm md:text-base text-blue-100/90 mb-5 max-w-xl mx-auto font-normal leading-relaxed">
@@ -384,4 +437,61 @@ const ATALHOS_CIDADES = [
       }
     });
   });
+
+  // Slideshow Orgânico de Fotos nas Cidades
+  function setupSuaCidadeSlideshow() {
+    const container = document.getElementById('suacidade-slideshow');
+    if (!container) return;
+
+    const slides = container.querySelectorAll<HTMLElement>('.suacidade-slide');
+    const dots = container.querySelectorAll<HTMLElement>('.suacidade-dot');
+    const total = slides.length;
+    if (total <= 1) return;
+
+    let current = 0;
+    let timer: any = null;
+
+    function show(index: number) {
+      current = (index + total) % total;
+      slides.forEach((s, idx) => {
+        if (idx === current) {
+          s.classList.remove('opacity-0', 'z-0', 'pointer-events-none');
+          s.classList.add('opacity-100', 'z-10');
+        } else {
+          s.classList.remove('opacity-100', 'z-10');
+          s.classList.add('opacity-0', 'z-0', 'pointer-events-none');
+        }
+      });
+
+      dots.forEach((d, idx) => {
+        if (idx === current) {
+          d.className = 'suacidade-dot h-1.5 rounded-full transition-all duration-300 cursor-pointer w-5 bg-[#F15A29]';
+        } else {
+          d.className = 'suacidade-dot h-1.5 rounded-full transition-all duration-300 cursor-pointer w-1.5 bg-white/40 hover:bg-white/70';
+        }
+      });
+    }
+
+    function next() {
+      show(current + 1);
+    }
+
+    function start() {
+      if (timer) clearInterval(timer);
+      timer = setInterval(next, 4500);
+    }
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const idx = parseInt(dot.getAttribute('data-index') || '0', 10);
+        show(idx);
+        start();
+      });
+    });
+
+    start();
+  }
+
+  setupSuaCidadeSlideshow();
+  document.addEventListener('astro:page-load', setupSuaCidadeSlideshow);
 </script>
