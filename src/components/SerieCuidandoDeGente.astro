@@ -23,8 +23,8 @@ const outrosEpisodios = EPISODIOS_SERIE.slice(1);
         CUIDANDO DE <span class="text-[#F15A29]">GENTE</span>
       </h2>
 
-      <p class="font-sans text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto">
-        Histórias reais de quem teve a vida transformada pela saúde pública. Conheça as pessoas por trás de cada hospital, cirurgia e ambulância viabilizados pelo Dr. Luizinho no Estado do Rio de Janeiro.
+      <p class="font-sans text-base sm:text-lg text-slate-700 font-medium leading-relaxed max-w-2xl mx-auto">
+        Histórias reais de quem teve a vida transformada por cada hospital, cirurgia e ambulância viabilizados no Estado do Rio.
       </p>
     </div>
 
@@ -79,11 +79,11 @@ const outrosEpisodios = EPISODIOS_SERIE.slice(1);
         <div class="lg:col-span-5 flex flex-col justify-between">
           <div>
             <div class="flex items-center gap-2 mb-3">
-              <span class="px-3 py-0.5 rounded-full bg-orange-500/20 border border-orange-400/40 text-orange-300 text-[11px] font-bold uppercase tracking-wider">
+              <span class="px-3 py-0.5 rounded-full bg-orange-500/20 border border-orange-400/40 text-orange-300 text-xs font-bold uppercase tracking-wider">
                 {episodioDestaque.badge}
               </span>
               {episodioDestaque.dataPublicacao && (
-                <span class="text-[11px] text-slate-300">
+                <span class="text-xs text-slate-300 font-medium">
                   {episodioDestaque.dataPublicacao}
                 </span>
               )}
@@ -100,11 +100,11 @@ const outrosEpisodios = EPISODIOS_SERIE.slice(1);
               </h3>
             </a>
 
-            <blockquote class="font-sans text-xs sm:text-sm text-blue-100 font-medium italic border-l-2 border-[#F15A29] pl-3 mb-4 leading-relaxed">
+            <blockquote class="font-sans text-sm sm:text-base text-blue-100 font-semibold italic border-l-2 border-[#F15A29] pl-3 mb-4 leading-relaxed">
               "{episodioDestaque.fraseImpacto}"
             </blockquote>
 
-            <p class="font-sans text-xs sm:text-sm text-slate-300 leading-relaxed mb-6 font-normal">
+            <p class="font-sans text-sm sm:text-base text-white/95 leading-relaxed mb-6 font-medium">
               {episodioDestaque.sinopse}
             </p>
           </div>
@@ -154,7 +154,7 @@ const outrosEpisodios = EPISODIOS_SERIE.slice(1);
 
               <!-- Badge de Localização -->
               <div class="absolute top-2.5 left-2.5 flex items-center gap-2">
-                <span class="px-2.5 py-0.5 rounded-full bg-black/70 backdrop-blur-md text-white text-[11px] font-semibold">
+                <span class="px-2.5 py-0.5 rounded-full bg-black/70 backdrop-blur-md text-white text-xs font-semibold">
                   {ep.cidade}
                 </span>
               </div>
@@ -174,11 +174,11 @@ const outrosEpisodios = EPISODIOS_SERIE.slice(1);
             <div class="p-5 flex flex-col justify-between flex-grow">
               <div>
                 <div class="flex items-center justify-between gap-2 mb-2">
-                  <span class="text-[10px] sm:text-[11px] font-bold text-orange-600 uppercase tracking-wider bg-orange-50 px-2.5 py-0.5 rounded-full border border-orange-200/60">
+                  <span class="text-xs font-bold text-orange-600 uppercase tracking-wider bg-orange-50 px-2.5 py-0.5 rounded-full border border-orange-200/60">
                     {ep.badge}
                   </span>
                   {ep.dataPublicacao && (
-                    <span class="text-[10px] text-slate-400 font-medium">
+                    <span class="text-xs text-slate-500 font-medium">
                       {ep.dataPublicacao}
                     </span>
                   )}
@@ -190,12 +190,12 @@ const outrosEpisodios = EPISODIOS_SERIE.slice(1);
                   rel="noopener noreferrer"
                   class="block group-hover:text-[#F15A29] transition-colors"
                 >
-                  <h4 class="font-display text-lg font-black italic text-[#123F8F] leading-tight mb-2 group-hover:text-[#F15A29] transition-colors">
+                  <h4 class="font-display text-lg sm:text-xl font-black italic text-[#123F8F] leading-tight mb-2 group-hover:text-[#F15A29] transition-colors">
                     {ep.personagem}
                   </h4>
                 </a>
 
-                <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">
+                <p class="font-sans text-[13px] sm:text-sm text-slate-700 leading-relaxed font-medium">
                   {ep.sinopse}
                 </p>
               </div>

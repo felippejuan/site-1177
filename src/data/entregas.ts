@@ -51,8 +51,8 @@ export const ENTREGAS: Entrega[] = [
     videoUrl: '/videos/samu-100-rj.mp4',
     videoDuracao: '0:54',
     municipioPrincipal: 'Todo o Estado do RJ',
-    fraseOQueE: 'Como secretário estadual de Saúde, Doutor Luizinho levou o SAMU a todos os municípios do estado, tornando o Rio o primeiro do país com cobertura total de socorro móvel.',
-    fraseNumero: 'Foram entregues 249 ambulâncias e UTIs móveis novas para as 92 cidades fluminenses, com custeio integral garantido pelo Governo do Estado.',
+    fraseOQueE: 'Doutor Luizinho garantiu cobertura total do SAMU em todos os 92 municípios do estado, tornando o Rio pioneiro em socorro móvel no país.',
+    fraseNumero: '249 ambulâncias e UTIs móveis novas entregues com custeio garantido em 100% das cidades fluminenses.',
     fraseImpacto: 'Quem sofre um infarto ou um acidente grave no interior não espera mais horas sem socorro — a ambulância chega rápido e equipada para salvar a vida na hora.',
     numeros: [
       {
@@ -95,8 +95,8 @@ export const ENTREGAS: Entrega[] = [
     videoDuracao: '1:19',
     municipioPrincipal: 'Nova Iguaçu',
     municipiosBeneficiados: ['Nova Iguaçu', 'Duque de Caxias', 'Belford Roxo', 'São João de Meriti', 'Mesquita', 'Nilópolis', 'Queimados'],
-    fraseOQueE: 'Doutor Luizinho idealizou, elaborou e iniciou em 2023 o projeto do Instituto Estadual de Oncologia da Baixada, o primeiro hospital público de câncer da região, inaugurado em 2026 ao lado do Rio Imagem.',
-    fraseNumero: 'A unidade conta com 100 leitos, 24 boxes modernos de quimioterapia e capacidade para realizar 300 cirurgias e mais de cinco mil atendimentos por mês.',
+    fraseOQueE: 'Idealizou e iniciou o 1º hospital estadual de câncer da Baixada, permitindo que a população faça o tratamento completo perto de casa.',
+    fraseNumero: '100 leitos exclusivos de oncologia, 24 boxes de quimioterapia e 300 cirurgias por mês.',
     fraseImpacto: 'O morador da Baixada não precisa mais madrugar na estrada para fazer quimio ou cirurgia no Centro do Rio — agora faz o tratamento completo perto de casa, com dignidade e ao lado da família.',
     numeros: [
       {
@@ -140,8 +140,8 @@ export const ENTREGAS: Entrega[] = [
     videoDuracao: '1:07',
     municipioPrincipal: 'Nova Iguaçu',
     municipiosBeneficiados: ['Nova Iguaçu', 'Baixada Fluminense', 'Região Metropolitana'],
-    fraseOQueE: 'Em 2023, Doutor Luizinho inaugurou em Nova Iguaçu o Rio Imagem Baixada, o maior centro público de diagnóstico por imagem de toda a América Latina.',
-    fraseNumero: 'O complexo tem mais de 5 mil metros quadrados e capacidade para realizar mais de 40 mil exames por mês, reunindo tomografia, ressonância magnética e exames laboratoriais de alta precisão.',
+    fraseOQueE: 'Inaugurou em Nova Iguaçu o maior centro público de exames por imagem da América Latina, acabando com as filas históricas da Baixada.',
+    fraseNumero: 'Mais de 1,6 milhão de exames realizados, com tomografia, ressonância e análises clínicas de alta precisão.',
     fraseImpacto: 'Exames que antes demoravam meses na fila agora saem em poucos dias, permitindo descobrir a doença no início e começar o tratamento a tempo.',
     numeros: [
       {
@@ -184,8 +184,8 @@ export const ENTREGAS: Entrega[] = [
     videoDuracao: '1:53',
     municipioPrincipal: 'Rio de Janeiro (Zona Oeste)',
     municipiosBeneficiados: ['Senador Vasconcelos', 'Campo Grande', 'Santa Cruz', 'Bangu', 'Zona Oeste'],
-    fraseOQueE: 'Idealizado por Doutor Luizinho quando esteve à frente da Saúde do Estado, o Instituto Estadual de Olhos foi aberto em Senador Vasconcelos para acabar com as filas históricas de cirurgia de visão.',
-    fraseNumero: 'Em apenas seis meses de funcionamento, a unidade já realizou mais de 110 mil atendimentos, quase 100 mil exames e mais de 1.300 cirurgias de catarata e glaucoma.',
+    fraseOQueE: 'Idealizou e estruturou o polo estadual de oftalmologia na Zona Oeste para zerar as filas de cirurgia de visão.',
+    fraseNumero: 'Mais de 110 mil atendimentos e 1.300 cirurgias de catarata e glaucoma realizadas no 1º semestre.',
     fraseImpacto: 'Idosos que já não conseguiam ler, cozinhar ou sair à rua sozinhos voltam a enxergar em um procedimento rápido, indolor e com alta no mesmo dia.',
     numeros: [
       {
@@ -227,8 +227,8 @@ export const ENTREGAS: Entrega[] = [
     videoUrl: '/videos/ie-cerebro.mp4',
     videoDuracao: '1:19',
     municipioPrincipal: 'Rio de Janeiro (Centro)',
-    fraseOQueE: 'Em março de 2023, Doutor Luizinho entregou a histórica expansão do Instituto Estadual do Cérebro, inaugurando um prédio anexo de seis andares dedicado à alta complexidade.',
-    fraseNumero: 'A obra elevou o hospital para mais de 100 leitos ativos — sendo 54 exclusivos de UTI intensiva — e permitiu dobrar a capacidade de cirurgias para mais de 200 procedimentos por mês.',
+    fraseOQueE: 'Entregou a ampliação histórica do Instituto Estadual do Cérebro, com novo anexo de 6 andares para neurocirurgias.',
+    fraseNumero: 'Mais de 100 leitos ativos, 54 vagas de UTI e capacidade duplicada para 240 cirurgias de alta complexidade por mês.',
     fraseImpacto: 'Pacientes com tumores cerebrais graves ou aneurismas que antes não tinham esperança agora contam com neurocirurgias de padrão internacional 100% pelo SUS.',
     numeros: [
       {
@@ -271,8 +271,8 @@ export const ENTREGAS: Entrega[] = [
     videoDuracao: '1:03',
     municipioPrincipal: 'Rio de Janeiro (Gávea)',
     municipiosBeneficiados: ['Rio de Janeiro', 'Nova Iguaçu', 'Miguel Pereira', 'Todo o Estado'],
-    fraseOQueE: 'Doutor Luizinho idealizou e estruturou na rede estadual o Cedtea, o primeiro centro público do Governo do Estado dedicado exclusivamente ao diagnóstico precoce do Transtorno do Espectro Autista.',
-    fraseNumero: 'O espaço conta com equipe multidisciplinar completa de neuropediatras, psicólogos e fonoaudiólogos, responsável por mais de 13 mil consultas e mais de mil laudos definitivos emitidos.',
+    fraseOQueE: 'Criou o 1º centro público estadual exclusivo para acolhimento e diagnóstico precoce do espectro autista.',
+    fraseNumero: 'Mais de 13 mil consultas multidisciplinares e mais de 1.350 laudos conclusivos de TEA emitidos.',
     fraseImpacto: 'Mães que passavam anos peregrinando de posto em posto sem resposta agora saem com o laudo na mão, garantindo o início das terapias no momento certo para o futuro do filho.',
     numeros: [
       {

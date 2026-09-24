@@ -58,6 +58,18 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://felippej
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={ogImage} />
+
+    <!-- Acessibilidade: Restaura tamanho da letra salvo sem piscar a tela -->
+    <script is:inline>
+      (function() {
+        try {
+          const savedSize = localStorage.getItem('site_font_size');
+          if (savedSize) {
+            document.documentElement.setAttribute('data-font-size', savedSize);
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body class="min-h-screen flex flex-col bg-white text-slate-900 antialiased selection:bg-[#F15A29] selection:text-white font-sans">
     
@@ -84,18 +96,42 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://felippej
           <a href={`${baseUrl}/#cuidando-de-gente`} class="hover:text-[#123F8F] transition-colors">Cuidando de Gente</a>
         </nav>
 
-        <!-- CTA Header -->
-        <div class="flex items-center gap-3">
+        <!-- CTA & Acessibilidade Header -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <!-- Controle de Acessibilidade: Tamanho da Fonte (A- / A+) -->
+          <div class="flex items-center bg-slate-100 p-0.5 rounded-full border border-slate-200/90 shadow-xs" title="Ajustar tamanho da letra">
+            <button
+              id="btn-font-dec"
+              type="button"
+              class="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-bold text-slate-600 hover:text-slate-950 hover:bg-white transition-all cursor-pointer select-none active:scale-90"
+              aria-label="Diminuir tamanho da letra"
+              title="Diminuir tamanho do texto"
+            >
+              A-
+            </button>
+            <div class="w-px h-3.5 bg-slate-300"></div>
+            <button
+              id="btn-font-inc"
+              type="button"
+              class="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-black text-slate-800 hover:text-[#F15A29] hover:bg-white transition-all cursor-pointer select-none active:scale-90"
+              aria-label="Aumentar tamanho da letra"
+              title="Aumentar tamanho do texto"
+            >
+              A+
+            </button>
+          </div>
+
           <a
             href="https://api.whatsapp.com/send?phone=5521999251177&text=Ol%C3%A1%2C%20Dr.%20Luizinho!%20Vim%20pelo%20site%20oficial%20e%20quero%20acompanhar%20as%20novidades%20e%20o%20trabalho%20pela%20sa%C3%BAde%20do%20Rio."
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 px-3.5 py-2 sm:px-5 sm:py-2.5 rounded-full bg-[#F15A29] hover:bg-[#D94819] text-white font-sans text-xs sm:text-sm font-bold shadow-md shadow-orange-500/20 hover:shadow-orange-500/30 transition-all hover:scale-105 active:scale-95"
+            class="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3 py-2 sm:px-5 sm:py-2.5 rounded-full bg-[#F15A29] hover:bg-[#D94819] text-white font-sans text-xs sm:text-sm font-bold shadow-md shadow-orange-500/20 hover:shadow-orange-500/30 transition-all hover:scale-105 active:scale-95 shrink-0"
           >
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current shrink-0" viewBox="0 0 24 24">
               <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/>
             </svg>
-            <span>Fale no WhatsApp</span>
+            <span class="hidden sm:inline">Fale no WhatsApp</span>
+            <span class="sm:hidden">WhatsApp</span>
           </a>
         </div>
       </div>
@@ -150,17 +186,17 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://felippej
             <ul class="space-y-2 text-xs">
               <li>
                 <a href="https://www.instagram.com/doutorluizinho/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center gap-1.5">
-                  <span>Instagram</span> <span class="text-slate-500 text-[10px]">@doutorluizinho</span>
+                  <span>Instagram</span> <span class="text-slate-500 text-xs">@doutorluizinho</span>
                 </a>
               </li>
               <li>
                 <a href="https://www.facebook.com/doutorluizinho/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center gap-1.5">
-                  <span>Facebook</span> <span class="text-slate-500 text-[10px]">/doutorluizinho</span>
+                  <span>Facebook</span> <span class="text-slate-500 text-xs">/doutorluizinho</span>
                 </a>
               </li>
               <li>
                 <a href="https://x.com/Doutorluizinhot" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center gap-1.5">
-                  <span>X (Twitter)</span> <span class="text-slate-500 text-[10px]">@Doutorluizinhot</span>
+                  <span>X (Twitter)</span> <span class="text-slate-500 text-xs">@Doutorluizinhot</span>
                 </a>
               </li>
             </ul>
@@ -174,5 +210,67 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://felippej
         </div>
       </div>
     </footer>
+
+    <!-- Script de Controle de Acessibilidade (Tamanho da Fonte) -->
+    <script>
+      function setupFontSizeControls() {
+        const btnDec = document.getElementById('btn-font-dec');
+        const btnInc = document.getElementById('btn-font-inc');
+        const html = document.documentElement;
+
+        const SIZES = ['normal', 'large', 'xlarge'];
+
+        function getCurrentIndex() {
+          const current = html.getAttribute('data-font-size') || 'normal';
+          const idx = SIZES.indexOf(current);
+          return idx === -1 ? 0 : idx;
+        }
+
+        function setFontSize(idx: number) {
+          const newSize = SIZES[idx];
+          if (newSize === 'normal') {
+            html.removeAttribute('data-font-size');
+            try { localStorage.removeItem('site_font_size'); } catch (e) {}
+          } else {
+            html.setAttribute('data-font-size', newSize);
+            try { localStorage.setItem('site_font_size', newSize); } catch (e) {}
+          }
+          updateButtons(idx);
+        }
+
+        function updateButtons(idx: number) {
+          if (btnDec) {
+            btnDec.style.opacity = idx === 0 ? '0.4' : '1';
+            (btnDec as HTMLButtonElement).disabled = idx === 0;
+          }
+          if (btnInc) {
+            btnInc.style.opacity = idx === SIZES.length - 1 ? '0.4' : '1';
+            (btnInc as HTMLButtonElement).disabled = idx === SIZES.length - 1;
+          }
+        }
+
+        btnInc?.addEventListener('click', () => {
+          const idx = getCurrentIndex();
+          if (idx < SIZES.length - 1) {
+            setFontSize(idx + 1);
+          }
+        });
+
+        btnDec?.addEventListener('click', () => {
+          const idx = getCurrentIndex();
+          if (idx > 0) {
+            setFontSize(idx - 1);
+          }
+        });
+
+        updateButtons(getCurrentIndex());
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupFontSizeControls);
+      } else {
+        setupFontSizeControls();
+      }
+    </script>
   </body>
 </html>
