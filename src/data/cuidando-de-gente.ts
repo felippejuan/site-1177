@@ -25,14 +25,14 @@ export const EPISODIOS_SERIE: EpisodioCuidandoDeGente[] = [
     personagem: 'Dona Rosangela Maria',
     cidade: 'Belford Roxo',
     regiao: 'Baixada Fluminense',
-    equipamento: 'Instituto Estadual do Olho',
+    equipamento: 'Instituto Estadual dos Olhos',
     iconeEquipamento: '👁️',
     youtubeId: 'ivliQxs7eBU',
     youtubeUrl: 'https://www.youtube.com/watch?v=ivliQxs7eBU',
     dataPublicacao: '10 de setembro de 2026',
     fraseImpacto: 'Voltou a enxergar a vida em todos os detalhes após cirurgia de catarata rápida, indolor e com alta no mesmo dia.',
-    sinopse: 'Recuperação da visão após cirurgia de catarata no Instituto Estadual do Olho (2025). Procedimento ágil e indolor com alta no mesmo dia, devolvendo autonomia e independência pelo SUS.',
-    badge: 'Oftalmologia SUS',
+    sinopse: 'Recuperação da visão após cirurgia de catarata no Instituto Estadual dos Olhos (2025). Procedimento ágil e indolor com alta no mesmo dia, devolvendo autonomia e independência pelo SUS.',
+    badge: 'Instituto Estadual dos Olhos',
     destaque: true,
   },
   {
@@ -48,7 +48,7 @@ export const EPISODIOS_SERIE: EpisodioCuidandoDeGente[] = [
     dataPublicacao: '14 de setembro de 2026',
     fraseImpacto: 'Acolhimento de alta complexidade perto de casa após mais de dez anos de espera histórica de toda a região.',
     sinopse: 'Atendimento de emergência do filho no Hospital Regional Zilda Arns, em Volta Redonda. Unidade destravada após mais de 10 anos de obras paradas, consolidada como a maior retaguarda de UTI do Sul Fluminense.',
-    badge: 'Alta Complexidade Regional',
+    badge: 'Hospital Regional Zilda Arns',
   },
   {
     id: 'tayane-e-vitoria',
@@ -62,7 +62,7 @@ export const EPISODIOS_SERIE: EpisodioCuidandoDeGente[] = [
     youtubeUrl: 'https://www.youtube.com/watch?v=heI1KvTNMrk',
     fraseImpacto: 'Duas jovens sonhadoras e trabalhadoras com autonomia para planejar seus estudos, empregos e o momento de constituir família.',
     sinopse: 'Planejamento reprodutivo e autonomia pelo programa Acolhe RJ, criado em 2023. Primeiro programa do SUS a oferecer o contraceptivo subdérmico Implanon, beneficiando mais de 40 mil jovens.',
-    badge: 'Saúde da Mulher & Futuro',
+    badge: 'Programa Acolhe RJ',
   },
   {
     id: 'hever-rodrigues',
@@ -76,7 +76,7 @@ export const EPISODIOS_SERIE: EpisodioCuidandoDeGente[] = [
     youtubeUrl: 'https://www.youtube.com/watch?v=lF3A7r4WB3o',
     fraseImpacto: 'Tratamento de tumor no intestino com acolhimento humano ao lado de um grande amor que já dura 42 anos.',
     sinopse: 'Tratamento bem-sucedido de tumor intestinal no Onco Baixada, primeiro hospital público especializado em câncer da Baixada Fluminense, assegurando cuidado próximo da família sem viagens exaustivas à capital.',
-    badge: 'Oncologia da Baixada',
+    badge: 'Onco Baixada',
   },
   {
     id: 'fernanda-e-sirleide',
@@ -90,7 +90,7 @@ export const EPISODIOS_SERIE: EpisodioCuidandoDeGente[] = [
     youtubeUrl: 'https://www.youtube.com/watch?v=DOcMpkDhWGw',
     fraseImpacto: 'Neurocirurgias de padrão mundial pelo SUS que devolveram a vida e a esperança contra casos graves e raros.',
     sinopse: 'Cirurgia neurológica de emergência e diagnóstico de doença rara no Instituto Estadual do Cérebro. Tratamento de precisão pelo SUS viabilizado pela duplicação e ampliação de leitos da unidade.',
-    badge: 'Neurocirurgia Mundial',
+    badge: 'Instituto Estadual do Cérebro',
   },
   {
     id: 'jaqueline-e-liz-helena',
@@ -104,7 +104,7 @@ export const EPISODIOS_SERIE: EpisodioCuidandoDeGente[] = [
     youtubeUrl: 'https://www.youtube.com/watch?v=BluBZk4ywso',
     fraseImpacto: 'A luta pela vida da pequena Liz Helena em seus dois primeiros meses de vida na maior UTI infantil pública do Brasil.',
     sinopse: 'Internação de dois meses e recuperação da pequena Liz Helena na UTI Pediátrica do Hospital Ricardo Cruz. Hospital modular mantido em definitivo e ampliado para ser a maior UTI infantil do país.',
-    badge: 'Maior UTI Pediátrica do País',
+    badge: 'Maior UTI Infantil do Brasil',
   },
   {
     id: 'iracy-meirelles',
@@ -118,6 +118,6 @@ export const EPISODIOS_SERIE: EpisodioCuidandoDeGente[] = [
     youtubeUrl: 'https://www.youtube.com/watch?v=NAEO97MBvzA',
     fraseImpacto: 'Socorro ágil após queda grave em casa: a rapidez do atendimento do SAMU fez a diferença entre a vida e a morte.',
     sinopse: 'Socorro ágil após queda doméstica grave em São João de Meriti. Atendimento pré-hospitalar rápido pelas novas ambulâncias do SAMU 100% RJ, assegurando transporte imediato e salvando a vida.',
-    badge: 'SAMU 100% RJ Universal',
+    badge: 'SAMU 100% RJ',
   },
 ];

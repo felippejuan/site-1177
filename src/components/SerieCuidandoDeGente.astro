@@ -72,16 +72,6 @@ const outrosEpisodios = EPISODIOS_SERIE.slice(1);
               </div>
             </div>
 
-            <!-- Tarja Inferior -->
-            <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white/90">
-              <span class="font-bold flex items-center gap-1.5 drop-shadow-md">
-                <span>{episodioDestaque.iconeEquipamento}</span>
-                <span>{episodioDestaque.equipamento}</span>
-              </span>
-              <span class="text-[11px] font-medium text-white/80 bg-black/50 px-2 py-0.5 rounded">
-                Assistir no YouTube ↗
-              </span>
-            </div>
           </a>
         </div>
 
@@ -99,9 +89,16 @@ const outrosEpisodios = EPISODIOS_SERIE.slice(1);
               )}
             </div>
 
-            <h3 class="font-display text-2xl sm:text-3xl font-black italic text-white leading-tight mb-3">
-              {episodioDestaque.personagem}
-            </h3>
+            <a
+              href={episodioDestaque.youtubeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block group-hover:text-orange-300 transition-colors"
+            >
+              <h3 class="font-display text-2xl sm:text-3xl font-black italic text-white leading-tight mb-3">
+                {episodioDestaque.personagem}
+              </h3>
+            </a>
 
             <blockquote class="font-sans text-xs sm:text-sm text-blue-100 font-medium italic border-l-2 border-[#F15A29] pl-3 mb-4 leading-relaxed">
               "{episodioDestaque.fraseImpacto}"
@@ -112,19 +109,7 @@ const outrosEpisodios = EPISODIOS_SERIE.slice(1);
             </p>
           </div>
 
-          <div class="pt-4 border-t border-white/10">
-            <a
-              href={episodioDestaque.youtubeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#F15A29] hover:bg-[#D94819] text-white font-sans text-xs sm:text-sm font-bold shadow-lg shadow-orange-950/40 hover:scale-105 active:scale-95 transition-all"
-            >
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-              <span>Assistir História</span>
-            </a>
-          </div>
+
 
         </div>
 
@@ -140,9 +125,6 @@ const outrosEpisodios = EPISODIOS_SERIE.slice(1);
           <h3 class="font-display text-xl sm:text-2xl font-black italic text-[#123F8F]">
             TODAS AS HISTÓRIAS
           </h3>
-          <p class="font-sans text-xs sm:text-sm text-slate-500">
-            Clique para assistir ao relato completo no YouTube.
-          </p>
         </div>
         <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-bold">
           {EPISODIOS_SERIE.length} Histórias Reais
@@ -186,20 +168,13 @@ const outrosEpisodios = EPISODIOS_SERIE.slice(1);
                 </div>
               </div>
 
-              <!-- Tarja do Equipamento -->
-              <div class="absolute bottom-2 left-2.5 right-2.5">
-                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-sm text-white text-[10px] font-bold">
-                  <span>{ep.iconeEquipamento}</span>
-                  <span class="truncate max-w-[220px]">{ep.equipamento}</span>
-                </span>
-              </div>
             </a>
 
             <!-- Corpo do Card -->
             <div class="p-5 flex flex-col justify-between flex-grow">
               <div>
                 <div class="flex items-center justify-between gap-2 mb-2">
-                  <span class="text-[10px] font-bold text-orange-600 uppercase tracking-wider bg-orange-50 px-2 py-0.5 rounded-full">
+                  <span class="text-[10px] sm:text-[11px] font-bold text-orange-600 uppercase tracking-wider bg-orange-50 px-2.5 py-0.5 rounded-full border border-orange-200/60">
                     {ep.badge}
                   </span>
                   {ep.dataPublicacao && (
@@ -209,30 +184,20 @@ const outrosEpisodios = EPISODIOS_SERIE.slice(1);
                   )}
                 </div>
 
-                <h4 class="font-display text-lg font-black italic text-[#123F8F] leading-tight mb-2 group-hover:text-[#F15A29] transition-colors">
-                  {ep.personagem}
-                </h4>
-
-                <p class="font-sans text-xs text-slate-600 leading-relaxed mb-4 font-normal">
-                  {ep.sinopse}
-                </p>
-              </div>
-
-              <!-- Ação do Card: link direto para o YouTube -->
-              <div class="pt-3 border-t border-slate-100 flex items-center justify-start">
                 <a
                   href={ep.youtubeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 text-xs font-bold text-[#123F8F] group-hover:text-[#F15A29] transition-colors"
+                  class="block group-hover:text-[#F15A29] transition-colors"
                 >
-                  <span class="w-6 h-6 rounded-full bg-red-600 text-white flex items-center justify-center flex-shrink-0 group-hover:bg-[#F15A29] transition-colors">
-                    <svg class="w-3 h-3 fill-current ml-0.5" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </span>
-                  <span>Assistir História</span>
+                  <h4 class="font-display text-lg font-black italic text-[#123F8F] leading-tight mb-2 group-hover:text-[#F15A29] transition-colors">
+                    {ep.personagem}
+                  </h4>
                 </a>
+
+                <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">
+                  {ep.sinopse}
+                </p>
               </div>
             </div>
 

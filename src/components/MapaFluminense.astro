@@ -88,13 +88,6 @@ const TONS_AZUL = [
         </filter>
       </defs>
 
-      <!-- Marca d'água cartográfica elegante no Oceano Atlântico -->
-      <g class="pointer-events-none select-none opacity-40">
-        <text x="560" y="425" font-family="system-ui, -apple-system, BlinkMacSystemFont, sans-serif" font-size="10" font-weight="700" letter-spacing="0.3em" fill="#0284C7" text-anchor="middle">
-          OCEANO ATLÂNTICO
-        </text>
-        <path d="M480 435 L640 435" stroke="#0284C7" stroke-width="0.75" stroke-dasharray="3 3" />
-      </g>
 
       <!-- Camada dos 92 Municípios Fluminenses -->
       <g id="camada-municipios" filter="url(#rj-landmass-shadow)">
@@ -161,18 +154,6 @@ const TONS_AZUL = [
       </g>
     </svg>
 
-    <!-- Legenda no Canto Inferior Esquerdo -->
-    <div class="absolute bottom-1 sm:bottom-2 left-2 sm:left-4 pointer-events-none hidden sm:flex items-center gap-3 text-[11px] font-semibold text-slate-600 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-slate-200/90 shadow-sm">
-      <span class="inline-flex items-center gap-1.5">
-        <span class="w-2.5 h-2.5 rounded-full bg-[#123F8F]"></span>
-        <span>92 cidades atendidas</span>
-      </span>
-      <span class="text-slate-300">·</span>
-      <span class="inline-flex items-center gap-1.5">
-        <span class="w-2.5 h-2.5 rounded-full bg-[#F15A29] animate-pulse"></span>
-        <span>Polos de atuação</span>
-      </span>
-    </div>
 
     <!-- Dica de Interação no Canto Direito -->
     <div class="absolute bottom-1 sm:bottom-2 right-2 sm:right-4 pointer-events-none text-[11px] font-medium text-slate-600 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full border border-slate-200/90 shadow-sm flex items-center gap-1.5">
