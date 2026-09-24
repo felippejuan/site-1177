@@ -437,8 +437,10 @@ const fotosCidade = [
       }
     });
   });
+</script>
 
-  // Slideshow Orgânico de Fotos nas Cidades
+<!-- Script dedicado do Slideshow de Cidades -->
+<script>
   function setupSuaCidadeSlideshow() {
     const container = document.getElementById('suacidade-slideshow');
     if (!container) return;
@@ -478,7 +480,7 @@ const fotosCidade = [
 
     function start() {
       if (timer) clearInterval(timer);
-      timer = setInterval(next, 4500);
+      timer = setInterval(next, 3500);
     }
 
     dots.forEach((dot) => {
@@ -492,6 +494,10 @@ const fotosCidade = [
     start();
   }
 
-  setupSuaCidadeSlideshow();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupSuaCidadeSlideshow);
+  } else {
+    setupSuaCidadeSlideshow();
+  }
   document.addEventListener('astro:page-load', setupSuaCidadeSlideshow);
 </script>

@@ -235,7 +235,7 @@ const fotos: FotoItem[] = [
 
     function start() {
       if (timer) clearInterval(timer);
-      timer = setInterval(next, 4000);
+      timer = setInterval(next, 3500);
     }
 
     dots.forEach((dot) => {
@@ -249,6 +249,10 @@ const fotos: FotoItem[] = [
     start();
   }
 
-  setupTrajetoriaSlideshow();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupTrajetoriaSlideshow);
+  } else {
+    setupTrajetoriaSlideshow();
+  }
   document.addEventListener('astro:page-load', setupTrajetoriaSlideshow);
 </script>
