@@ -1,111 +1,279 @@
 ---
 // src/components/QuemE.astro
-// Seção Quem é Dr. Luizinho — Dossiê Editorial Dividido com Galeria Rotativa de Fotos Reais
-import GaleriaBiografia from './GaleriaBiografia.astro';
+// Seção Trajetória de Dr. Luizinho — Slideshow Orgânico de Fotos Reais no Topo e Fundo Azul
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+interface FotoItem {
+  id: number;
+  src: string;
+  alt: string;
+  titulo: string;
+  descricao: string;
+  contexto: string;
+}
+
+const fotos: FotoItem[] = [
+  {
+    id: 1,
+    src: `${baseUrl}/biografia/1.png`,
+    alt: "Crachá histórico do Ministério da Saúde de Dr. Luizinho no Hospital Geral de Nova Iguaçu (Posse)",
+    titulo: "Interno no Hospital Geral da Posse",
+    descricao: "Registro oficial no HGNI / Ministério da Saúde. A vocação nasceu na emergência mais movimentada da Baixada Fluminense.",
+    contexto: "HGNI · Ministério da Saúde"
+  },
+  {
+    id: 2,
+    src: `${baseUrl}/biografia/2.png`,
+    alt: "Dr. Luizinho realizando exame clínico direto em paciente na unidade de saúde pública",
+    titulo: "Atendimento Clínico Humanizado",
+    descricao: "Examinando pessoalmente cada paciente. A medicina exercida com escuta sensível, cuidado e respeito às famílias.",
+    contexto: "Nova Iguaçu · Atendimento SUS"
+  },
+  {
+    id: 3,
+    src: `${baseUrl}/biografia/3.png`,
+    alt: "Dr. Luizinho em consulta médica orientando paciente idosa com receituário e carimbo",
+    titulo: "Atenção e Escuta Olho no Olho",
+    descricao: "Receituário na mão e carimbo na mesa: ouvindo as famílias para orientar o diagnóstico e garantir o tratamento digno.",
+    contexto: "Consulta Médica · Saúde Pública"
+  },
+  {
+    id: 4,
+    src: `${baseUrl}/biografia/4.png`,
+    alt: "Dr. Luizinho abraçando cidadão na campanha de vacinação contra febre amarela",
+    titulo: "Ao Lado da População nas Ruas",
+    descricao: "Presença direta nos bairros e acolhimento humano durante a grande mobilização preventiva contra a febre amarela.",
+    contexto: "Campanha em Campo · Nova Iguaçu"
+  },
+  {
+    id: 5,
+    src: `${baseUrl}/biografia/5.png`,
+    alt: "Dr. Luizinho aplicando vacina contra a Covid-19 em profissional de saúde com colete da OPAS",
+    titulo: "Liderança Ativa na Vacinação",
+    descricao: "Aplicando doses na linha de frente e coordenando os postos de vacinação para salvar vidas na pandemia de Covid-19.",
+    contexto: "Imunização Covid-19 · OPAS / SUS"
+  }
+];
 ---
 
-<section id="quem-e" class="py-20 sm:py-28 bg-[#F8FAFC] relative border-b border-slate-200/80">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<section id="trajetoria" class="relative bg-[#071738] text-white overflow-hidden pb-16 sm:pb-24 border-b border-slate-900">
+  <div id="quem-e" class="absolute -top-24 pointer-events-none"></div>
+
+  <!-- Topo: Slideshow de Fotos Históricas da Trajetória (Ocupando Toda a Largura com Rotação Orgânica) -->
+  <div id="trajetoria-slideshow" class="relative w-full h-80 sm:h-96 md:h-[460px] lg:h-[520px] overflow-hidden select-none bg-[#050E24]">
     
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-      
-      <!-- Coluna Esquerda: Âncora Editorial de Liderança + Galeria Rotativa (5 colunas) -->
-      <div class="lg:col-span-5 lg:sticky lg:top-24">
-        <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 text-[#123F8F] font-sans text-xs font-bold uppercase tracking-wider mb-4">
-          Biografia & Trajetória
-        </span>
-        
-        <h2 class="font-display text-3xl sm:text-5xl font-black italic tracking-tight text-[#123F8F] leading-[0.98] mb-6">
-          A TRAJETÓRIA DE QUEM <br class="hidden sm:inline" />
-          <span class="text-[#F15A29]">VIVEU A LINHA DE FRENTE</span>.
-        </h2>
+    {fotos.map((foto, index) => (
+      <div
+        class={`trajetoria-slide absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+          index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+        }`}
+        data-index={index}
+        data-title={foto.titulo}
+        data-ctx={foto.contexto}
+      >
+        <!-- Fundo desfocado imersivo preenchendo a tela -->
+        <img
+          src={foto.src}
+          alt=""
+          aria-hidden="true"
+          class="absolute inset-0 w-full h-full object-cover filter blur-2xl opacity-35 scale-110"
+        />
 
-        <!-- Galeria Rotativa Editorial: Fotos Reais em Execução -->
-        <GaleriaBiografia />
-
-        <!-- Destaque de Experiência -->
-        <div class="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-center gap-4">
-          <span class="font-display text-4xl sm:text-5xl font-black italic text-[#F15A29] leading-none">
-            20+
-          </span>
-          <div class="text-xs sm:text-sm text-slate-700 font-medium leading-snug">
-            Anos dedicados a cuidar de vidas e desatar os maiores gargalos da saúde pública do Rio.
-          </div>
+        <!-- Foto Principal Nítida no Centro -->
+        <div class="relative w-full h-full flex items-center justify-center p-4">
+          <img
+            src={foto.src}
+            alt={foto.alt}
+            loading={index === 0 ? 'eager' : 'lazy'}
+            class="max-h-full max-w-full sm:max-w-xl md:max-w-2xl object-contain filter contrast-105 drop-shadow-2xl"
+          />
         </div>
       </div>
+    ))}
 
-      <!-- Coluna Direita: 3 Linhas de Impacto (7 colunas) -->
-      <div class="lg:col-span-7 space-y-6">
-        
-        <!-- Linha 01: Medicina -->
-        <div class="p-7 sm:p-9 rounded-3xl bg-white border border-slate-200/80 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:border-[#F15A29]/40 transition-all duration-300 group">
-          <div class="flex items-baseline gap-4 mb-3">
+    <!-- Gradiente suave na base que funde diretamente com o fundo azul #071738 da seção -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-[#071738] pointer-events-none"></div>
+
+    <!-- Gradiente suave nas laterais para telas ultra-wide -->
+    <div class="absolute inset-0 bg-gradient-to-r from-[#071738]/80 via-transparent to-[#071738]/80 hidden md:block pointer-events-none"></div>
+
+    <!-- Legenda da Foto Ativa & Indicadores de Paginação -->
+    <div class="absolute bottom-12 sm:bottom-16 left-0 right-0 z-20 flex flex-col items-center gap-2 pointer-events-auto px-4">
+      <!-- Pílula de Contexto da Foto -->
+      <span id="trajetoria-ctx-pill" class="px-3.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-orange-300 font-sans text-xs font-semibold shadow-lg">
+        {fotos[0].contexto} · {fotos[0].titulo}
+      </span>
+
+      <!-- Indicadores de Paginação -->
+      <div class="flex items-center gap-2 mt-1">
+        {fotos.map((_, index) => (
+          <button
+            type="button"
+            class={`trajetoria-dot h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+              index === 0 ? 'w-7 bg-[#F15A29]' : 'w-2 bg-white/40 hover:bg-white/70'
+            }`}
+            data-index={index}
+            aria-label={`Ir para foto ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Conteúdo Central Sobreposto: Título TRAJETÓRIA + 3 Pilares em Grid de 3 Colunas -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 sm:-mt-24 md:-mt-28 relative z-10">
+    
+    <!-- Título Monumental: Deixe só TRAJETÓRIA -->
+    <div class="max-w-3xl mx-auto text-center mb-10 sm:mb-14">
+      <h2 class="font-display text-4xl sm:text-6xl lg:text-7xl font-black italic tracking-tight text-white leading-tight mb-3 drop-shadow-md">
+        TRAJETÓRIA
+      </h2>
+      <p class="font-sans text-sm sm:text-base md:text-lg text-blue-100/90 leading-relaxed max-w-2xl mx-auto font-normal">
+        Da vivência real nas emergências e plantões da Baixada Fluminense à liderança das maiores transformações na saúde pública do Estado.
+      </p>
+    </div>
+
+    <!-- 3 Linhas de Impacto em Grid 3 Colunas Moderno em Vidro Fosco -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+      
+      <!-- Card 01: Medicina -->
+      <div class="p-7 sm:p-8 rounded-3xl bg-[#112758]/90 backdrop-blur-md border border-white/10 shadow-2xl hover:border-[#F15A29]/50 transition-all duration-300 flex flex-col justify-between group">
+        <div>
+          <div class="flex items-baseline gap-3 mb-4">
             <span class="font-display text-3xl sm:text-4xl font-black italic text-[#F15A29] leading-none">
               01
             </span>
-            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">
+            <span class="text-xs font-bold text-orange-300/80 uppercase tracking-wider">
               Origem na Medicina
             </span>
           </div>
-          <h3 class="font-display text-2xl sm:text-3xl font-black italic text-[#123F8F] mb-3 leading-tight group-hover:text-[#F15A29] transition-colors">
+          <h3 class="font-display text-2xl sm:text-3xl font-black italic text-white mb-3 leading-tight group-hover:text-[#F15A29] transition-colors">
             O Médico da Baixada
           </h3>
-          <p class="font-sans text-sm sm:text-base text-slate-600 leading-relaxed mb-4">
+          <p class="font-sans text-sm text-blue-100/85 leading-relaxed mb-6 font-normal">
             Graduado em Medicina e especialista em Gestão de Saúde, começou sua vida profissional no atendimento direto às famílias da Baixada Fluminense. Conhece o sofrimento de quem aguarda por um leito ou exame de urgência porque esteve ao lado da maca, ouvindo os pacientes.
           </p>
-          <div class="text-xs font-bold text-[#123F8F] flex items-center gap-1.5">
-            <span class="text-emerald-600">✓</span>
-            <span>Da linha de frente dos hospitais para a gestão pública</span>
-          </div>
         </div>
+        <div class="pt-4 border-t border-white/10 text-xs font-bold text-white flex items-center gap-2">
+          <span class="text-emerald-400">✓</span>
+          <span>Da linha de frente para a gestão pública</span>
+        </div>
+      </div>
 
-        <!-- Linha 02: Gestão -->
-        <div class="p-7 sm:p-9 rounded-3xl bg-white border border-slate-200/80 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:border-[#F15A29]/40 transition-all duration-300 group">
-          <div class="flex items-baseline gap-4 mb-3">
+      <!-- Card 02: Gestão -->
+      <div class="p-7 sm:p-8 rounded-3xl bg-[#112758]/90 backdrop-blur-md border border-white/10 shadow-2xl hover:border-[#F15A29]/50 transition-all duration-300 flex flex-col justify-between group">
+        <div>
+          <div class="flex items-baseline gap-3 mb-4">
             <span class="font-display text-3xl sm:text-4xl font-black italic text-[#F15A29] leading-none">
               02
             </span>
-            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">
+            <span class="text-xs font-bold text-orange-300/80 uppercase tracking-wider">
               Capacidade de Execução
             </span>
           </div>
-          <h3 class="font-display text-2xl sm:text-3xl font-black italic text-[#123F8F] mb-3 leading-tight group-hover:text-[#F15A29] transition-colors">
+          <h3 class="font-display text-2xl sm:text-3xl font-black italic text-white mb-3 leading-tight group-hover:text-[#F15A29] transition-colors">
             Destravou Obras Históricas
           </h3>
-          <p class="font-sans text-sm sm:text-base text-slate-600 leading-relaxed mb-4">
+          <p class="font-sans text-sm text-blue-100/85 leading-relaxed mb-6 font-normal">
             Como Secretário de Saúde de Nova Iguaçu e duas vezes Secretário de Estado de Saúde do RJ, assumiu a liderança nos momentos mais críticos. Reabriu a Maternidade Mariana Bulhões, reestruturou o Hospital Geral da Posse e colocou fim a obras que estavam abandonadas há anos.
           </p>
-          <div class="text-xs font-bold text-[#123F8F] flex items-center gap-1.5">
-            <span class="text-emerald-600">✓</span>
-            <span>Resultados comprovados onde outros desistiram</span>
-          </div>
         </div>
+        <div class="pt-4 border-t border-white/10 text-xs font-bold text-white flex items-center gap-2">
+          <span class="text-emerald-400">✓</span>
+          <span>Resultados comprovados onde outros desistiram</span>
+        </div>
+      </div>
 
-        <!-- Linha 03: Mandato -->
-        <div class="p-7 sm:p-9 rounded-3xl bg-white border border-slate-200/80 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:border-[#F15A29]/40 transition-all duration-300 group">
-          <div class="flex items-baseline gap-4 mb-3">
+      <!-- Card 03: Mandato -->
+      <div class="p-7 sm:p-8 rounded-3xl bg-[#112758]/90 backdrop-blur-md border border-white/10 shadow-2xl hover:border-[#F15A29]/50 transition-all duration-300 flex flex-col justify-between group">
+        <div>
+          <div class="flex items-baseline gap-3 mb-4">
             <span class="font-display text-3xl sm:text-4xl font-black italic text-[#F15A29] leading-none">
               03
             </span>
-            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">
+            <span class="text-xs font-bold text-orange-300/80 uppercase tracking-wider">
               Atuação em Brasília
             </span>
           </div>
-          <h3 class="font-display text-2xl sm:text-3xl font-black italic text-[#123F8F] mb-3 leading-tight group-hover:text-[#F15A29] transition-colors">
+          <h3 class="font-display text-2xl sm:text-3xl font-black italic text-white mb-3 leading-tight group-hover:text-[#F15A29] transition-colors">
             Voz do Rio no Congresso
           </h3>
-          <p class="font-sans text-sm sm:text-base text-slate-600 leading-relaxed mb-4">
-            Como Deputado Federal e líder partidário, uniu a experiência médica à liderança política em Brasília. Articulou mais de R$ 800 milhões em investimentos e garantiu mais de R$ 570 milhões em recursos pagos na ponta para a saúde do Rio, viabilizando ambulâncias, custeio hospitalar e cirurgias que chegam de verdade às pessoas.
+          <p class="font-sans text-sm text-blue-100/85 leading-relaxed mb-6 font-normal">
+            Como Deputado Federal e líder partidário, uniu a experiência médica à liderança política em Brasília. Articulou mais de R$ 800 milhões em investimentos e garantiu mais de R$ 570 milhões em recursos pagos na ponta para a saúde do Rio, viabilizando ambulâncias, custeio hospitalar e cirurgias.
           </p>
-          <div class="text-xs font-bold text-[#123F8F] flex items-center gap-1.5">
-            <span class="text-emerald-600">✓</span>
-            <span>Recursos federais convertidos em saúde de verdade</span>
-          </div>
         </div>
-
+        <div class="pt-4 border-t border-white/10 text-xs font-bold text-white flex items-center gap-2">
+          <span class="text-emerald-400">✓</span>
+          <span>Recursos federais convertidos em saúde de verdade</span>
+        </div>
       </div>
 
     </div>
 
   </div>
 </section>
+
+<script>
+  function setupTrajetoriaSlideshow() {
+    const container = document.getElementById('trajetoria-slideshow');
+    if (!container) return;
+
+    const slides = container.querySelectorAll<HTMLElement>('.trajetoria-slide');
+    const dots = container.querySelectorAll<HTMLElement>('.trajetoria-dot');
+    const pill = document.getElementById('trajetoria-ctx-pill');
+    const total = slides.length;
+    if (total <= 1) return;
+
+    let current = 0;
+    let timer: any = null;
+
+    function show(index: number) {
+      current = (index + total) % total;
+      slides.forEach((s, idx) => {
+        if (idx === current) {
+          s.classList.remove('opacity-0', 'z-0', 'pointer-events-none');
+          s.classList.add('opacity-100', 'z-10');
+          if (pill) {
+            const title = s.getAttribute('data-title') || '';
+            const ctx = s.getAttribute('data-ctx') || '';
+            pill.textContent = `${ctx} · ${title}`;
+          }
+        } else {
+          s.classList.remove('opacity-100', 'z-10');
+          s.classList.add('opacity-0', 'z-0', 'pointer-events-none');
+        }
+      });
+
+      dots.forEach((d, idx) => {
+        if (idx === current) {
+          d.className = 'trajetoria-dot h-1.5 rounded-full transition-all duration-300 cursor-pointer w-7 bg-[#F15A29]';
+        } else {
+          d.className = 'trajetoria-dot h-1.5 rounded-full transition-all duration-300 cursor-pointer w-2 bg-white/40 hover:bg-white/70';
+        }
+      });
+    }
+
+    function next() {
+      show(current + 1);
+    }
+
+    function start() {
+      if (timer) clearInterval(timer);
+      timer = setInterval(next, 4000);
+    }
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const idx = parseInt(dot.getAttribute('data-index') || '0', 10);
+        show(idx);
+        start();
+      });
+    });
+
+    start();
+  }
+
+  setupTrajetoriaSlideshow();
+  document.addEventListener('astro:page-load', setupTrajetoriaSlideshow);
+</script>
