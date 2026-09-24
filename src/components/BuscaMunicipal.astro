@@ -6,11 +6,12 @@ import { obterTodosMunicipios } from '../data/municipios';
 
 const municipios = obterTodosMunicipios();
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
-// Atalhos rápidos para cidades estratégicas (máximo 5 cidades)
+// Atalhos rápidos para cidades estratégicas (6 cidades)
 const ATALHOS_CIDADES = [
   { nome: 'Nova Iguaçu', slug: 'nova-iguacu', label: 'Nova Iguaçu' },
   { nome: 'Rio de Janeiro', slug: 'rio-de-janeiro', label: 'Rio Capital' },
   { nome: 'Duque de Caxias', slug: 'duque-de-caxias', label: 'Duque de Caxias' },
+  { nome: 'Belford Roxo', slug: 'belford-roxo', label: 'Belford Roxo' },
   { nome: 'Volta Redonda', slug: 'volta-redonda', label: 'Volta Redonda' },
   { nome: 'Campos dos Goytacazes', slug: 'campos-dos-goytacazes', label: 'Campos' },
 ];
@@ -71,7 +72,7 @@ const ATALHOS_CIDADES = [
     </div>
 
     <!-- O Mapa Vetorial Fluminense Compacto e Direto -->
-    <div class="max-w-4xl mx-auto bg-white rounded-2xl p-2 sm:p-4 border border-slate-200/90 shadow-xl shadow-slate-200/40">
+    <div class="max-w-4xl mx-auto bg-[#050D1C] rounded-3xl p-1.5 sm:p-2.5 border border-blue-950/80 shadow-2xl shadow-blue-950/30">
       <MapaFluminense />
     </div>
 
