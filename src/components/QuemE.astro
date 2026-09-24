@@ -59,8 +59,8 @@ const fotos: FotoItem[] = [
 <section id="trajetoria" class="relative bg-[#071738] text-white overflow-hidden pb-16 sm:pb-24 border-b border-slate-900">
   <div id="quem-e" class="absolute -top-24 pointer-events-none"></div>
 
-  <!-- Topo: Slideshow de Fotos Históricas da Trajetória (Ocupando Toda a Largura com Rotação Orgânica) -->
-  <div id="trajetoria-slideshow" class="relative w-full h-80 sm:h-96 md:h-[460px] lg:h-[520px] overflow-hidden select-none bg-[#050E24]">
+  <!-- Topo: Slideshow de Fotos Históricas da Trajetória (Ocupando Toda a Largura de Ponta a Ponta e Teto Superior) -->
+  <div id="trajetoria-slideshow" class="relative w-full h-80 sm:h-96 md:h-[460px] lg:h-[520px] overflow-hidden select-none bg-[#071738]">
     
     {fotos.map((foto, index) => (
       <div
@@ -68,65 +68,47 @@ const fotos: FotoItem[] = [
           index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
         }`}
         data-index={index}
-        data-title={foto.titulo}
-        data-ctx={foto.contexto}
       >
-        <!-- Fundo desfocado imersivo preenchendo a tela -->
+        <!-- Foto de Ponta a Ponta, do Teto Superior à Base, sem bordas ou molduras -->
         <img
           src={foto.src}
-          alt=""
-          aria-hidden="true"
-          class="absolute inset-0 w-full h-full object-cover filter blur-2xl opacity-35 scale-110"
+          alt={foto.alt}
+          loading={index === 0 ? 'eager' : 'lazy'}
+          decoding="async"
+          class="w-full h-full object-cover object-[center_20%] sm:object-[center_25%] filter contrast-105"
         />
-
-        <!-- Foto Principal Nítida no Centro -->
-        <div class="relative w-full h-full flex items-center justify-center p-4">
-          <img
-            src={foto.src}
-            alt={foto.alt}
-            loading={index === 0 ? 'eager' : 'lazy'}
-            class="max-h-full max-w-full sm:max-w-xl md:max-w-2xl object-contain filter contrast-105 drop-shadow-2xl"
-          />
-        </div>
       </div>
     ))}
 
-    <!-- Gradiente suave na base que funde diretamente com o fundo azul #071738 da seção -->
-    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-[#071738] pointer-events-none"></div>
+    <!-- Gradiente sutil no topo para conectar suavemente ao header -->
+    <div class="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/50 via-black/20 to-transparent pointer-events-none z-10"></div>
 
-    <!-- Gradiente suave nas laterais para telas ultra-wide -->
-    <div class="absolute inset-0 bg-gradient-to-r from-[#071738]/80 via-transparent to-[#071738]/80 hidden md:block pointer-events-none"></div>
+    <!-- Gradiente profundo na base que funde 100% com o fundo azul #071738 da seção -->
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#071738]/50 to-[#071738] pointer-events-none z-10"></div>
+    <div class="absolute inset-x-0 bottom-0 h-44 sm:h-56 bg-gradient-to-t from-[#071738] via-[#071738]/90 to-transparent pointer-events-none z-10"></div>
 
-    <!-- Legenda da Foto Ativa & Indicadores de Paginação -->
-    <div class="absolute bottom-12 sm:bottom-16 left-0 right-0 z-20 flex flex-col items-center gap-2 pointer-events-auto px-4">
-      <!-- Pílula de Contexto da Foto -->
-      <span id="trajetoria-ctx-pill" class="px-3.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-orange-300 font-sans text-xs font-semibold shadow-lg">
-        {fotos[0].contexto} · {fotos[0].titulo}
-      </span>
-
-      <!-- Indicadores de Paginação -->
-      <div class="flex items-center gap-2 mt-1">
-        {fotos.map((_, index) => (
-          <button
-            type="button"
-            class={`trajetoria-dot h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-              index === 0 ? 'w-7 bg-[#F15A29]' : 'w-2 bg-white/40 hover:bg-white/70'
-            }`}
-            data-index={index}
-            aria-label={`Ir para foto ${index + 1}`}
-          />
-        ))}
-      </div>
+    <!-- Indicadores de Paginação Discretos no Topo Direito (Completamente afastados do centro e do título) -->
+    <div class="absolute top-5 right-5 sm:top-6 sm:right-8 z-20 flex items-center gap-1.5 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15 pointer-events-auto shadow-lg">
+      {fotos.map((_, index) => (
+        <button
+          type="button"
+          class={`trajetoria-dot h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+            index === 0 ? 'w-5 bg-[#F15A29]' : 'w-1.5 bg-white/40 hover:bg-white/70'
+          }`}
+          data-index={index}
+          aria-label={`Foto ${index + 1}`}
+        />
+      ))}
     </div>
 
   </div>
 
-  <!-- Conteúdo Central Sobreposto: Título TRAJETÓRIA + 3 Pilares em Grid de 3 Colunas -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 sm:-mt-24 md:-mt-28 relative z-10">
+  <!-- Conteúdo Central: Título TRAJETÓRIA + 3 Pilares em Grid de 3 Colunas -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-14 sm:-mt-16 md:-mt-20 relative z-20">
     
-    <!-- Título Monumental: Deixe só TRAJETÓRIA -->
+    <!-- Título Monumental: Deixe só TRAJETÓRIA com Contraste Absoluto -->
     <div class="max-w-3xl mx-auto text-center mb-10 sm:mb-14">
-      <h2 class="font-display text-4xl sm:text-6xl lg:text-7xl font-black italic tracking-tight text-white leading-tight mb-3 drop-shadow-md">
+      <h2 class="font-display text-4xl sm:text-6xl lg:text-7xl font-black italic tracking-tight text-white leading-tight mb-3 drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
         TRAJETÓRIA
       </h2>
       <p class="font-sans text-sm sm:text-base md:text-lg text-blue-100/90 leading-relaxed max-w-2xl mx-auto font-normal">
@@ -221,7 +203,6 @@ const fotos: FotoItem[] = [
 
     const slides = container.querySelectorAll<HTMLElement>('.trajetoria-slide');
     const dots = container.querySelectorAll<HTMLElement>('.trajetoria-dot');
-    const pill = document.getElementById('trajetoria-ctx-pill');
     const total = slides.length;
     if (total <= 1) return;
 
@@ -234,11 +215,6 @@ const fotos: FotoItem[] = [
         if (idx === current) {
           s.classList.remove('opacity-0', 'z-0', 'pointer-events-none');
           s.classList.add('opacity-100', 'z-10');
-          if (pill) {
-            const title = s.getAttribute('data-title') || '';
-            const ctx = s.getAttribute('data-ctx') || '';
-            pill.textContent = `${ctx} · ${title}`;
-          }
         } else {
           s.classList.remove('opacity-100', 'z-10');
           s.classList.add('opacity-0', 'z-0', 'pointer-events-none');
@@ -247,9 +223,9 @@ const fotos: FotoItem[] = [
 
       dots.forEach((d, idx) => {
         if (idx === current) {
-          d.className = 'trajetoria-dot h-1.5 rounded-full transition-all duration-300 cursor-pointer w-7 bg-[#F15A29]';
+          d.className = 'trajetoria-dot h-1.5 rounded-full transition-all duration-300 cursor-pointer w-5 bg-[#F15A29]';
         } else {
-          d.className = 'trajetoria-dot h-1.5 rounded-full transition-all duration-300 cursor-pointer w-2 bg-white/40 hover:bg-white/70';
+          d.className = 'trajetoria-dot h-1.5 rounded-full transition-all duration-300 cursor-pointer w-1.5 bg-white/40 hover:bg-white/70';
         }
       });
     }
