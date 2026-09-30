@@ -15,8 +15,8 @@ const {
 } = Astro.props;
 
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
-const ogImage = `${Astro.site || 'https://felippejuan.github.io'}${baseUrl}${image}`;
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://felippejuan.github.io');
+const ogImage = `${Astro.site || 'https://drluizinho.com.br'}${baseUrl}${image}`;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://drluizinho.com.br');
 ---
 
 <!doctype html>
@@ -123,7 +123,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://felippej
 
           <!-- Botão Compartilhar pelo WhatsApp Oficial (destaque no header) -->
           <a
-            href="https://api.whatsapp.com/send?text=%F0%9F%8F%A5%20*Conhe%C3%A7a%20o%20site%20oficial%20do%20Dr.%20Luizinho%201177!*%20Veja%20as%20principais%20entregas%20e%20investimentos%20pela%20sa%C3%BAde%20do%20Estado%20do%20Rio%3A%0Ahttps%3A%2F%2Ffelippejuan.github.io%2Fsite-1177%2F"
+            href="https://api.whatsapp.com/send?text=%F0%9F%8F%A5%20*Conhe%C3%A7a%20o%20site%20oficial%20do%20Dr.%20Luizinho%201177!*%20Veja%20as%20principais%20entregas%20e%20investimentos%20pela%20sa%C3%BAde%20do%20Estado%20do%20Rio%3A%0Ahttps%3A%2F%2Fdrluizinho.com.br%2F"
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-full bg-[#F15A29] hover:bg-[#D94819] text-white font-sans text-xs sm:text-sm font-bold shadow-md shadow-orange-500/20 hover:shadow-orange-500/30 transition-all hover:scale-105 active:scale-95 shrink-0"
