@@ -15,7 +15,8 @@ const {
 } = Astro.props;
 
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
-const ogImage = `${Astro.site || 'https://drluizinho.com.br'}${baseUrl}${image}`;
+const siteOrigin = (Astro.site ? Astro.site.toString() : 'https://drluizinho.com.br').replace(/\/$/, '');
+const ogImage = `${siteOrigin}${baseUrl}${image}`;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://drluizinho.com.br');
 ---
 
