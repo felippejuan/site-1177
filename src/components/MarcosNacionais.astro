@@ -177,10 +177,10 @@ const MARCOS = [
                 </p>
 
                 {marco.itens && marco.itens.length > 0 && (
-                  <ul class="space-y-2 mb-6">
+                  <ul class="space-y-2.5 mb-6">
                     {marco.itens.map((item) => (
-                      <li class="font-sans text-[13px] sm:text-[14px] text-slate-700 leading-snug flex items-start gap-2">
-                        <span class="text-emerald-500 font-bold shrink-0 mt-0.5">✔</span>
+                      <li class="font-sans text-[13px] sm:text-[14px] font-bold text-slate-800 leading-snug flex items-start gap-2">
+                        <span class="text-emerald-600 font-black shrink-0 mt-0.5">✔</span>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -188,17 +188,10 @@ const MARCOS = [
                 )}
               </div>
 
-              <!-- Rodapé Institucional: Referência Legal + Conquista Prática -->
-              <div class="pt-4 border-t border-slate-100 flex items-center justify-between gap-2 flex-wrap">
+              <!-- Rodapé Institucional: Apenas Referência Legal Limpa -->
+              <div class="pt-3.5 border-t border-slate-100 flex items-center">
                 <span class="font-mono text-xs font-bold text-slate-400 uppercase tracking-wide">
                   {marco.referencia}
-                </span>
-
-                <span class="inline-flex items-center gap-1 text-xs font-bold text-[#123F8F] bg-slate-50 border border-slate-200/60 px-2.5 py-1 rounded-lg">
-                  <svg class="w-3.5 h-3.5 text-emerald-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span>{marco.impactoCurto}</span>
                 </span>
               </div>
             </article>
