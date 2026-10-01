@@ -301,8 +301,8 @@ export const ENTREGAS: Entrega[] = [
   },
   {
     id: 'acolhe-rj',
-    nome: 'Programa Acolhe RJ',
-    subtitulo: 'Planejamento reprodutivo e prevenção à gravidez precoce no SUS',
+    nome: 'Acolhe RJ e Acolhe Baixada',
+    subtitulo: 'Planejamento reprodutivo e autonomia feminina no SUS',
     janela: 'J2',
     papel: 'idealizou',
     status: 'verificado',
@@ -312,11 +312,11 @@ export const ENTREGAS: Entrega[] = [
     imagem: '/videos/acolhe-rj-card-thumb.jpg',
     videoUrl: '/videos/acolhe-rj.mp4',
     videoDuracao: '1:52',
-    municipioPrincipal: 'Todo o Estado do RJ',
-    municipiosBeneficiados: ['Nova Iguaçu', 'Rio de Janeiro', 'Duque de Caxias', 'São Gonçalo', 'Todo o Estado'],
-    fraseOQueE: 'Criado por Doutor Luizinho na Secretaria de Estado de Saúde, o Acolhe RJ é o maior programa público estadual de prevenção à gravidez não planejada do Brasil.',
-    fraseNumero: 'Mais de 40 mil meninas e mulheres orientadas e mais de 30 mil métodos modernos de longa duração inseridos gratuitamente pelo SUS, incluindo implantes subdérmicos (Implanon) e DIUs.',
-    fraseImpacto: 'Jovens de áreas vulneráveis ganham autonomia sobre suas próprias vidas, garantindo a oportunidade de estudar, trabalhar e planejar sua família na hora certa.',
+    municipioPrincipal: 'Todo o Estado e Baixada Fluminense',
+    municipiosBeneficiados: ['Nova Iguaçu', 'Rio de Janeiro', 'Duque de Caxias', 'Belford Roxo', 'São João de Meriti', 'Todo o Estado'],
+    fraseOQueE: 'Criado por Doutor Luizinho, o Acolhe RJ e sua expansão no Acolhe Baixada garantem acesso gratuito a implantes subdérmicos e planejamento reprodutivo.',
+    fraseNumero: 'Mais de 40 mil mulheres acolhidas e mais de 30 mil métodos modernos de longa duração (Implanon e DIU) 100% pelo SUS.',
+    fraseImpacto: 'Jovens de áreas vulneráveis da Baixada e de todo o estado ganham autonomia sobre o próprio futuro para estudar, trabalhar e planejar a família na hora certa.',
     numeros: [
       {
         valor: '40 mil+',
