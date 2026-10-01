@@ -258,8 +258,8 @@ export const ENTREGAS: Entrega[] = [
   },
   {
     id: 'cedtea-gavea',
-    nome: 'Cedtea Gávea',
-    subtitulo: '1º Centro Estadual de Diagnóstico Precoce do Autismo (TEA)',
+    nome: 'Cedtea (Gávea e Nova Iguaçu)',
+    subtitulo: 'Centros de Diagnóstico Precoce do Autismo (TEA)',
     janela: 'J2',
     papel: 'idealizou',
     status: 'verificado',
@@ -269,11 +269,11 @@ export const ENTREGAS: Entrega[] = [
     imagem: '/videos/cedtea-card-thumb.jpg',
     videoUrl: '/videos/cedtea.mp4',
     videoDuracao: '1:03',
-    municipioPrincipal: 'Rio de Janeiro (Gávea)',
-    municipiosBeneficiados: ['Rio de Janeiro', 'Nova Iguaçu', 'Miguel Pereira', 'Todo o Estado'],
-    fraseOQueE: 'Criou o 1º centro público estadual exclusivo para acolhimento e diagnóstico precoce do espectro autista.',
-    fraseNumero: 'Mais de 13 mil consultas multidisciplinares e mais de 1.350 laudos conclusivos de TEA emitidos.',
-    fraseImpacto: 'Mães que passavam anos peregrinando de posto em posto sem resposta agora saem com o laudo na mão, garantindo o início das terapias no momento certo para o futuro do filho.',
+    municipioPrincipal: 'Gávea e Nova Iguaçu',
+    municipiosBeneficiados: ['Rio de Janeiro', 'Nova Iguaçu', 'Baixada Fluminense', 'Todo o Estado'],
+    fraseOQueE: 'Criou os centros de referência na Gávea e em Nova Iguaçu dedicados ao acolhimento e diagnóstico precoce do autismo.',
+    fraseNumero: 'Mais de 13 mil atendimentos multidisciplinares e mais de 1.350 laudos de TEA emitidos.',
+    fraseImpacto: 'Mães e famílias que passavam anos peregrinando sem respostas agora têm diagnóstico ágil e acolhimento especializado na Gávea e na Baixada para iniciar as terapias a tempo.',
     numeros: [
       {
         valor: '13 mil',
@@ -291,8 +291,8 @@ export const ENTREGAS: Entrega[] = [
         fonte: 'Fundação Saúde / Carta de Serviços',
       },
       {
-        valor: '2.600',
-        rotulo: 'crianças e famílias acolhidas com dignidade',
+        valor: '2 polos',
+        rotulo: 'de acolhimento e diagnóstico na Gávea e Baixada',
         mes: 4,
         ano: 2024,
         fonte: 'Fundação Saúde / SES-RJ',
