@@ -178,7 +178,7 @@ export const ENTREGAS: Entrega[] = [
     status: 'verificado',
     destaque: true,
     categoria: 'especialidade',
-    badge: 'Zona Oeste',
+    badge: 'Assistência, Ensino e Inovação',
     imagem: '/videos/ie-olhos-card-thumb.jpg',
     videoUrl: '/videos/ie-olhos.mp4',
     videoDuracao: '1:53',
