@@ -9,7 +9,7 @@ const isPersonalDemo = process.env.GITHUB_REPOSITORY === 'felippejuan/site-1177'
 
 // https://astro.build/config
 export default defineConfig({
-  site: isPersonalDemo ? 'https://felippejuan.github.io' : (process.env.SITE_URL || 'https://doutorluizinho.com.br'),
+  site: 'https://doutorluizinho.com.br',
   base: isPersonalDemo ? '/site-1177' : (process.env.BASE_PATH || '/'),
   output: 'static',
   vite: {

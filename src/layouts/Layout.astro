@@ -15,9 +15,10 @@ const {
 } = Astro.props;
 
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
-const siteOrigin = (Astro.site ? Astro.site.toString() : 'https://doutorluizinho.com.br').replace(/\/$/, '');
-const ogImage = `${siteOrigin}${baseUrl}${image}`;
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://doutorluizinho.com.br');
+const siteOrigin = 'https://doutorluizinho.com.br';
+const ogImage = `${siteOrigin}${image}`;
+const cleanPath = Astro.url.pathname.replace(/^\/site-1177/, '') || '/';
+const canonicalUrl = new URL(cleanPath, siteOrigin);
 ---
 
 <!doctype html>
@@ -59,6 +60,43 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://doutorlu
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={ogImage} />
+
+    <!-- Prevenção de Cache de Navegador para Conteúdo HTML -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <!-- Sanitizador Ativo de Links de Compartilhamento WhatsApp -->
+    <script is:inline>
+      (function() {
+        function sanitizeWa() {
+          var links = document.querySelectorAll('a[href*="whatsapp"]');
+          for (var i = 0; i < links.length; i++) {
+            var a = links[i];
+            if (a.href.indexOf('felippejuan') !== -1 || a.href.indexOf('drluizinho.com.br') !== -1) {
+              a.href = a.href
+                .replace(/felippejuan\.github\.io\/site-1177/g, 'doutorluizinho.com.br')
+                .replace(/felippejuan\.github\.io/g, 'doutorluizinho.com.br')
+                .replace(/drluizinho\.com\.br/g, 'doutorluizinho.com.br');
+            }
+          }
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', sanitizeWa);
+        } else {
+          sanitizeWa();
+        }
+        document.addEventListener('click', function(e) {
+          var el = e.target && e.target.closest ? e.target.closest('a[href*="whatsapp"]') : null;
+          if (el) {
+            el.href = el.href
+              .replace(/felippejuan\.github\.io\/site-1177/g, 'doutorluizinho.com.br')
+              .replace(/felippejuan\.github\.io/g, 'doutorluizinho.com.br')
+              .replace(/drluizinho\.com\.br/g, 'doutorluizinho.com.br');
+          }
+        }, true);
+      })();
+    </script>
 
     <!-- Acessibilidade: Restaura tamanho da letra salvo sem piscar a tela -->
     <script is:inline>
