@@ -1,74 +1,178 @@
 ---
 // src/components/Hero.astro
-// Hero Cinemático em Coluna Única — Fundo Branco com Vídeo Nítido em Segundo Plano
+// Hero Oficial de Campanha — Carrossel de Fotos Reais com Fundo Nítido e Contraste Editorial
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const slides = [
+  {
+    src: `${baseUrl}/home/home1.webp`,
+    alt: 'Dr. Luizinho em diálogo carinhoso com apoiadora idosa nas ruas do Rio de Janeiro',
+    pos: 'object-[65%_20%] sm:object-[60%_25%]'
+  },
+  {
+    src: `${baseUrl}/home/home2.webp`,
+    alt: 'Dr. Luizinho em caminhada popular pelo Estado do Rio de Janeiro',
+    pos: 'object-[50%_20%]'
+  },
+  {
+    src: `${baseUrl}/home/home3.webp`,
+    alt: 'Dr. Luizinho com moradores e famílias fluminenses',
+    pos: 'object-[50%_25%]'
+  },
+  {
+    src: `${baseUrl}/home/home4.webp`,
+    alt: 'Mobilização e carinho popular com Dr. Luizinho',
+    pos: 'object-[50%_25%]'
+  }
+];
 ---
 
-<section class="relative min-h-[85vh] lg:min-h-[88vh] flex items-center justify-center overflow-hidden bg-white text-slate-900 pt-12 pb-20 lg:pt-20 lg:pb-28 border-b border-slate-200/80">
+<section
+  id="hero-carousel-container"
+  class="relative min-h-[92vh] sm:min-h-[94vh] lg:min-h-[96vh] flex flex-col justify-end overflow-hidden bg-[#071F54] text-white"
+>
   
-  <!-- Vídeo de Fundo Cinemático Bem Mais Visível -->
-  <div class="absolute inset-0 overflow-hidden pointer-events-none">
-    <video
-      autoplay
-      loop
-      muted
-      playsinline
-      preload="auto"
-      class="w-full h-full object-cover opacity-80 md:opacity-85 filter contrast-105"
-    >
-      <source src={`${baseUrl}/video-deputado.mp4`} type="video/mp4" />
-    </video>
+  <!-- Trilho do Carrossel de Fotos de Fundo (Totalmente Nítidas, Sem Efeito de Ofuscar) -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+    {slides.map((slide, idx) => (
+      <div
+        class={`hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out ${idx === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+        data-index={idx}
+      >
+        <img
+          src={slide.src}
+          alt={slide.alt}
+          class={`w-full h-full object-cover filter contrast-[1.04] brightness-[1.02] ${slide.pos}`}
+          loading={idx === 0 ? 'eager' : 'lazy'}
+          decoding="async"
+        />
+      </div>
+    ))}
 
-    <!-- Scrim Suave Translúcido para Leitura Perfeita com Vídeo Nítido -->
-    <div class="absolute inset-0 bg-white/70 sm:bg-white/60"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/30"></div>
+    <!-- Gradiente Editorial Orgânico: Fundo Nítido no Topo, Fusão com Azul Royal na Base -->
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#061D4A]/55 to-[#071F54] pointer-events-none z-10"></div>
   </div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-    <div class="max-w-3xl mx-auto text-center flex flex-col items-center">
-      
-      <!-- Título Monumental Direto e Forte -->
-      <h1 class="font-display text-[clamp(33px,9vw,40px)] min-[430px]:text-[42px] sm:text-5xl lg:text-6xl font-black italic uppercase tracking-tight text-[#123F8F] leading-[1.06] mb-6">
-        <span class="whitespace-nowrap tracking-tight">TRABALHO E CORAGEM PARA</span> <br />
-        <span class="text-[#F15A29]">CUIDAR DAS PESSOAS <br class="sm:hidden" />
-        E SALVAR VIDAS</span>.
-      </h1>
+  <!-- Conteúdo Principal: Título Monumental + Sublinhado + Botões de Ação -->
+  <div class="max-w-md sm:max-w-xl lg:max-w-2xl mx-auto px-5 sm:px-6 w-full relative z-20 pt-48 sm:pt-64 md:pt-72 pb-2">
+    
+    <!-- Título em 4 Linhas com Tipografia de Grande Impacto -->
+    <h1 class="font-display text-[32px] min-[390px]:text-[37px] sm:text-5xl md:text-6xl font-black italic uppercase tracking-tight leading-[0.98] drop-shadow-lg text-left">
+      <span class="text-white block">TRABALHO E</span>
+      <span class="text-white block">CORAGEM PARA</span>
+      <span class="text-[#F15A29] block">CUIDAR DAS PESSOAS</span>
+      <span class="text-[#F15A29] block">E SALVAR VIDAS.</span>
+    </h1>
 
-      <!-- Subtítulo Humano Focado no Eleitor -->
-      <div class="font-sans text-base sm:text-lg text-slate-800 max-w-3xl leading-relaxed mb-9 space-y-3">
-        <p class="font-medium text-slate-800">
-          Da criação do Rio Imagem e do Onco Baixada à chegada do SAMU em 100% dos municípios fluminenses, ele provou que é possível transformar a saúde pública.
-        </p>
-        <p class="font-medium text-slate-800">
-          Hoje, no Congresso Nacional, essa mesma dedicação se transforma em leis e projetos que fortalecem o SUS e protegem a vida de milhões de brasileiros.
-        </p>
-      </div>
-
-      <!-- Botões de Ação com Alta Usabilidade (UX Friendly) -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
-        <!-- CTA Primário: Buscar Cidade -->
-        <a
-          href="#minha-cidade"
-          class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-[#F15A29] hover:bg-[#D94819] text-white font-sans text-base font-bold shadow-xl shadow-orange-500/25 hover:shadow-orange-500/35 hover:scale-105 active:scale-95 transition-all"
-        >
-          <span>Veja o que ele fez pela sua cidade ↓</span>
-        </a>
-
-        <!-- CTA Secundário: WhatsApp em Azul com contraste em branco -->
-        <a
-          href="https://api.whatsapp.com/send?phone=5521999251177&text=Ol%C3%A1%2C%20Dr.%20Luizinho!%20Vim%20pelo%20site%20oficial%20e%20quero%20acompanhar%20as%20novidades%20e%20o%20trabalho%20pela%20sa%C3%BAde%20do%20Rio."
-          target="_blank"
-          rel="noopener noreferrer"
-          class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-4 rounded-2xl bg-[#123F8F] hover:bg-[#0D2F6B] text-white font-sans text-base font-bold border border-blue-700/60 shadow-lg shadow-blue-950/20 hover:scale-105 active:scale-95 transition-all"
-          title="Fale com a gente pelo WhatsApp"
-        >
-          <svg class="w-6 h-6 sm:w-7 sm:h-7 fill-current text-white shrink-0" viewBox="5.5 5.5 13 13">
-            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/>
-          </svg>
-          <span>Fale com a gente pelo WhatsApp</span>
-        </a>
-      </div>
-
+    <!-- Pincelada / Swoosh Laranja Abaixo do Título -->
+    <div class="mt-2 mb-6 sm:mb-8 text-left">
+      <svg class="w-48 sm:w-64 h-3 sm:h-3.5 text-[#F15A29]" viewBox="0 0 220 14" fill="none" aria-hidden="true">
+        <path d="M2 10C55 2 165 2 218 10C155 5 65 5 2 10Z" fill="currentColor"/>
+      </svg>
     </div>
+
+    <!-- Botões de Ação em Pílula (Design Fiel ao Mockup) -->
+    <div class="flex flex-col gap-3.5 sm:gap-4 w-full">
+      <!-- Botão Primário Laranja -->
+      <a
+        href="#minha-cidade"
+        class="w-full inline-flex items-center justify-center px-6 py-4 rounded-full bg-[#F15A29] hover:bg-[#D94819] text-white font-sans text-base sm:text-lg font-bold shadow-xl shadow-orange-950/40 hover:scale-[1.02] active:scale-[0.98] transition-all text-center cursor-pointer"
+      >
+        <span>Veja o que ele fez pela sua cidade ↓</span>
+      </a>
+
+      <!-- Botão Secundário WhatsApp em Azul Royal com Ícone Branco -->
+      <a
+        href="https://api.whatsapp.com/send?phone=5521999251177&text=Ol%C3%A1%2C%20Dr.%20Luizinho!%20Vim%20pelo%20site%20oficial%20e%20quero%20acompanhar%20as%20novidades%20e%20o%20trabalho%20pela%20sa%C3%BAde%20do%20Rio."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-[#0E4CB5] hover:bg-[#0B3D91] text-white font-sans text-base sm:text-lg font-bold border border-blue-400/40 shadow-xl shadow-blue-950/40 hover:scale-[1.02] active:scale-[0.98] transition-all text-center cursor-pointer"
+        title="Fale com a gente pelo WhatsApp"
+      >
+        <svg class="w-6 h-6 sm:w-6.5 sm:h-6.5 fill-current text-white shrink-0" viewBox="5.5 5.5 13 13">
+          <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z"/>
+        </svg>
+        <span>Fale com a gente pelo WhatsApp</span>
+      </a>
+    </div>
+
+    <!-- Indicadores de Slides (Bolinhas Discretas) -->
+    <div class="flex items-center justify-center gap-2 mt-5">
+      {slides.map((_, idx) => (
+        <button
+          type="button"
+          class={`hero-dot h-2 rounded-full transition-all cursor-pointer ${idx === 0 ? 'bg-white w-6' : 'bg-white/40 w-2 hover:bg-white/70'}`}
+          aria-label={`Ir para a foto ${idx + 1}`}
+          data-slide-to={idx}
+        ></button>
+      ))}
+    </div>
+
   </div>
+
+  <!-- Onda Orgânica Branca que Conecta Diretamente com a Próxima Seção -->
+  <div class="w-full overflow-hidden leading-none -mb-1 mt-4 relative z-20 pointer-events-none">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="relative block w-full h-8 sm:h-12 md:h-14 text-white fill-current">
+      <path d="M0,0 C300,90 900,90 1200,0 L1200,120 L0,120 Z"></path>
+    </svg>
+  </div>
+
 </section>
+
+<script>
+  function initHeroCarousel() {
+    const slides = document.querySelectorAll<HTMLElement>('.hero-slide');
+    const dots = document.querySelectorAll<HTMLElement>('.hero-dot');
+    if (!slides.length) return;
+
+    let currentIndex = 0;
+    let timer: number | null = null;
+
+    function goToSlide(index: number) {
+      slides[currentIndex].classList.remove('opacity-100', 'z-10');
+      slides[currentIndex].classList.add('opacity-0', 'z-0');
+      dots[currentIndex]?.classList.remove('bg-white', 'w-6');
+      dots[currentIndex]?.classList.add('bg-white/40', 'w-2');
+
+      currentIndex = (index + slides.length) % slides.length;
+
+      slides[currentIndex].classList.remove('opacity-0', 'z-0');
+      slides[currentIndex].classList.add('opacity-100', 'z-10');
+      dots[currentIndex]?.classList.remove('bg-white/40', 'w-2');
+      dots[currentIndex]?.classList.add('bg-white', 'w-6');
+    }
+
+    function nextSlide() {
+      goToSlide(currentIndex + 1);
+    }
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      timer = window.setInterval(nextSlide, 5000);
+    }
+
+    function stopAutoPlay() {
+      if (timer !== null) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        goToSlide(idx);
+        startAutoPlay();
+      });
+    });
+
+    const heroSection = document.getElementById('hero-carousel-container');
+    heroSection?.addEventListener('mouseenter', stopAutoPlay);
+    heroSection?.addEventListener('mouseleave', startAutoPlay);
+
+    startAutoPlay();
+  }
+
+  // Executa imediatamente e no evento de navegação do Astro
+  initHeroCarousel();
+  document.addEventListener('astro:page-load', initHeroCarousel);
+</script>
