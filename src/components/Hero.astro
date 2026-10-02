@@ -21,6 +21,36 @@ const slides = [
     mobileSrc: `${baseUrl}/home/home3-mobile.webp`,
     alt: 'Dr. Luizinho em abraço carinhoso com idosa fluminense',
     pos: 'object-top sm:object-[center_15%]'
+  },
+  {
+    src: `${baseUrl}/home/home4.webp`,
+    mobileSrc: `${baseUrl}/home/home4-mobile.webp`,
+    alt: 'Dr. Luizinho em momento de carinho com apoiadora de longa data',
+    pos: 'object-top sm:object-[center_15%]'
+  },
+  {
+    src: `${baseUrl}/home/home5.webp`,
+    mobileSrc: `${baseUrl}/home/home5-mobile.webp`,
+    alt: 'Dr. Luizinho abraçando com carinho uma criança fluminense',
+    pos: 'object-top sm:object-[center_15%]'
+  },
+  {
+    src: `${baseUrl}/home/home6.webp`,
+    mobileSrc: `${baseUrl}/home/home6-mobile.webp`,
+    alt: 'Dr. Luizinho ao lado de idoso em momento de afeto e proximidade',
+    pos: 'object-top sm:object-[center_15%]'
+  },
+  {
+    src: `${baseUrl}/home/home7.webp`,
+    mobileSrc: `${baseUrl}/home/home7-mobile.webp`,
+    alt: 'Dr. Luizinho em abraço caloroso com apoiador fluminense',
+    pos: 'object-top sm:object-[center_15%]'
+  },
+  {
+    src: `${baseUrl}/home/home8.webp`,
+    mobileSrc: `${baseUrl}/home/home8-mobile.webp`,
+    alt: 'Dr. Luizinho em conversa alegre e descontraída com cidadão em comércio local',
+    pos: 'object-top sm:object-[center_15%]'
   }
 ];
 ---
@@ -169,6 +199,28 @@ const slides = [
     const heroSection = document.getElementById('hero-carousel-container');
     heroSection?.addEventListener('mouseenter', stopAutoPlay);
     heroSection?.addEventListener('mouseleave', startAutoPlay);
+
+    // Suporte a swipe por toque no mobile
+    let touchStartX = 0;
+    let touchStartY = 0;
+    heroSection?.addEventListener('touchstart', (e: TouchEvent) => {
+      touchStartX = e.changedTouches[0].clientX;
+      touchStartY = e.changedTouches[0].clientY;
+    }, { passive: true });
+
+    heroSection?.addEventListener('touchend', (e: TouchEvent) => {
+      const diffX = e.changedTouches[0].clientX - touchStartX;
+      const diffY = e.changedTouches[0].clientY - touchStartY;
+      // Garante que é um swipe horizontal intencional (e não rolagem vertical da página)
+      if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+        if (diffX < 0) {
+          goToSlide(currentIndex + 1);
+        } else {
+          goToSlide(currentIndex - 1);
+        }
+        startAutoPlay();
+      }
+    }, { passive: true });
 
     startAutoPlay();
   }
