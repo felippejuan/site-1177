@@ -30,8 +30,8 @@ const slides = [
   class="relative min-h-[92vh] sm:min-h-[94vh] lg:min-h-[96vh] flex flex-col justify-end overflow-hidden bg-[#071F54] text-white"
 >
   
-  <!-- Trilho do Carrossel de Fotos de Fundo (Totalmente Nítidas, Sem Efeito de Ofuscar) -->
-  <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+  <!-- Trilho do Carrossel de Fotos de Fundo (Largura Total sem Esticar, Fim na Linha da Sombra) -->
+  <div class="absolute inset-x-0 top-0 h-[64%] sm:h-[72%] lg:h-full overflow-hidden pointer-events-none z-0">
     {slides.map((slide, idx) => (
       <div
         class={`hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out ${idx === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
@@ -50,8 +50,8 @@ const slides = [
       </div>
     ))}
 
-    <!-- Gradiente Editorial Orgânico: Topo 100% Nítido/Transparente, Fusão Suave com Azul Royal na Base -->
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#071F54]/75 to-[#071F54] from-30% via-65% to-90% pointer-events-none z-10"></div>
+    <!-- Gradiente Editorial: Funde a base da foto suavemente com o azul sólido #071F54 na linha da sombra -->
+    <div class="absolute inset-x-0 bottom-0 h-44 sm:h-56 bg-gradient-to-b from-transparent via-[#071F54]/75 to-[#071F54] pointer-events-none z-10"></div>
   </div>
 
   <!-- Conteúdo Principal: Título Monumental + Sublinhado + Botões de Ação -->
