@@ -42,7 +42,7 @@ const fullVideoUrl = entrega.videoUrl ? `${baseUrl}${entrega.videoUrl}` : null;
     <!-- Foto / Mídia Compacta Integrada (quando disponível) -->
     {fullImgUrl && (
       <div
-        class="relative w-full h-28 rounded-xl overflow-hidden mb-3 bg-slate-900 border border-slate-200/80 shadow-xs group/thumb cursor-pointer"
+        class={`relative w-full h-28 rounded-xl overflow-hidden mb-3 bg-slate-900 border border-slate-200/80 shadow-xs group/thumb ${fullVideoUrl ? 'cursor-pointer' : ''}`}
         data-open-video={fullVideoUrl || ''}
         data-video-title={`${entrega.nome} — Dr. Luizinho`}
       >
