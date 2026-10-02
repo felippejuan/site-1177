@@ -9,8 +9,7 @@ import MarcosNacionais from '../components/MarcosNacionais.astro';
 import Carrossel from '../components/Carrossel.astro';
 import BuscaMunicipal from '../components/BuscaMunicipal.astro';
 import SerieCuidandoDeGente from '../components/SerieCuidandoDeGente.astro';
-
-const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+import CarrosselMobilizacao from '../components/CarrosselMobilizacao.astro';
 ---
 
 <Layout>
@@ -54,30 +53,11 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
   <!-- 6. Série Documental no YouTube: Cuidando de Gente -->
   <SerieCuidandoDeGente />
 
-  <!-- 6. Seção Editorial de Mobilização pelo Rio: Integração Orgânica de Ponta a Ponta -->
+  <!-- 6. Seção Editorial de Mobilização: Integração Orgânica de Ponta a Ponta -->
   <section class="relative bg-[#071738] text-white overflow-hidden pb-12 sm:pb-16 md:pb-20">
     
-    <!-- Topo: Foto Somos Muitos Ocupando Toda a Largura do Topo (Sem caixas ou molduras) -->
-    <div class="relative w-full h-96 sm:h-[420px] md:h-[480px] lg:h-[540px] overflow-hidden">
-      <img
-        src={`${baseUrl}/somos-muitos-card.webp`}
-        alt="Mobilização popular com Dr. Luizinho no Rio de Janeiro"
-        loading="lazy"
-        decoding="async"
-        class="w-full h-full object-cover object-top filter contrast-105"
-      />
-      <!-- Gradiente suave na base que funde diretamente com o fundo azul #071738 da seção -->
-      <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-[#071738]"></div>
-
-      <!-- Badge no topo da foto perfeitamente alinhado -->
-      <div class="absolute top-5 sm:top-7 left-0 right-0 z-20 pointer-events-none">
-        <div class="max-w-2xl mx-auto px-4 sm:px-6">
-          <span class="inline-flex items-center px-3.5 py-1.5 rounded-full bg-white text-[#123F8F] font-sans text-xs font-bold uppercase tracking-wider shadow-md pointer-events-auto">
-            JUNTOS PELO RIO E PELO BRASIL
-          </span>
-        </div>
-      </div>
-    </div>
+    <!-- Topo: Carrossel de Mobilização Popular Ocupando Toda a Largura do Topo -->
+    <CarrosselMobilizacao />
 
     <!-- Conteúdo Central: Título Sobreposto + Card de Mensagem + Botões Sociais -->
     <div class="max-w-2xl mx-auto px-4 sm:px-6 -mt-20 sm:-mt-24 md:-mt-28 relative z-10">
@@ -100,7 +80,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
             <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
             </svg>
-            <span class="text-white">Juntos pelo Rio e pelo Brasil</span>
+            <span class="text-white">Mobilização Popular</span>
           </div>
           <span class="text-blue-300/80 font-mono tracking-wide">#ChamaoDoutor</span>
         </div>

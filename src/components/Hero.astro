@@ -5,24 +5,28 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const slides = [
   {
-    src: `${baseUrl}/home/home1.webp`,
+    src: `${baseUrl}/home/home3.webp`,
+    mobileSrc: `${baseUrl}/home/home3-mobile.webp`,
     alt: 'Dr. Luizinho em diálogo carinhoso com apoiadora idosa nas ruas do Rio de Janeiro',
-    pos: 'object-[65%_20%] sm:object-[60%_25%]'
+    pos: 'object-top sm:object-[center_20%]'
+  },
+  {
+    src: `${baseUrl}/home/home1.webp`,
+    mobileSrc: `${baseUrl}/home/home1-mobile.webp`,
+    alt: 'Dr. Luizinho com crianças e apoiadores em evento popular',
+    pos: 'object-top sm:object-[center_20%]'
   },
   {
     src: `${baseUrl}/home/home2.webp`,
-    alt: 'Dr. Luizinho em caminhada popular pelo Estado do Rio de Janeiro',
-    pos: 'object-[50%_20%]'
-  },
-  {
-    src: `${baseUrl}/home/home3.webp`,
-    alt: 'Dr. Luizinho com moradores e famílias fluminenses',
-    pos: 'object-[50%_25%]'
+    mobileSrc: `${baseUrl}/home/home2-mobile.webp`,
+    alt: 'Dr. Luizinho em selfie celebrando com a população fluminense',
+    pos: 'object-top sm:object-[center_20%]'
   },
   {
     src: `${baseUrl}/home/home4.webp`,
-    alt: 'Mobilização e carinho popular com Dr. Luizinho',
-    pos: 'object-[50%_25%]'
+    mobileSrc: `${baseUrl}/home/home4-mobile.webp`,
+    alt: 'Dr. Luizinho em abraço carinhoso com idosa fluminense',
+    pos: 'object-top sm:object-[center_20%]'
   }
 ];
 ---
@@ -39,22 +43,25 @@ const slides = [
         class={`hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out ${idx === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
         data-index={idx}
       >
-        <img
-          src={slide.src}
-          alt={slide.alt}
-          class={`w-full h-full object-cover filter contrast-[1.04] brightness-[1.02] ${slide.pos}`}
-          loading={idx === 0 ? 'eager' : 'lazy'}
-          decoding="async"
-        />
+        <picture class="w-full h-full block">
+          <source media="(max-width: 640px)" srcset={slide.mobileSrc} />
+          <img
+            src={slide.src}
+            alt={slide.alt}
+            class={`w-full h-full object-cover filter contrast-[1.04] brightness-[1.02] ${slide.pos}`}
+            loading={idx === 0 ? 'eager' : 'lazy'}
+            decoding="async"
+          />
+        </picture>
       </div>
     ))}
 
-    <!-- Gradiente Editorial Orgânico: Fundo Nítido no Topo, Fusão com Azul Royal na Base -->
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#061D4A]/55 to-[#071F54] pointer-events-none z-10"></div>
+    <!-- Gradiente Editorial Orgânico: Topo 100% Nítido/Transparente, Fusão Suave com Azul Royal na Base -->
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#071F54]/75 to-[#071F54] from-30% via-65% to-90% pointer-events-none z-10"></div>
   </div>
 
   <!-- Conteúdo Principal: Título Monumental + Sublinhado + Botões de Ação -->
-  <div class="max-w-md sm:max-w-xl lg:max-w-2xl mx-auto px-5 sm:px-6 w-full relative z-20 pt-48 sm:pt-64 md:pt-72 pb-2">
+  <div class="max-w-md sm:max-w-xl lg:max-w-2xl mx-auto px-5 sm:px-6 w-full relative z-20 pt-28 sm:pt-48 md:pt-60 pb-2">
     
     <!-- Título em 4 Linhas com Tipografia de Grande Impacto -->
     <h1 class="font-display text-[32px] min-[390px]:text-[37px] sm:text-5xl md:text-6xl font-black italic uppercase tracking-tight leading-[0.98] drop-shadow-lg text-left">
@@ -65,18 +72,18 @@ const slides = [
     </h1>
 
     <!-- Pincelada / Swoosh Laranja Abaixo do Título -->
-    <div class="mt-2 mb-6 sm:mb-8 text-left">
+    <div class="mt-2 mb-5 sm:mb-7 text-left">
       <svg class="w-48 sm:w-64 h-3 sm:h-3.5 text-[#F15A29]" viewBox="0 0 220 14" fill="none" aria-hidden="true">
         <path d="M2 10C55 2 165 2 218 10C155 5 65 5 2 10Z" fill="currentColor"/>
       </svg>
     </div>
 
     <!-- Botões de Ação em Pílula (Design Fiel ao Mockup) -->
-    <div class="flex flex-col gap-3.5 sm:gap-4 w-full">
+    <div class="flex flex-col gap-3 sm:gap-3.5 w-full">
       <!-- Botão Primário Laranja -->
       <a
         href="#minha-cidade"
-        class="w-full inline-flex items-center justify-center px-6 py-4 rounded-full bg-[#F15A29] hover:bg-[#D94819] text-white font-sans text-base sm:text-lg font-bold shadow-xl shadow-orange-950/40 hover:scale-[1.02] active:scale-[0.98] transition-all text-center cursor-pointer"
+        class="w-full inline-flex items-center justify-center px-6 py-3.5 sm:py-4 rounded-full bg-[#F15A29] hover:bg-[#D94819] text-white font-sans text-base sm:text-lg font-bold shadow-xl shadow-orange-950/40 hover:scale-[1.02] active:scale-[0.98] transition-all text-center cursor-pointer"
       >
         <span>Veja o que ele fez pela sua cidade ↓</span>
       </a>
@@ -86,7 +93,7 @@ const slides = [
         href="https://api.whatsapp.com/send?phone=5521999251177&text=Ol%C3%A1%2C%20Dr.%20Luizinho!%20Vim%20pelo%20site%20oficial%20e%20quero%20acompanhar%20as%20novidades%20e%20o%20trabalho%20pela%20sa%C3%BAde%20do%20Rio."
         target="_blank"
         rel="noopener noreferrer"
-        class="w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-full bg-[#0E4CB5] hover:bg-[#0B3D91] text-white font-sans text-base sm:text-lg font-bold border border-blue-400/40 shadow-xl shadow-blue-950/40 hover:scale-[1.02] active:scale-[0.98] transition-all text-center cursor-pointer"
+        class="w-full inline-flex items-center justify-center gap-3 px-6 py-3.5 sm:py-4 rounded-full bg-[#0E4CB5] hover:bg-[#0B3D91] text-white font-sans text-base sm:text-lg font-bold border border-blue-400/40 shadow-xl shadow-blue-950/40 hover:scale-[1.02] active:scale-[0.98] transition-all text-center cursor-pointer"
         title="Fale com a gente pelo WhatsApp"
       >
         <svg class="w-6 h-6 sm:w-6.5 sm:h-6.5 fill-current text-white shrink-0" viewBox="5.5 5.5 13 13">
@@ -97,7 +104,7 @@ const slides = [
     </div>
 
     <!-- Indicadores de Slides (Bolinhas Discretas) -->
-    <div class="flex items-center justify-center gap-2 mt-5">
+    <div class="flex items-center justify-center gap-2 mt-4">
       {slides.map((_, idx) => (
         <button
           type="button"
@@ -111,7 +118,7 @@ const slides = [
   </div>
 
   <!-- Onda Orgânica Branca que Conecta Diretamente com a Próxima Seção -->
-  <div class="w-full overflow-hidden leading-none -mb-1 mt-4 relative z-20 pointer-events-none">
+  <div class="w-full overflow-hidden leading-none -mb-1 mt-3 relative z-20 pointer-events-none">
     <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="relative block w-full h-8 sm:h-12 md:h-14 text-white fill-current">
       <path d="M0,0 C300,90 900,90 1200,0 L1200,120 L0,120 Z"></path>
     </svg>

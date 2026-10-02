@@ -1,0 +1,212 @@
+---
+// src/components/CarrosselMobilizacao.astro
+// Carrossel Editorial de Mobilização Popular com Dr. Luizinho
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const fotosMob = [
+  {
+    id: 1,
+    src: `${baseUrl}/mob/mob1.webp`,
+    alt: "Multidão vibrante de apoiadores e juventude com Dr. Luizinho",
+    posicao: "object-center sm:object-[center_25%]",
+  },
+  {
+    id: 2,
+    src: `${baseUrl}/mob/mob2.webp`,
+    alt: "Encontro popular com famílias, mães e crianças na Baixada Fluminense",
+    posicao: "object-center sm:object-[center_20%]",
+  },
+  {
+    id: 3,
+    src: `${baseUrl}/mob/mob3.webp`,
+    alt: "Caminhada popular com juventude e mulheres fluminenses",
+    posicao: "object-center sm:object-[center_30%]",
+  },
+  {
+    id: 4,
+    src: `${baseUrl}/mob/mob4.webp`,
+    alt: "Grande encontro com lideranças comunitárias e apoiadores",
+    posicao: "object-center sm:object-[center_20%]",
+  },
+  {
+    id: 5,
+    src: `${baseUrl}/mob/mob5.webp`,
+    alt: "Dr. Luizinho em comemoração com grupo da melhor idade",
+    posicao: "object-center sm:object-[center_25%]",
+  },
+];
+---
+
+<div id="mob-carousel" class="relative w-full h-96 sm:h-[420px] md:h-[480px] lg:h-[540px] overflow-hidden select-none bg-[#071738]">
+  
+  <!-- Slides com Transição Suave de Opacidade -->
+  {fotosMob.map((foto, index) => (
+    <div
+      class={`mob-slide absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+        index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+      }`}
+      data-index={index}
+    >
+      <img
+        src={foto.src}
+        alt={foto.alt}
+        loading={index === 0 ? 'eager' : 'lazy'}
+        decoding="async"
+        class={`w-full h-full object-cover filter contrast-[1.04] brightness-[1.02] ${foto.posicao}`}
+      />
+    </div>
+  ))}
+
+  <!-- Gradiente sutil no topo para acabamento e contraste dos controles -->
+  <div class="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/40 to-transparent pointer-events-none z-10"></div>
+
+  <!-- Gradiente na base que funde diretamente com o fundo azul #071738 da seção de mobilização -->
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#071738]/20 to-[#071738] pointer-events-none z-10"></div>
+
+  <!-- Indicadores de Paginação Discretos no Topo Direito em Cápsula Glassmorphism -->
+  <div class="absolute top-5 right-5 sm:top-6 sm:right-8 z-20 flex items-center gap-1.5 bg-black/45 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/15 pointer-events-auto shadow-lg">
+    {fotosMob.map((_, index) => (
+      <button
+        type="button"
+        class={`mob-dot h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+          index === 0 ? 'w-5 bg-[#F15A29]' : 'w-1.5 bg-white/40 hover:bg-white/70'
+        }`}
+        data-index={index}
+        aria-label={`Foto da mobilização ${index + 1}`}
+      />
+    ))}
+  </div>
+
+  <!-- Botões de Navegação Laterais Discretos (Visíveis no Hover no Desktop) -->
+  <button
+    type="button"
+    id="mob-prev-btn"
+    class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 text-white flex items-center justify-center backdrop-blur-sm border border-white/15 transition-all opacity-0 hover:opacity-100 sm:group-hover:opacity-100 cursor-pointer shadow-lg active:scale-95"
+    aria-label="Foto anterior"
+  >
+    <svg class="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+  <button
+    type="button"
+    id="mob-next-btn"
+    class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/40 hover:bg-black/70 text-white flex items-center justify-center backdrop-blur-sm border border-white/15 transition-all opacity-0 hover:opacity-100 sm:group-hover:opacity-100 cursor-pointer shadow-lg active:scale-95"
+    aria-label="Próxima foto"
+  >
+    <svg class="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+
+</div>
+
+<script>
+  function setupMobCarousel() {
+    const container = document.getElementById('mob-carousel');
+    if (!container) return;
+
+    const slides = container.querySelectorAll<HTMLElement>('.mob-slide');
+    const dots = container.querySelectorAll<HTMLElement>('.mob-dot');
+    const prevBtn = document.getElementById('mob-prev-btn');
+    const nextBtn = document.getElementById('mob-next-btn');
+    const total = slides.length;
+    if (total <= 1) return;
+
+    let current = 0;
+    let timer: any = null;
+
+    function show(index: number) {
+      current = (index + total) % total;
+      slides.forEach((s, idx) => {
+        if (idx === current) {
+          s.classList.remove('opacity-0', 'z-0', 'pointer-events-none');
+          s.classList.add('opacity-100', 'z-10');
+        } else {
+          s.classList.remove('opacity-100', 'z-10');
+          s.classList.add('opacity-0', 'z-0', 'pointer-events-none');
+        }
+      });
+
+      dots.forEach((d, idx) => {
+        if (idx === current) {
+          d.className = 'mob-dot h-1.5 rounded-full transition-all duration-300 cursor-pointer w-5 bg-[#F15A29]';
+        } else {
+          d.className = 'mob-dot h-1.5 rounded-full transition-all duration-300 cursor-pointer w-1.5 bg-white/40 hover:bg-white/70';
+        }
+      });
+    }
+
+    function next() {
+      show(current + 1);
+    }
+
+    function prev() {
+      show(current - 1);
+    }
+
+    function start() {
+      if (timer) clearInterval(timer);
+      timer = setInterval(next, 4000);
+    }
+
+    function stop() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const idx = parseInt(dot.getAttribute('data-index') || '0', 10);
+        show(idx);
+        start();
+      });
+    });
+
+    prevBtn?.addEventListener('click', () => {
+      prev();
+      start();
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      next();
+      start();
+    });
+
+    // Touch Swipe no Celular
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    container.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      stop();
+    }, { passive: true });
+
+    container.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) {
+          next();
+        } else {
+          prev();
+        }
+      }
+      start();
+    }, { passive: true });
+
+    container.addEventListener('mouseenter', stop);
+    container.addEventListener('mouseleave', start);
+
+    start();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupMobCarousel);
+  } else {
+    setupMobCarousel();
+  }
+  document.addEventListener('astro:page-load', setupMobCarousel);
+</script>
