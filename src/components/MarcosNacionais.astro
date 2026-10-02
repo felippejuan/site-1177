@@ -26,6 +26,9 @@ const MARCOS = [
     isLei: true,
     referencia: 'Lei Complementar n° 212/2025',
     impactoCurto: 'R$ 41 Bi para o RJ',
+    videoUrl: '/videos/propag.mp4',
+    videoDuracao: '1:40',
+    videoImagem: '/videos/propag-card-thumb.jpg',
     descricao: 'Relator da lei que criou o Programa de Pleno Pagamento de Dívidas dos Estados. Um marco histórico que une responsabilidade fiscal ao destravamento de recursos para investir na população.',
     itens: [
       'Renegociação das dívidas dos estados com a União',
@@ -192,6 +195,33 @@ const MARCOS = [
                 <h3 class="font-display text-2xl sm:text-[26px] lg:text-[28px] font-black italic tracking-tight text-[#123F8F] group-hover:text-[#F15A29] transition-colors leading-tight mb-3.5">
                   {marco.titulo}
                 </h3>
+
+                {marco.videoImagem && (
+                  <div
+                    class="relative w-full h-28 rounded-xl overflow-hidden mb-4 bg-slate-900 border border-slate-200/80 shadow-xs group/thumb cursor-pointer"
+                    data-open-video={marco.videoUrl || ''}
+                    data-video-title={`${marco.titulo} — Dr. Luizinho`}
+                  >
+                    <img
+                      src={marco.videoImagem}
+                      alt={`${marco.titulo} — Dr. Luizinho`}
+                      class="w-full h-full object-cover group-hover/thumb:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    {marco.videoUrl && (
+                      <div class="absolute inset-0 bg-black/15 group-hover/thumb:bg-black/25 transition-colors flex items-center justify-center">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#F15A29] text-white text-xs font-bold shadow-lg group-hover/thumb:scale-105 active:scale-95 transition-all">
+                          <svg class="w-3.5 h-3.5 fill-current translate-x-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                          <span>Assistir</span>
+                          {marco.videoDuracao && (
+                            <span class="opacity-80 text-xs font-normal border-l border-white/30 pl-1.5">{marco.videoDuracao}</span>
+                          )}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 <!-- Descrição Fluida e Direta -->
                 <p class={`font-sans text-[15px] sm:text-base lg:text-[16.5px] text-slate-600 leading-relaxed font-normal ${marco.itens && marco.itens.length > 0 ? 'mb-4' : 'mb-6'}`}>
